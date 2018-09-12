@@ -15,5 +15,13 @@ it('renders without crashing', () => {
 it('should have a h1 heading element ', () => {
   const wrapper = shallow(<App />);
   expect(wrapper.exists('h1')).toEqual(true);
-
+  expect(wrapper.find('h1').text()).toEqual("Welcome to Grocery Store");
+});
+it('should have navigation bar', () => {
+  const wrapper = shallow(<App />);
+  expect(wrapper.exists('Navigation')).toEqual(true);
+});
+it('should render product list component', () => {
+  const wrapper = shallow(<App />);
+  expect(wrapper.exists('ProductList')).toEqual(true);
 });
