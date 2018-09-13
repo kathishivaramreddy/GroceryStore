@@ -13,3 +13,16 @@ it('should have  div elements',() =>{
   expect(wrapper.find('div').length).toEqual(7);
   expect(wrapper.exists('br')).toEqual(true);
 });
+
+it('should have input element',() => {
+
+  const wrapper = shallow(<ProductList />);
+  expect(wrapper.find('input').length).toEqual(6);
+  // expect(wrapper.contains(<input className = "addBasket" type="submit" value="Add"/>)).toEqual(true);
+});
+
+it('should submit when click on input type submit',() => {
+  const wrapper =shallow(<ProductList />);
+  const inputButton = wrapper.find('.addBasket').at(0)
+  inputButton.simulate('submit');
+})

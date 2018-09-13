@@ -1,6 +1,6 @@
 import React from 'react';
-import {Navigation} from './Navigation'
-import {ProductList} from './ProductList'
+import {Navigation} from './Navigation';
+import {ProductList} from './ProductList';
 import logo from './logo.svg';
 import './App.css';
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 export class Navigation extends React.Component{
 
@@ -12,7 +13,7 @@ export class Navigation extends React.Component{
           <div className="dropdown">
             <button className="dropbtn">Vegetables</button>
             <div className="dropdown-content">
-              <a href="#">Link 1</a>
+              <a href="#">Link 1 </a>
               <a href="#">Link 2</a>
               <a href="#">Link 3</a>
             </div>
