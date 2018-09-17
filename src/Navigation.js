@@ -1,5 +1,7 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
+import {BrowserRouter,Route,Link} from 'react-router-dom';
+import {Fruits } from './Fruits';
+import App from './App';
 
 export class Navigation extends React.Component{
 
@@ -9,34 +11,38 @@ export class Navigation extends React.Component{
 
     render(){
       return(
-        <div>
-          <div className="dropdown">
-            <button className="dropbtn">Vegetables</button>
-            <div className="dropdown-content">
-              <a href="#">Link 1 </a>
-              <a href="#">Link 2</a>
-              <a href="#">Link 3</a>
+        <BrowserRouter>
+          <div>
+            <hr/>
+            <div className="dropdown">
+              <button className="dropbtn">Vegetables</button>
+              <div className="dropdown-content">
+                <Link to='/fruits'>Fruits</Link>
+                <Link to='organic'>Organic Vegetables</Link>
+              </div>
             </div>
-          </div>
 
-          <div className="dropdown">
-            <button className="dropbtn">Dairy</button>
-            <div className="dropdown-content">
-              <a href="#">Link 1</a>
-              <a href="#">Link 2</a>
-              <a href="#">Link 3</a>
-            </div>
-          </div>
+            <div className="dropdown">
+              <button className="dropbtn">Dairy</button>
+              <div className="dropdown-content">
+                <Link to='/milk'>Milk</Link>
+                <Link to='meat'>Meat</Link>
 
-          <div className="dropdown">
-            <button className="dropbtn">Beverages</button>
-            <div className="dropdown-content">
-              <a href="#">Link 1</a>
-              <a href="#">Link 2</a>
-              <a href="#">Link 3</a>
+              </div>
             </div>
+
+            <div className="dropdown">
+              <button className="dropbtn">Beverages</button>
+              <div className="dropdown-content">
+                <Link to='tea'>Tea</Link>
+                <Link to='coffee'>Coffee</Link>
+              </div>
+            </div>
+            {/* <Route exact path='/' component ={App}/> */}
+            <Route path='/fruits' component={Fruits}/>
+
           </div>
-        </div>
+        </BrowserRouter>
           );
-    }
-}
+          }
+          }

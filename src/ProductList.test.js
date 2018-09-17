@@ -1,28 +1,46 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import {ProductList} from './ProductList';
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 import { shallow } from 'enzyme';
+c
 
-it('should have  div elements',() =>{
 
-  const wrapper = shallow(<ProductList />);
-  expect(wrapper.exists('div')).toEqual(true);
-  expect(wrapper.find('div').length).toEqual(7);
-  expect(wrapper.exists('br')).toEqual(true);
-});
+    const wrapper = shallow(<ProductList />);
 
-it('should have input element',() => {
+describe ('product list test',() => {
 
-  const wrapper = shallow(<ProductList />);
-  expect(wrapper.find('input').length).toEqual(6);
-  // expect(wrapper.contains(<input className = "addBasket" type="submit" value="Add"/>)).toEqual(true);
-});
 
-it('should submit when click on input type submit',() => {
-  const wrapper =shallow(<ProductList />);
-  const inputButton = wrapper.find('.addBasket').at(0)
-  inputButton.simulate('submit');
+    test('should have  div elements',() =>{
+
+
+      expect(wrapper.exists('div')).toEqual(true);
+      expect(wrapper.find('div').length).toEqual(9);
+      expect(wrapper.exists('br')).toEqual(true);
+    });
+
+    it('should have button element',() => {
+
+      expect(wrapper.find('button').length).toEqual(6);
+      // expect(wrapper.contains(<input className = "addBasket" type="submit" value="Add"/>)).toEqual(true);
+    });
+
+    it('should call function on button click', () => {
+        const mockCallback = jest.fn();
+
+        wrapper.find('button').at(0).simulate('click');
+         expect(mockCallback).toHaveBeenCalled();
+    });
+
+    it('should contain link to checkout', () => {
+
+      expect(wrapper.find(Link).at(0).props().to).toBe('/checkout');
+     });
+
+     // it('should pass product name and price to checkout',() => {
+     //    const wrapper = shallow(<ProductList />);
+     //
+     // });
+
 })

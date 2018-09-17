@@ -10,7 +10,11 @@ export class Fruits extends React.Component{
         </head>
         <div>
           <h1>Welcome To Fruits</h1>
-          <img src={ require('./images/vegetables.jpg') } />
+          <ul>
+            <li>Apple</li>
+            <li>Mango</li>
+            <li>Banana</li>
+          </ul>
         </div>
         </html>);
         }

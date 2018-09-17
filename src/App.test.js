@@ -5,6 +5,7 @@ import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 import { shallow } from 'enzyme';
+import {Link} from 'react-router-dom';
 
 
 it('renders without crashing', () => {
@@ -17,11 +18,8 @@ it('should have a h1 heading element ', () => {
   expect(wrapper.exists('h1')).toEqual(true);
   expect(wrapper.find('h1').text()).toEqual("Welcome to Grocery Store");
 });
-it('should have navigation bar', () => {
-  const wrapper = shallow(<App />);
-  expect(wrapper.exists('Navigation')).toEqual(true);
-});
-it('should render product list component', () => {
-  const wrapper = shallow(<App />);
-  expect(wrapper.exists('ProductList')).toEqual(true);
-});
+
+it('should have Link component with pathname equal to /',() => {
+    const wrapper = shallow(<App />);
+    expect(wrapper.find(Link).at(0).props().to).toBe('/');
+})
