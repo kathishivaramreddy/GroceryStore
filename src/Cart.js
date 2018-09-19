@@ -1,25 +1,24 @@
 import React from 'react';
 
+
 export class Cart extends React.Component{
   constructor(props){
     super(props);
-    this.state=null;
-    console.log(this.props.data)
+    this.state={arr:[]};
+    this.updateState = this.updateState.bind(this);
   }
+  updateState(){
 
+      this.setState({arr:this.state.arr.concat(this.props.data)})
 
+}
   render(){
-    // this.setState(this.state.push(this.props.data));
-    // const listItems = this.props.data.map((data1) =>
-    // <p>{data1.name}{data1.price}</p>);
       return(
       <div >
         <h1>Cart</h1>
-        <div >
-          {this.props.data}
-
-        </div>
-        </div>
+        <p>{this.state.arr}</p>
+        <button onClick={this.updateState}>Show the Cart</button>
+      </div>
         )
   }
 }

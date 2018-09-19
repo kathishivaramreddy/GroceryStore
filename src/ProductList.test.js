@@ -4,15 +4,15 @@ import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 import { shallow } from 'enzyme';
-c
 
-
-    const wrapper = shallow(<ProductList />);
 
 describe ('product list test',() => {
+    let wrapper;
+    beforeEach(() =>{
+        wrapper = shallow(<ProductList />);
+    });
 
-
-    test('should have  div elements',() =>{
+    test('should have div,br elements',() =>{
 
 
       expect(wrapper.exists('div')).toEqual(true);
@@ -30,7 +30,7 @@ describe ('product list test',() => {
         const mockCallback = jest.fn();
 
         wrapper.find('button').at(0).simulate('click');
-         expect(mockCallback).toHaveBeenCalled();
+         expect(mockCallback).toHaveBeenCalledWith(250);
     });
 
     it('should contain link to checkout', () => {

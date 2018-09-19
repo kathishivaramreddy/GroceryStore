@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter,Route,Link} from 'react-router-dom';
 import {ProductList} from './ProductList';
 import {Fruits} from './Fruits';
-import logo from './logo.svg';
+// import {Cart} from './Cart';
 import './App.css';
 
 class App extends React.Component {
@@ -50,9 +50,11 @@ class App extends React.Component {
                 <Route exact path='/' component ={ProductList}/>
                 <Route path='/fruits' component={Fruits}/>
 
+
               </div>
             </BrowserRouter>
             <hr/>
+
         </div>
 
       // </BrowserRouter>
