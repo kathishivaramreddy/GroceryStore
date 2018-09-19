@@ -19,7 +19,6 @@ describe('Cart tests',() => {
   });
 
   it('should have button element',() => {
-
     expect(wrapper.exists('button')).toEqual(true);
   })
 
