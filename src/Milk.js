@@ -20,6 +20,7 @@ export class Milk extends React.Component{
           {data.name}<br/>
           {data.currency} {data.price}<br/>
           <button className="addBasket"  value="Add" onClick={ () => this.props.onClick(data.name)}>Add To Cart </button>
+          <button className="addBasket"  value="Remove From Cart" onClick={ () => this.props.onRemove(data.name)}>Remove From Cart </button>
         </div>
 
     );

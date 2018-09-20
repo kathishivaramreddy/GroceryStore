@@ -24,6 +24,11 @@ class App extends React.Component {
 
     }
 
+    handleRemoveFromCart(name){
+
+      this.setState({cart : this.state.cart.filter(data =>  data !== name)})
+    }
+
 
   render() {
     return (
@@ -68,13 +73,13 @@ class App extends React.Component {
                   <Link to='coffee'>Coffee</Link>
                 </div>
               </div>
-              <Route exact path='/' component={() => <ProductList onClick={this.handleAddToCart.bind(this)} />}/>
-              <Route path='/fruits' component={() => <Fruits onClick={this.handleAddToCart.bind(this)}  />}/>
-              <Route path='/organic' component={() => <Vegetables onClick={this.handleAddToCart.bind(this)}  />}/>
-              <Route path='/milk' component={() => <Milk onClick={this.handleAddToCart.bind(this)}  />}/>
-              <Route path='/meat' component={() => <Meat onClick={this.handleAddToCart.bind(this)}  />}/>
-              <Route path='/tea' component={() => <Tea onClick={this.handleAddToCart.bind(this)}  />}/>
-              <Route path='/coffee' component={() => <Coffee onClick={this.handleAddToCart.bind(this)}  />}/>
+              <Route exact path='/' component={() => <ProductList onClick={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)}  />}/>
+              <Route path='/fruits' component={() => <Fruits onClick={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)}  />}/>
+              <Route path='/organic' component={() => <Vegetables onClick={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)}  />}/>
+              <Route path='/milk' component={() => <Milk onClick={this.handleAddToCart.bind(this)}  onRemove={this.handleRemoveFromCart.bind(this)} />}/>
+              <Route path='/meat' component={() => <Meat onClick={this.handleAddToCart.bind(this)}  onRemove={this.handleRemoveFromCart.bind(this)} />}/>
+              <Route path='/tea' component={() => <Tea onClick={this.handleAddToCart.bind(this)}  onRemove={this.handleRemoveFromCart.bind(this)} />}/>
+              <Route path='/coffee' component={() => <Coffee onClick={this.handleAddToCart.bind(this) } onRemove={this.handleRemoveFromCart.bind(this)} />}/>
             </div>
           </BrowserRouter>
 

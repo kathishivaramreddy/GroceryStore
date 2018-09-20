@@ -8,7 +8,7 @@ export class Cart extends React.Component{
   render(){
     console.log('coming 3', this.props.data);
     const listItems = this.props.data.map((data) =>
-      <div className="cart" key={data}>
+      <div className="cart">
         {data}<br/>
       </div>
   );
