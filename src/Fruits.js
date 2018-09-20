@@ -18,13 +18,14 @@ export class Fruits extends React.Component{
     }
     addToCart(name,price){
         this.setState({cart:this.state.cart.concat([name,price])})
+        
     }
 
     render() {
       const listItems = this.state.products.map((data) =>
         <div className="boxed" key={data.name}>
 
-          <img src={data.image}/><br/>
+          <img src={data.image} alt=''/><br/>
           {data.name}<br/>
           {data.price}<br/>
 
