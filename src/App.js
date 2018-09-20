@@ -14,7 +14,7 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = { cart : [{name: null}] }
-    // this.handleAddToCart.bind(this);
+    this.handleAddToCart.bind(this);
       }
 
   handleAddToCart(name){
@@ -25,7 +25,7 @@ class App extends React.Component {
 
      handleRemoveFromCart(name){
 
-   this.setState({cart : this.state.cart.filter(data =>  data !== name)})
+   this.setState({cart : this.state.cart.filter( data =>  data.name !== name)})
     }
 
 

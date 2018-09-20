@@ -32,6 +32,8 @@ describe ('product list test',() => {
       wrapper.find('button').at(0).simulate('click');
       wrapper.find('button').at(0).simulate('click');
       expect(callback).toHaveBeenCalledTimes(2);
+
+
       wrapper.find('button').at(1).simulate('click');
       expect(callback).toHaveBeenCalled();
     });
