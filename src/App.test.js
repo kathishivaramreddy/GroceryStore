@@ -22,6 +22,7 @@ it('should have a h1 heading element ', () => {
 it('should have Link component with pathname equal to /',() => {
     const wrapper = shallow(<App />);
     expect(wrapper.find(Link).at(0).props().to).toBe('/');
+    expect(wrapper.find(Link).at(1).props().to).toBe('/fruits');
 })
 
 it('should render Cart component ',() => {

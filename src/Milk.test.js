@@ -1,5 +1,5 @@
 import React from 'react';
-import {ProductList} from './ProductList';
+import {Milk} from './Milk';
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
@@ -10,21 +10,7 @@ describe ('product list test',() => {
     let wrapper;
     let callback = jest.fn()
     beforeEach(() =>{
-        wrapper = shallow(<ProductList onClick={callback} onRemove={callback}/>);
-    });
-
-    test('should have div,br elements',() =>{
-
-
-      expect(wrapper.exists('div')).toEqual(true);
-      expect(wrapper.find('div').length).toEqual(8);
-      expect(wrapper.exists('br')).toEqual(true);
-    });
-
-    it('should have button element',() => {
-
-      expect(wrapper.find('button').length).toEqual(12);
-
+        wrapper = shallow(<Milk onClick={callback} onRemove={callback}/>);
     });
 
 
@@ -38,6 +24,9 @@ describe ('product list test',() => {
 
     it('should have image element with source attribute',() => {
 
-      expect(wrapper.find('img').at(0).props().src).toEqual('apple.jpg')
+      expect(wrapper.find('img').at(0).props().src).toEqual('almondmilk.jpg')
     })
-})
+
+
+
+  })

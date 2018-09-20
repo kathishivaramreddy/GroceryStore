@@ -8,7 +8,7 @@ export class Coffee extends React.Component{
       products : [
           {name:'Classic Cofee ',price:250,image:require('./images/coffeeclassic.jpg')},
           {name:'Sunrise Coffee',price:150,image:require('./images/coffeesunrise.jpg')},
-          {name:'Filter Coffee',price:125,image:require('./images/filtercoffee.jpg')},
+          {name:'Filter Coffee',price:125,image:require('./images/filtercoffee.jpg')}
         ]
         }
   }

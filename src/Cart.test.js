@@ -17,9 +17,4 @@ describe('Cart tests',() => {
    expect(wrapper.exists('h1')).toEqual(true);
     expect(wrapper.find('h1').text()).toEqual('Cart');
   });
-
-  it('should have button element',() => {
-    expect(wrapper.exists('button')).toEqual(true);
-  })
-
 })

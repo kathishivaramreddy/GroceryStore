@@ -13,12 +13,12 @@ export class ProductList extends React.Component{
             {name:'Tomato',price:125,image:require('./images/tomato.jpg'),currency:'INR'},
             {name:'Kiwi - Green',price:95,image:require('./images/kiwi.jpg'),currency:'INR'},
             {name:'Potato/Batate',price:30,image:require('./images/potato.jpg'),currency:'INR'},
-            {name:'Ladies Finger',price:45,image:require('./images/ladiesfinger.jpg'),currency:'INR'}
+            {name:'LadiesFinger',price:45,image:require('./images/ladiesfinger.jpg'),currency:'INR'}
           ]
   }
 }
   render(){
-      console.log('coming 2 in productlist', this.props);
+      // console.log('coming 2 in productlist', this.props);
       const listItems = this.state.products.map((data) =>
         <div className="boxed" key={data.name}>
           <img src={data.image} alt=''/><br/>
@@ -26,7 +26,6 @@ export class ProductList extends React.Component{
           {data.currency} {data.price}<br/>
           <button className="addBasket"  value="Add" onClick={ () => this.props.onClick(data.name)}>Add To Cart </button>
           <button className="addBasket"  value="Remove From Cart" onClick={ () => this.props.onRemove(data.name)}>Remove From Cart </button>
-          {/* <Link to='/cart' >  <button className="addBasket"  value="Add" onClick={ () => this.addToCart(data.price)}>Add To Cart </button></Link> */}
         </div>
 
     );

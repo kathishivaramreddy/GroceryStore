@@ -13,25 +13,26 @@ import './App.css';
 class App extends React.Component {
   constructor(props){
     super(props);
-    this.state = { cart : [] }
+    this.state = { cart : [{name: null}] }
     this.handleAddToCart.bind(this);
-    console.log("coming 1")
+    // console.log("coming 1",this.state.cart)
   }
 
   handleAddToCart(name){
 
-      this.setState({cart:this.state.cart.concat([name])})
+      this.setState({ cart: this.state.cart.concat([{name: {name} }]) })
 
     }
 
     handleRemoveFromCart(name){
 
-      this.setState({cart : this.state.cart.filter(data =>  data !== name)})
+      // this.setState({cart : this.state.cart.filter(data =>  data !== name)})
     }
 
 
   render() {
-    return (
+
+  return (
       <div>
         <div className="App">
 
@@ -79,7 +80,7 @@ class App extends React.Component {
               <Route path='/milk' component={() => <Milk onClick={this.handleAddToCart.bind(this)}  onRemove={this.handleRemoveFromCart.bind(this)} />}/>
               <Route path='/meat' component={() => <Meat onClick={this.handleAddToCart.bind(this)}  onRemove={this.handleRemoveFromCart.bind(this)} />}/>
               <Route path='/tea' component={() => <Tea onClick={this.handleAddToCart.bind(this)}  onRemove={this.handleRemoveFromCart.bind(this)} />}/>
-              <Route path='/coffee' component={() => <Coffee onClick={this.handleAddToCart.bind(this) } onRemove={this.handleRemoveFromCart.bind(this)} />}/>
+              <Route path='/coffee' component={() => <Coffee onClick={this.handleAddToCart.bind(this) }   onRemove={this.handleRemoveFromCart.bind(this)} />}/>
             </div>
           </BrowserRouter>
 
