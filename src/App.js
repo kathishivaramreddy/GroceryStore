@@ -14,19 +14,18 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = { cart : [{name: null}] }
-    this.handleAddToCart.bind(this);
-    // console.log("coming 1",this.state.cart)
-  }
+    // this.handleAddToCart.bind(this);
+      }
 
   handleAddToCart(name){
 
-      this.setState({ cart: this.state.cart.concat([{name: {name} }]) })
+      this.setState({ cart: this.state.cart.concat([{name: name}]) })
 
     }
 
-    handleRemoveFromCart(name){
+     handleRemoveFromCart(name){
 
-      // this.setState({cart : this.state.cart.filter(data =>  data !== name)})
+   this.setState({cart : this.state.cart.filter(data =>  data !== name)})
     }
 
 
