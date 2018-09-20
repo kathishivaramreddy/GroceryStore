@@ -22,7 +22,7 @@ export class Fruits extends React.Component{
           <img src={data.image} alt=''/><br/>
           {data.name}<br/>
           {data.price}<br/>
-          <button className="addBasket"  value="Add" onClick={ () => this.props.onClick(data.name)}>Add To Cart </button>
+          <button className="addBasket"  value="Add" onClick={ () => this.props.onClick(data.name,data.currency,data.price)}>Add To Cart </button>
           <button className="addBasket"  value="Remove From Cart" onClick={ () => this.props.onRemove(data.name)}>Remove From Cart </button>
         </div>
       );

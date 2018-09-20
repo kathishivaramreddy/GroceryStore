@@ -76,7 +76,7 @@
   border: 2px solid green ;
   width: 51%;
   height:auto;
-  float: right;
+  float: left;
   padding: 5px;
 }
 
@@ -86,6 +86,23 @@
   height:auto;
   float: left;
   padding: 5px;
+}
+.totalbox {
+  border: 2px solid red ;
+  width: auto;
+  height:auto;
+  float: left;
+  padding: 3px;
+}
+.button{
+
+  /* background-color: #4CAF50; */
+  /* color: white; */
+  padding: 15px;
+  font-size: 16px;
+  border: 1px solid green;
+  display: inline-block;
+  float: left;
 }
 * {
     box-sizing: border-box;

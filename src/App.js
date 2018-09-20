@@ -13,13 +13,13 @@ import './App.css';
 class App extends React.Component {
   constructor(props){
     super(props);
-    this.state = { cart : [{name: null}] }
+    this.state = { cart : [] }
     this.handleAddToCart.bind(this);
       }
 
-  handleAddToCart(name){
+  handleAddToCart(name,currency,price){
 
-      this.setState({ cart: this.state.cart.concat([{name: name}]) })
+      this.setState({ cart: this.state.cart.concat([{name: name,currency:currency,price:price}]) })
 
     }
 
