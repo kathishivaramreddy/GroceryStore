@@ -4,6 +4,10 @@ import {ProductList} from './ProductList';
 import {Fruits} from './Fruits';
 import {Cart} from './Cart';
 import {Vegetables} from './Vegetables';
+import {Milk} from './Milk';
+import {Meat} from './Meat';
+import {Tea} from './Tea';
+import {Coffee} from './Coffee';
 import './App.css';
 
 class App extends React.Component {
@@ -67,7 +71,10 @@ class App extends React.Component {
               <Route exact path='/' component={() => <ProductList onClick={this.handleAddToCart.bind(this)} />}/>
               <Route path='/fruits' component={() => <Fruits onClick={this.handleAddToCart.bind(this)}  />}/>
               <Route path='/organic' component={() => <Vegetables onClick={this.handleAddToCart.bind(this)}  />}/>
-
+              <Route path='/milk' component={() => <Milk onClick={this.handleAddToCart.bind(this)}  />}/>
+              <Route path='/meat' component={() => <Meat onClick={this.handleAddToCart.bind(this)}  />}/>
+              <Route path='/tea' component={() => <Tea onClick={this.handleAddToCart.bind(this)}  />}/>
+              <Route path='/coffee' component={() => <Coffee onClick={this.handleAddToCart.bind(this)}  />}/>
             </div>
           </BrowserRouter>
 
