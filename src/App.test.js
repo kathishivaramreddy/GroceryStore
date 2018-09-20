@@ -23,3 +23,8 @@ it('should have Link component with pathname equal to /',() => {
     const wrapper = shallow(<App />);
     expect(wrapper.find(Link).at(0).props().to).toBe('/');
 })
+
+it('should render Cart component ',() => {
+  const wrapper = shallow(<App />);
+  expect(wrapper.exists('Cart')).toEqual(true);
+})

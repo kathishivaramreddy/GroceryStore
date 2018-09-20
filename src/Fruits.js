@@ -10,16 +10,10 @@ export class Fruits extends React.Component{
             {name:'Grapes - Red',price:150,image:require('./images/grapes.jpg')},
             {name:'Banana',price:125,image:require('./images/banana.jpg')},
             {name:'Kiwi' ,price:95,image:require('./images/kiwi.jpg')},
-          ],
-
-          cart :[]
+          ]
           }
-          this.addtoCart=this.addToCart.bind(this)
-    }
-    addToCart(name,price){
-        this.setState({cart:this.state.cart.concat([name,price])})
-        
-    }
+  }
+
 
     render() {
       const listItems = this.state.products.map((data) =>
@@ -28,18 +22,14 @@ export class Fruits extends React.Component{
           <img src={data.image} alt=''/><br/>
           {data.name}<br/>
           {data.price}<br/>
-
-          <button className="addBasket"  value="Add" onClick={ () => this.addToCart(data.name,data.price)}>Add To Cart </button>
-          {/* <Link to='/cart' >  <button className="addBasket"  value="Add" onClick={ () => this.addToCart(data.price)}>Add To Cart </button></Link> */}
+          <button className="addBasket"  value="Add" onClick={ () => this.props.onClick(data.name)}>Add To Cart </button>
         </div>
       );
         return(
           <div>
-            <div className="boxed">
+            <div className="productboxed">
+              <h3 align="left">Fruits</h3>
               {listItems}
-            </div>
-            <div className="boxed">
-              <Cart data={this.state.cart}/>
             </div>
           </div>
             );

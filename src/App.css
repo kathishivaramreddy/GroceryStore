@@ -56,14 +56,37 @@
 
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
-.boxed {
+.productboxed {
   border: 2px solid green ;
-  width: 50%;
-  height:250px;
+  width: 49%;
+  height:auto;
   float: left;
   padding: 5px;
 }
 
+.boxed {
+  border: 2px solid green ;
+  width: 178.5px;
+  height:240px;
+  float: left;
+  padding: 5px;
+}
+
+.cartboxed {
+  border: 2px solid green ;
+  width: 51%;
+  height:auto;
+  float: right;
+  padding: 5px;
+}
+
+.cart {
+  border: 2px solid green ;
+  width: auto;
+  height:auto;
+  float: left;
+  padding: 5px;
+}
 * {
     box-sizing: border-box;
 }
