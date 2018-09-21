@@ -14,9 +14,10 @@ import './App.css';
 class App extends React.Component {
   constructor(props){
     super(props);
-    this.state = { cart : [{name:'',currency:'',price:null,quantity:null}] }
+    this.state = { cart : [],input : '' }
     this.handleAddToCart=this.handleAddToCart.bind(this);
     this.handleRemoveFromCart=this.handleRemoveFromCart.bind(this);
+    this.updateInput = this.updateInput.bind(this);
 
       }
 
@@ -56,9 +57,14 @@ class App extends React.Component {
       }
   }
 
+  updateInput(e){
+    const value = e.target.value
+    this.setState({input: value })
+  }
+
 
   render() {
-
+    console.log(this.state.input)
   return (
       <div>
         <div className="App">
@@ -101,6 +107,13 @@ class App extends React.Component {
                 <Link to='coffee'>Coffee</Link>
               </div>
             </div>
+
+            <div class="dropdown">
+              <input className="searchbox" type="text" placeholder="Search.." name="search" onChange={this.updateInput}/>
+              <button className="dropbtn" type="input" onClick= {this.handleInput}>Search</button>
+
+            </div>
+
             <div>
 
               <Route path='/fruits' component={() => <Fruits onClick={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)}  />}/>
@@ -110,13 +123,13 @@ class App extends React.Component {
               <Route path='/tea' component={() => <Tea onClick={this.handleAddToCart.bind(this)}  onRemove={this.handleRemoveFromCart.bind(this)} />}/>
               <Route path='/coffee' component={() => <Coffee onClick={this.handleAddToCart.bind(this) }   onRemove={this.handleRemoveFromCart.bind(this)} />}/>
               <Route exact path='/checkout' component={Checkout}/>
-              <Route exact path='/' component={() => <ProductList onClick={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)}  />}/>
-              </div>
+              <Route exact path='/' component={() => <ProductList onClick={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input} />}/>
             </div>
-
-
-            <hr/>
           </div>
+
+
+          <hr/>
+        </div>
 
         <div className="cartboxed">
           <Cart data={this.state.cart}/>
