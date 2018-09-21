@@ -25,28 +25,36 @@ class App extends React.Component {
     var count;
     var setState=true;
     for( count =0 ; count<this.state.cart.length ;count++){
-
       if(name === this.state.cart[count].name){
         var newCart = [...this.state.cart]
         newCart[count].quantity= newCart[count].quantity+1
         this.setState({ cart: newCart})
         setState=false;
         }
-
     }
 
     if(setState){
-      console.log('inside second if')
       this.setState({ cart: this.state.cart.concat([{name: name,currency:currency,price:price,quantity:1}]) })
-      console.log('new object inserted into state')
         }
-        console.log('in app',this.state.cart)
+      }
+
+  handleRemoveFromCart(name){
+
+    var count;
+    var setState=true;
+    for( count =0 ; count<this.state.cart.length ;count++){
+      if(name === this.state.cart[count].name && this.state.cart[count].quantity > 1){
+        var newCart = [...this.state.cart]
+        newCart[count].quantity= newCart[count].quantity-1
+        this.setState({ cart: newCart})
+        setState=false;
+        }
     }
 
-     handleRemoveFromCart(name){
-
-   this.setState({cart : this.state.cart.filter( data =>  data.name !== name)})
-    }
+    if(setState){
+        this.setState({cart : this.state.cart.filter( data =>  data.name !== name)})
+      }
+  }
 
 
   render() {

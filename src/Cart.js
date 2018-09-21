@@ -6,7 +6,7 @@ export class Cart extends React.Component{
   render(){
       let amount=0;
       console.log('inside cart',this.props)
-      let listItems = this.props.data.map( (value) => <div className="cart"> {value.name} <hr/>{value.currency} {value.price} {value.quantity} </div>)
+      let listItems = this.props.data.map( (value) => <div className="cart"> {value.name} <hr/>{value.currency} {value.price} <br/>{value.quantity} </div>)
       console.log('listItems',listItems)
       let total = this.props.data.map( (value) => amount=amount+value.price )
       return(
