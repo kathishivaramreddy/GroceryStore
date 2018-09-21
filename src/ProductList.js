@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {Cart} from './Cart.js';
+
 
 
 export class ProductList extends React.Component{
@@ -18,7 +18,7 @@ export class ProductList extends React.Component{
   }
 }
   render(){
-      // console.log('coming 2 in productlist', this.props);
+      console.log('coming 2 in productlist', this.props);
       const listItems = this.state.products.map((data) =>
         <div className="boxed" key={data.name}>
           <img src={data.image} alt=''/><br/>

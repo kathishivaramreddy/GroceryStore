@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter,Route,Link,Switch} from 'react-router-dom';
+import {Route,Link} from 'react-router-dom';
 import {ProductList} from './ProductList';
 import {Fruits} from './Fruits';
 import {Cart} from './Cart';
@@ -14,14 +14,33 @@ import './App.css';
 class App extends React.Component {
   constructor(props){
     super(props);
-    this.state = { cart : [{name:'',currency:'',price:null}] }
-    this.handleAddToCart.bind(this);
+    this.state = { cart : [{name:'',currency:'',price:null,quantity:null}] }
+    this.handleAddToCart=this.handleAddToCart.bind(this);
+    this.handleRemoveFromCart=this.handleRemoveFromCart.bind(this);
+
       }
 
   handleAddToCart(name,currency,price){
+    //compare name and price if same update quantity otherwise add the product to the cart.
+    var count;
+    var setState=true;
+    for( count =0 ; count<this.state.cart.length ;count++){
 
-      this.setState({ cart: this.state.cart.concat([{name: name,currency:currency,price:price}]) })
+      if(name === this.state.cart[count].name){
+        var newCart = [...this.state.cart]
+        newCart[count].quantity= newCart[count].quantity+1
+        this.setState({ cart: newCart})
+        setState=false;
+        }
 
+    }
+
+    if(setState){
+      console.log('inside second if')
+      this.setState({ cart: this.state.cart.concat([{name: name,currency:currency,price:price,quantity:1}]) })
+      console.log('new object inserted into state')
+        }
+        console.log('in app',this.state.cart)
     }
 
      handleRemoveFromCart(name){
@@ -83,7 +102,7 @@ class App extends React.Component {
               <Route path='/tea' component={() => <Tea onClick={this.handleAddToCart.bind(this)}  onRemove={this.handleRemoveFromCart.bind(this)} />}/>
               <Route path='/coffee' component={() => <Coffee onClick={this.handleAddToCart.bind(this) }   onRemove={this.handleRemoveFromCart.bind(this)} />}/>
               <Route exact path='/checkout' component={Checkout}/>
-                <Route exact path='/' component={() => <ProductList onClick={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)}  />}/>
+              <Route exact path='/' component={() => <ProductList onClick={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)}  />}/>
               </div>
             </div>
 

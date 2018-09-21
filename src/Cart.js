@@ -1,18 +1,13 @@
 import React from 'react';
-import {Link,BrowserRouter as Router,Route} from 'react-router-dom';
-import {Checkout} from './Checkout'
+import {Link} from 'react-router-dom';
+// import {Checkout} from './Checkout'
 
 export class Cart extends React.Component{
-  constructor(props){
-    super(props);
-  }
-
-
-
   render(){
       let amount=0;
-      console.log(this.props.data)
-      let listItems = this.props.data.map( (value) => <div className="cart"> {value.name} <hr/>{value.currency} {value.price} </div>)
+      console.log('inside cart',this.props)
+      let listItems = this.props.data.map( (value) => <div className="cart"> {value.name} <hr/>{value.currency} {value.price} {value.quantity} </div>)
+      console.log('listItems',listItems)
       let total = this.props.data.map( (value) => amount=amount+value.price )
       return(
       <div >
@@ -30,14 +25,7 @@ export class Cart extends React.Component{
           <br/>
           <br/>
           <Link className="button" to='checkout'>Pay</Link>
-          {/* <Router>
-            <div>
-              <Link to='checkout'> Pay </Link>
-            </div>
-            <div>
-              <Route path='/checkout' component={Checkout}/>
-            </div>
-          </Router> */}
+
       </div>
 
       </div>

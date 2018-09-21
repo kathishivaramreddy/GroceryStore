@@ -1,5 +1,5 @@
 import React from 'react';
-import {Cart} from './Cart';
+
 
 export class Fruits extends React.Component{
     constructor(props){
