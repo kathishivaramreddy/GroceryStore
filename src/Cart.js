@@ -2,14 +2,13 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 // import {Checkout} from './Checkout'
 
-export class Cart extends React.Component{
-  render(){
-    
-      let amount=0;
-      let listItems = this.props.data.map( (value) => value  ?   <div className="cart"> {value.name} <hr/>{value.currency} {value.price} <br/>{value.quantity} </div> : <h3>No Products Added</h3> )
+export class Cart extends React.Component {
+  render() {
+    let amount=0;
+    let listItems = this.props.data.map( (value) => value ? <div className="cart"> {value.name} <hr/>{value.currency} {value.price} <br/>{value.quantity} </div> : <h3>No Products Added</h3> );
 
-      let total = this.props.data.map( (value) => amount=amount+value.price * value.quantity )
-      return(
+    let total = this.props.data.map( (value) => amount=amount+value.price * value.quantity );
+    return (
       <div >
 
         <h1>Cart</h1>
@@ -26,9 +25,9 @@ export class Cart extends React.Component{
           <br/>
           <Link className="button" to='checkout'>Pay</Link>
 
-      </div>
+        </div>
 
       </div>
-        )
+    );
   }
 }
