@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 
 export class Cart extends React.Component{
   render(){
-    console.log('in cart')
+    
       let amount=0;
       let listItems = this.props.data.map( (value) => value  ?   <div className="cart"> {value.name} <hr/>{value.currency} {value.price} <br/>{value.quantity} </div> : <h3>No Products Added</h3> )
 

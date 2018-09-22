@@ -13,6 +13,7 @@ it('renders without crashing', () => {
   ReactDOM.render(<App />, div);
   ReactDOM.unmountComponentAtNode(div);
 });
+
 it('should have a h1 heading element ', () => {
   const wrapper = shallow(<App />);
   expect(wrapper.exists('h1')).toEqual(true);
@@ -28,4 +29,9 @@ it('should have Link component with pathname equal to /',() => {
 it('should render Cart component ',() => {
   const wrapper = shallow(<App />);
   expect(wrapper.exists('Cart')).toEqual(true);
+})
+
+it('should have search box ', () => {
+  const wrapper = shallow(<App />);
+    expect(wrapper.exists('input')).toEqual(true);
 })

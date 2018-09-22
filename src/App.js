@@ -8,21 +8,19 @@ import {Milk} from './Milk';
 import {Meat} from './Meat';
 import {Tea} from './Tea';
 import {Coffee} from './Coffee';
-import {Checkout} from './Checkout';
+import {Checkout} from './Checkout;
 import './App.css';
 
 class App extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = { cart : [],input : '' }
     this.handleAddToCart=this.handleAddToCart.bind(this);
     this.handleRemoveFromCart=this.handleRemoveFromCart.bind(this);
     this.updateInput = this.updateInput.bind(this);
+  }
 
-      }
-
-  handleAddToCart(name,currency,price){
-    //compare name and price if same update quantity otherwise add the product to the cart.
+  handleAddToCart(name,currency,price) {
     var count;
     var setState=true;
     for( count =0 ; count<this.state.cart.length ;count++){
@@ -64,7 +62,6 @@ class App extends React.Component {
 
 
   render() {
-    console.log('in app' )
   return (
       <div>
         <div className="App">
@@ -110,7 +107,7 @@ class App extends React.Component {
 
             <div class="dropdown">
               <input className="searchbox" type="search"  placeholder="Search Here.." name="search" onChange={this.updateInput}/>
-              {/* <button className="dropbtn" type="input" onClick= {this.handleInput}>Search</button> */}
+
             </div>
 
             <div>
@@ -123,16 +120,17 @@ class App extends React.Component {
               <Route path='/coffee' component={() => <Coffee onClick={this.handleAddToCart.bind(this) }   onRemove={this.handleRemoveFromCart.bind(this)} />}/>
               <Route exact path='/checkout' component={Checkout}/>
               <Route exact path='/' component={() => <ProductList onClick={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input} />}/>
+
             </div>
+
           </div>
-
-
           <hr/>
         </div>
 
         <div className="cartboxed">
           <Cart data={this.state.cart}/>
         </div>
+
       </div>
     );
   }

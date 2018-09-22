@@ -39,7 +39,7 @@ export class ProductList extends React.Component{
           </div>);
           console.log('searchItems',searchItems)
       return(
-        <div>
+        <div >
 
           <div className="productboxed">
             <h3 align="left">All Products</h3>
