@@ -16,6 +16,7 @@ export class Fruits extends React.Component{
 
 
     render() {
+      console.log('in fruit')
       const listItems = this.state.products.map((data) =>
         <div className="boxed" key={data.name}>
 

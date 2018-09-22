@@ -19,7 +19,7 @@ export class ProductList extends React.Component{
   }
 }
   render(){
-
+      console.log("in productList")
       const listItems = this.state.products.map((data) =>
         <div className="boxed" key={data.name}>
           <img src={data.image} alt=''/><br/>
@@ -29,7 +29,7 @@ export class ProductList extends React.Component{
           <button className="addBasket"  value="Remove From Cart" onClick={ () => this.props.onRemove(data.name)}>Remove From Cart </button>
         </div>);
 
-        const searchItems = this.state.products.filter(data => data.name === this.props.onSearch).map((data) =>
+        const searchItems = this.state.products.filter(data => data.name.toUpperCase() === this.props.onSearch.toUpperCase()).map((data) =>
           <div className="boxed" key={data.name}>
             <img src={data.image} alt=''/><br/>
             {data.name}<br/>

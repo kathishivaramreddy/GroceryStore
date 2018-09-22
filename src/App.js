@@ -64,7 +64,7 @@ class App extends React.Component {
 
 
   render() {
-    console.log(this.state.input)
+    console.log('in app' )
   return (
       <div>
         <div className="App">
@@ -109,9 +109,8 @@ class App extends React.Component {
             </div>
 
             <div class="dropdown">
-              <input className="searchbox" type="text" placeholder="Search.." name="search" onChange={this.updateInput}/>
-              <button className="dropbtn" type="input" onClick= {this.handleInput}>Search</button>
-
+              <input className="searchbox" type="search"  placeholder="Search Here.." name="search" onChange={this.updateInput}/>
+              {/* <button className="dropbtn" type="input" onClick= {this.handleInput}>Search</button> */}
             </div>
 
             <div>
