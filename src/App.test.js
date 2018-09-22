@@ -7,13 +7,6 @@ configure({adapter: new Adapter()});
 import {shallow} from 'enzyme';
 import {Link} from 'react-router-dom';
 
-
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
-
 it('should have a h1 heading element ', () => {
   const wrapper = shallow(<App />);
   expect(wrapper.exists('h1')).toEqual(true);

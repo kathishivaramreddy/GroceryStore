@@ -1,5 +1,9 @@
 import React from 'react';
 import {Route,Link} from 'react-router-dom';
+import isNil from 'lodash/isNil';
+import merge from 'lodash/merge';
+import concat from 'lodash/concat';
+
 import {ProductList} from './ProductList';
 import {Fruits} from './Fruits';
 import {Cart} from './Cart';
@@ -8,34 +12,38 @@ import {Milk} from './Milk';
 import {Meat} from './Meat';
 import {Tea} from './Tea';
 import {Coffee} from './Coffee';
-import {Checkout} from './Checkout;
+import {Checkout} from './Checkout';
 import './App.css';
+
+const mergeProduct = (item, newItem) => {
+  return merge(item, {quantity: item.quantity + newItem.quantity});
+};
+
+const updateItems = (items, newItem) => {
+    return items.map((item) => {
+      return (item.name === newItem.name) ? mergeProduct(item, newItem) : item;
+    });
+};
+
+const concatCart = (items, newItem) => {
+  const itemToBeUpdated = items.find((item) => { return item.name === newItem.name; });
+  return isNil(itemToBeUpdated) ? concat(items, newItem) : updateItems(items, newItem);
+};
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { cart : [],input : '' }
+    this.state = { cart : [],input : '' };
     this.handleAddToCart=this.handleAddToCart.bind(this);
     this.handleRemoveFromCart=this.handleRemoveFromCart.bind(this);
     this.updateInput = this.updateInput.bind(this);
   }
 
   handleAddToCart(name,currency,price) {
-    var count;
-    var setState=true;
-    for( count =0 ; count<this.state.cart.length ;count++){
-      if(name === this.state.cart[count].name){
-        var newCart = [...this.state.cart]
-        newCart[count].quantity= newCart[count].quantity+1
-        this.setState({ cart: newCart})
-        setState=false;
-        }
-    }
-
-    if(setState){
-      this.setState({ cart: this.state.cart.concat([{name: name,currency:currency,price:price,quantity:1}]) })
-        }
-      }
+    const cartItem = {name, currency, price, quantity: 1};
+    const updatedCart = concatCart(this.state.cart, cartItem);
+    this.setState({ cart: updatedCart});
+  }
 
   handleRemoveFromCart(name){
 
@@ -56,12 +64,13 @@ class App extends React.Component {
   }
 
   updateInput(e){
-    const value = e.target.value
+    const value = e.target.value;
     this.setState({input: value })
   }
 
 
   render() {
+    console.log('state of cart..', this.state.cart);
   return (
       <div>
         <div className="App">
@@ -105,7 +114,7 @@ class App extends React.Component {
               </div>
             </div>
 
-            <div class="dropdown">
+            <div className="dropdown">
               <input className="searchbox" type="search"  placeholder="Search Here.." name="search" onChange={this.updateInput}/>
 
             </div>
