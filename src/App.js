@@ -30,6 +30,36 @@ const concatCart = (items, newItem) => {
   return isNil(itemToBeUpdated) ? concat(items, newItem) : updateItems(items, newItem);
 };
 
+const deleteProduct = (item, newItem) => {
+  return merge(item, {quantity: item.quantity - newItem.quantity});
+};
+
+const deleteItem = (items, newItem) => {
+    return items.map( (item) => {
+      return (item.name === newItem.name  ) ? deleteProduct(item,newItem) : item;
+    });
+};
+
+const removefromCart = (items,newItem) => {
+
+  const itemToBeUpdated = items.find( (item) => { return item.name === newItem.name && item.quantity > 1});
+  const itemToBeDeleted = items.find( (item) => { return item.name === newItem.name && item.quantity === 1});
+
+  if(itemToBeUpdated){
+      return deleteItem(items,newItem)
+  }
+
+  else if(itemToBeDeleted){
+
+    return items.filter( (item) =>  item.name !== itemToBeDeleted.name)
+
+  }
+  else{
+    return items;
+    }
+}
+
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -45,22 +75,11 @@ class App extends React.Component {
     this.setState({ cart: updatedCart});
   }
 
-  handleRemoveFromCart(name){
+  handleRemoveFromCart(name,currency,price){
 
-    var count;
-    var setState=true;
-    for( count =0 ; count<this.state.cart.length ;count++){
-      if(name === this.state.cart[count].name && this.state.cart[count].quantity > 1){
-        var newCart = [...this.state.cart]
-        newCart[count].quantity= newCart[count].quantity-1
-        this.setState({ cart: newCart})
-        setState=false;
-        }
-    }
-
-    if(setState){
-        this.setState({cart : this.state.cart.filter( data =>  data.name !== name)})
-      }
+    const cartItem = {name, currency, price, quantity: 1};
+    const updatedCart = removefromCart(this.state.cart, cartItem);
+    this.setState({cart : updatedCart })
   }
 
   updateInput(e){
@@ -70,6 +89,8 @@ class App extends React.Component {
 
 
   render() {
+
+
     console.log('state of cart..', this.state.cart);
   return (
       <div>
