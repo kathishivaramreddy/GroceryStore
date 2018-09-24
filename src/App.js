@@ -2,6 +2,7 @@ import React from 'react';
 import {Route,Link} from 'react-router-dom';
 import isNil from 'lodash/isNil';
 import merge from 'lodash/merge';
+import pull from 'lodash/pull'
 import concat from 'lodash/concat';
 
 import {ProductList} from './ProductList';
@@ -30,47 +31,59 @@ const concatCart = (items, newItem) => {
   return isNil(itemToBeUpdated) ? concat(items, newItem) : updateItems(items, newItem);
 };
 
-const deleteProduct = (item, newItem) => {
+const updateDecreasedQuantity = (item, newItem) => {
   return merge(item, {quantity: item.quantity - newItem.quantity});
 };
 
-const deleteItem = (items, newItem) => {
+const decreaseQuantity = (items, newItem) => {
     return items.map( (item) => {
-      return (item.name === newItem.name  ) ? deleteProduct(item,newItem) : item;
+      return (item.name === newItem.name  ) ? updateDecreasedQuantity(item,newItem) : item;
     });
 };
-
-const removefromCart = (items,newItem) => {
-
-  const itemToBeUpdated = items.find( (item) => { return item.name === newItem.name && item.quantity > 1});
-  const itemToBeDeleted = items.find( (item) => { return item.name === newItem.name && item.quantity === 1});
-
-  if(itemToBeUpdated){
-      return deleteItem(items,newItem)
-  }
-
-  else if(itemToBeDeleted){
+const removeItemFromCart = (items,itemToBeDeleted) => {
 
     return items.filter( (item) =>  item.name !== itemToBeDeleted.name)
 
+}
+const removefromCart = (items,newItem) => {
+
+  const itemQuantityToBeUpdated = items.find( (item) => { return item.name === newItem.name && item.quantity > 1});
+  const itemToBeDeleted = items.find( (item) => { return item.name === newItem.name && item.quantity === 1});
+
+  if(itemQuantityToBeUpdated){
+      return decreaseQuantity(items,newItem)
+  }
+  else if(itemToBeDeleted){
+    return removeItemFromCart(items,itemToBeDeleted)
   }
   else{
     return items;
     }
 }
 
+const addToFilter = (items,value) => {
+  return concat(items,value)
+}
+
+const removeFromFilter = (items,value) =>{
+  return pull(items,value)
+}
+
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { cart : [],input : '' };
+    this.state = { cart : [],input : '' , filterSearch : []};
     this.handleAddToCart=this.handleAddToCart.bind(this);
     this.handleRemoveFromCart=this.handleRemoveFromCart.bind(this);
     this.updateInput = this.updateInput.bind(this);
+    this.handleCheckBox =this.handleCheckBox.bind(this);
+    // this.renderCart = this.renderCart.bind(this);
+    console.log('filter array', this.state.filterSearch)
   }
 
-  handleAddToCart(name,currency,price) {
-    const cartItem = {name, currency, price, quantity: 1};
+  handleAddToCart(name,currency,price,image) {
+    const cartItem = {name, currency, price,image,quantity: 1};
     const updatedCart = concatCart(this.state.cart, cartItem);
     this.setState({ cart: updatedCart});
   }
@@ -87,12 +100,32 @@ class App extends React.Component {
     this.setState({input: value })
   }
 
+  renderCart(){
+    return(<div className="cartboxed">
+      <Cart data={this.state.cart}/>
+    </div>)
+  }
+
+  handleCheckBox(e){
+
+    console.log('checkbox',e.target.checked,e.target.name, e.target.value);
+    const value =e.target.value;
+    if(e.target.checked){
+    const newFilterSearch = addToFilter(this.state.filterSearch,value);
+    this.setState({filterSearch: newFilterSearch})
+    console.log('after setstate',this.state.filterSearch) }
+    else{
+      const reducedFilterSearch = removeFromFilter(this.state.filterSearch,value);
+      this.setState({filterSearch: reducedFilterSearch})
+    }
+    console.log('filter array', this.state.filterSearch)
+  }
 
   render() {
 
 
-    console.log('state of cart..', this.state.cart);
-  return (
+    console.log('rendering app ', this.state.filterSearch);
+    return (
       <div>
         <div className="App">
 
@@ -140,6 +173,20 @@ class App extends React.Component {
 
             </div>
 
+            <br/>
+            <div className="filterboxed">
+              <h3>Filter here</h3>
+              <hr/>
+              <div className="boxed">
+                <snap>
+                  <h4>Price Filter</h4>
+                  <input type="checkbox" name="price1" value= "100" onChange={this.handleCheckBox} /> Less Than 100 <br/>
+                  <input type="checkbox" name="price2" value= "101-200" onChange={this.handleCheckBox} /> 101-200<br/>
+                  <input type="checkbox" name="price3" value= "201-1000" onChange={this.handleCheckBox} /> 201-1000<br/></snap>
+              </div>
+
+            </div>
+
             <div>
 
               <Route path='/fruits' component={() => <Fruits onClick={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)}  />}/>
@@ -149,17 +196,15 @@ class App extends React.Component {
               <Route path='/tea' component={() => <Tea onClick={this.handleAddToCart.bind(this)}  onRemove={this.handleRemoveFromCart.bind(this)} />}/>
               <Route path='/coffee' component={() => <Coffee onClick={this.handleAddToCart.bind(this) }   onRemove={this.handleRemoveFromCart.bind(this)} />}/>
               <Route exact path='/checkout' component={Checkout}/>
-              <Route exact path='/' component={() => <ProductList onClick={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input} />}/>
+              <Route exact path='/' component={() => <ProductList onClick={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input} onFilter={this.state.filterSearch}/>}/>
 
             </div>
+          </div>
+
 
           </div>
-          <hr/>
-        </div>
 
-        <div className="cartboxed">
-          <Cart data={this.state.cart}/>
-        </div>
+        {this.renderCart() }
 
       </div>
     );

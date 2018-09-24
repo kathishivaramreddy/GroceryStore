@@ -10,9 +10,10 @@ describe('product list test', () => {
   let wrapper;
   let callback = jest.fn();
   const searchItem = 'apple';
+  const filterItem = 100
 
   beforeEach(() =>{
-    wrapper = shallow(<ProductList onClick={callback} onRemove={callback} onSearch={searchItem}/>);
+    wrapper = shallow(<ProductList onClick={callback} onRemove={callback} onSearch={searchItem} onFilter={filterItem}/>);
   });
 
   test('should have div,br,button elements', () =>{
@@ -20,12 +21,6 @@ describe('product list test', () => {
     expect(wrapper.exists('br')).toEqual(true);
     expect(wrapper.exists('button')).toEqual(true);
   });
-
-  it('should have button element', () => {
-
-
-  });
-
 
   it('should call a function on button click', () => {
     wrapper.find('button').at(0).simulate('click');
@@ -37,9 +32,16 @@ describe('product list test', () => {
     expect(callback).toHaveBeenCalled();
   });
 
-  it('should have return product on successful search', () => {
+  it('should return product on successful search', () => {
     expect(wrapper.find('div').length).toEqual(3);
-    expect(wrapper.find('div').at(2).text()).toEqual('AppleINR 250Add To Cart Remove  Cart ');
+    expect(wrapper.find('div').at(2).text()).toEqual("AppleINR 250Add To Cart Remove From Cart ");
     expect(wrapper.find('img').at(0).props().src).toEqual('apple.jpg');
+  });
+
+  it('should return product based on checkbox seleted on filter ', () => {
+    wrapper = shallow(<ProductList onClick={callback} onRemove={callback} onSearch={searchItem} onFilter={filterItem}/>);
+    expect(wrapper.find('div').length).toEqual(3);
+    // expect(wrapper.find('div').at(2).text()).toEqual('AppleINR 250Add To Cart Remove  Cart ');
+    expect(wrapper.find('img').at(0).props().src).toEqual('tomato.jpg');
   });
 });

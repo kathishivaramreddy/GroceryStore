@@ -28,3 +28,14 @@ it('should have search box ', () => {
   const wrapper = shallow(<App />);
   expect(wrapper.exists('input')).toEqual(true);
 });
+
+describe('Filter box ',() => {
+
+  it('should have h3 heading with text Filter Here',() => {
+    const wrapper = shallow(<App />);
+    expect(wrapper.exists('h3')).toEqual(true);
+    expect(wrapper.find('h3').text()).toEqual('Filter here');
+  })
+  
+
+})

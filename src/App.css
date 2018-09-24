@@ -60,14 +60,14 @@
 
   border: 2px solid green ;
   padding: 14.5px;
-  
+
   font-size: 16px;
 
 }
 
-.productboxed {
+.filterboxed {
   border: 2px solid green ;
-  width: 49%;
+  width: auto;
   height:auto;
   float: left;
   padding: 5px;
@@ -75,11 +75,12 @@
 
 .productboxed {
   border: 2px solid green ;
-  width: 49%;
+  width: 59.6%;
   height:auto;
   float: left;
   padding: 5px;
 }
+
 .checkoutboxed {
   border: 2px solid green ;
   width: 100%;
@@ -95,19 +96,19 @@
   padding: 5px;
 }
 
-.cartboxed {
-  border: 2px solid green ;
-  width: 51%;
-  height:auto;
-  float: left;
-  padding: 5px;
-}
 
 .cart {
   border: 2px solid green ;
   width: auto;
   height:auto;
   float: left;
+  padding: 5px;
+}
+.cartboxed {
+  border: 2px solid green ;
+  width: 29%;
+  height:auto;
+  float: right;
   padding: 5px;
 }
 .totalbox {

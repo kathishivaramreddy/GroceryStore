@@ -11,7 +11,7 @@ export class Cart extends React.Component {
         return <h3>No Products Added</h3>;
     }
 
-    const listItems = this.props.data.map( (value) => <div className="cart" key={value.name}> {value.name} <br/>{value.currency} {value.price} <br/>{value.quantity} </div>);
+    const listItems = this.props.data.map( (value) => <div className="cart" key={value.name}>   <img src={value.image} alt='' /> <br/> {value.name} <br/>{value.currency} {value.price} <br/>{value.quantity} </div>);
 
     const total = sum(this.props.data.map((product) => product.price * product.quantity));
     return (
