@@ -10,7 +10,7 @@ describe('product list test', () => {
   let wrapper;
   let callback = jest.fn();
   const searchItem = 'apple';
-  const filterItem = 100
+  const filterItem = {min:1,max:100}
 
   beforeEach(() =>{
     wrapper = shallow(<ProductList onClick={callback} onRemove={callback} onSearch={searchItem} onFilter={filterItem}/>);
@@ -39,9 +39,9 @@ describe('product list test', () => {
   });
 
   it('should return product based on checkbox seleted on filter ', () => {
-    wrapper = shallow(<ProductList onClick={callback} onRemove={callback} onSearch={searchItem} onFilter={filterItem}/>);
-    expect(wrapper.find('div').length).toEqual(3);
-    // expect(wrapper.find('div').at(2).text()).toEqual('AppleINR 250Add To Cart Remove  Cart ');
-    expect(wrapper.find('img').at(0).props().src).toEqual('tomato.jpg');
+    wrapper = shallow(<ProductList onClick={callback} onRemove={callback} onSearch='' onFilter={{min:1,max:100}}/>);
+    // expect(wrapper.find('div').length).toEqual(3);
+    expect(wrapper.find('div').at(3).text()).toEqual('AppleINR 250Add To Cart Remove  Cart ');
+    expect(wrapper.find('img').at(0).props().src).toEqual('kiwi.jpg');
   });
 });

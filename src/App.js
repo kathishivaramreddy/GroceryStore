@@ -67,7 +67,7 @@ const addToFilter = (items,value) => {
 }
 
 const removeFromFilter = (items,value) =>{
-  return pull(items,value)
+  return items.filter(item => item.min !== value.min && item.max !== value.max)
 }
 
 
@@ -116,7 +116,7 @@ class App extends React.Component {
     if(name === 'price1'){
       value =checkboxData.price1;
     }
-    else if (name =='price2') {
+    else if (name ==='price2') {
       value =checkboxData.price2;
     }
     else {
