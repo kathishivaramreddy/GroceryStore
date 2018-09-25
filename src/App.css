@@ -33,6 +33,11 @@
     position: relative;
     display: inline-block;
 }
+.login {
+    position: relative;
+    display: inline-block;
+    float :right;
+}
 
 .dropdown-content {
     display: none;

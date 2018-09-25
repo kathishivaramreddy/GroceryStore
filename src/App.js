@@ -14,6 +14,7 @@ import {Meat} from './Meat';
 import {Tea} from './Tea';
 import {Coffee} from './Coffee';
 import {Checkout} from './Checkout';
+import {Login} from './Login';
 import './App.css';
 
 const mergeProduct = (item, newItem) => {
@@ -101,18 +102,37 @@ class App extends React.Component {
     this.setState({input: value })
   }
 
-  renderCart(){
+  renderCart(path){
+    if (path !== '/login' && path !=='/checkout'){
     return(<div className="cartboxed">
       <Cart data={this.state.cart}/>
-    </div>)
+    </div>)}
+  }
+
+  renderFilterBox(path){
+    if(path !== '/login' && path !=='/checkout')
+    {
+      return(
+        <div className="filterboxed">
+          <h3>Filter here</h3>
+          <hr/>
+          <div className="boxed">
+
+            <h4>Price Filter</h4>
+            <input type="checkbox" name="price1"  onChange={this.handleCheckBox} /> Less Than 100 <br/>
+            <input type="checkbox" name="price2"  onChange={this.handleCheckBox} /> 101-200<br/>
+            <input type="checkbox" name="price3"  onChange={this.handleCheckBox} /> 201-1000<br/>
+          </div>
+        </div>);
+    }
   }
 
   handleCheckBox(e){
 
-    console.log('checkbox',e.target.checked,e.target.name);
     const name = e.target.name
     var value =''
     const checkboxData = {price1:{min:1,max:100},price2:{min:101,max:200},price3:{min:201,max:1000}}
+
     if(name === 'price1'){
       value =checkboxData.price1;
     }
@@ -122,21 +142,19 @@ class App extends React.Component {
     else {
         value =checkboxData.price3;
     }
-    console.log('value',value)
     if(e.target.checked){
     const newFilterSearch = addToFilter(this.state.filterSearch,value);
-    this.setState({filterSearch: newFilterSearch})
-    console.log('after setstate',this.state.filterSearch) }
+    this.setState({filterSearch: newFilterSearch})}
+
     else{
       const reducedFilterSearch = removeFromFilter(this.state.filterSearch,value);
       this.setState({filterSearch: reducedFilterSearch})
     }
-    console.log('filter array', this.state.filterSearch)
   }
 
   render() {
 
-
+    console.log(window.location.pathname)
     console.log('rendering app ', this.state.filterSearch);
     return (
       <div>
@@ -186,19 +204,15 @@ class App extends React.Component {
 
             </div>
 
-            <br/>
-            <div className="filterboxed">
-              <h3>Filter here</h3>
-              <hr/>
-              <div className="boxed">
-                <snap>
-                  <h4>Price Filter</h4>
-                  <input type="checkbox" name="price1"  onChange={this.handleCheckBox} /> Less Than 100 <br/>
-                  <input type="checkbox" name="price2"  onChange={this.handleCheckBox} /> 101-200<br/>
-                  <input type="checkbox" name="price3"  onChange={this.handleCheckBox} /> 201-1000<br/></snap>
-              </div>
-
+            <div className="login">
+              <Link to='login'><button className="dropbtn">Login</button></Link>
             </div>
+
+            <br/>
+
+            {this.renderFilterBox(window.location.pathname)}
+
+            
 
             <div>
 
@@ -208,16 +222,19 @@ class App extends React.Component {
               <Route path='/meat' component={() => <Meat onClick={this.handleAddToCart.bind(this)}  onRemove={this.handleRemoveFromCart.bind(this)} />}/>
               <Route path='/tea' component={() => <Tea onClick={this.handleAddToCart.bind(this)}  onRemove={this.handleRemoveFromCart.bind(this)} />}/>
               <Route path='/coffee' component={() => <Coffee onClick={this.handleAddToCart.bind(this) }   onRemove={this.handleRemoveFromCart.bind(this)} />}/>
-              <Route exact path='/checkout' component={Checkout}/>
+              <Route exact path='/checkout' component={Checkout} />}
+              <Route exact path='/login' component={Login}/>
               <Route exact path='/' component={() => <ProductList onClick={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input} onFilter={this.state.filterSearch}/>}/>
 
             </div>
           </div>
 
 
-          </div>
+        </div>
+        {
+          this.renderCart(window.location.pathname)
+        }
 
-        {this.renderCart() }
 
       </div>
     );

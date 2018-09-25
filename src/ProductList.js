@@ -39,8 +39,10 @@ export class ProductList extends React.Component {
         <button className="addBasket" value="Remove From Cart" onClick={ () => this.props.onRemove(data.name)}>Remove From Cart </button>
       </div>);
 
+
+
       const filterItems = this.state.products.filter( (product) =>  some(this.props.onFilter,function(filterToCheck){
-            if(product.price > filterToCheck.min && product.price < filterToCheck.max){return true;}}))
+            if(product.price > filterToCheck.min && product.price < filterToCheck.max){return true}}))
             .map((product) =>
             <div className="boxed" key={product.name}>
               <img src={product.image} alt=''/><br/>
