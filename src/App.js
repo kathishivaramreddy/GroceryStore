@@ -62,6 +62,7 @@ const removefromCart = (items,newItem) => {
 }
 
 const addToFilter = (items,value) => {
+
   return concat(items,value)
 }
 
@@ -73,7 +74,7 @@ const removeFromFilter = (items,value) =>{
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { cart : [],input : '' , filterSearch : []};
+    this.state = { cart : [],input : '' , filterSearch : [] };
     this.handleAddToCart=this.handleAddToCart.bind(this);
     this.handleRemoveFromCart=this.handleRemoveFromCart.bind(this);
     this.updateInput = this.updateInput.bind(this);
@@ -108,8 +109,20 @@ class App extends React.Component {
 
   handleCheckBox(e){
 
-    console.log('checkbox',e.target.checked,e.target.name, e.target.value);
-    const value =e.target.value;
+    console.log('checkbox',e.target.checked,e.target.name);
+    const name = e.target.name
+    var value =''
+    const checkboxData = {price1:{min:1,max:100},price2:{min:101,max:200},price3:{min:201,max:1000}}
+    if(name === 'price1'){
+      value =checkboxData.price1;
+    }
+    else if (name =='price2') {
+      value =checkboxData.price2;
+    }
+    else {
+        value =checkboxData.price3;
+    }
+    console.log('value',value)
     if(e.target.checked){
     const newFilterSearch = addToFilter(this.state.filterSearch,value);
     this.setState({filterSearch: newFilterSearch})
@@ -180,9 +193,9 @@ class App extends React.Component {
               <div className="boxed">
                 <snap>
                   <h4>Price Filter</h4>
-                  <input type="checkbox" name="price1" value= "100" onChange={this.handleCheckBox} /> Less Than 100 <br/>
-                  <input type="checkbox" name="price2" value= "101-200" onChange={this.handleCheckBox} /> 101-200<br/>
-                  <input type="checkbox" name="price3" value= "201-1000" onChange={this.handleCheckBox} /> 201-1000<br/></snap>
+                  <input type="checkbox" name="price1"  onChange={this.handleCheckBox} /> Less Than 100 <br/>
+                  <input type="checkbox" name="price2"  onChange={this.handleCheckBox} /> 101-200<br/>
+                  <input type="checkbox" name="price3"  onChange={this.handleCheckBox} /> 201-1000<br/></snap>
               </div>
 
             </div>
