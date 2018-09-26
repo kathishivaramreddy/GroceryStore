@@ -87,11 +87,12 @@ const setFilterValue = (name) => {
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { cart : [],input : '' , filterSearch : [] ,authentication : [{userName:'abc@gmail.com',passWord:'abc',loggedIn:false}]};
+    this.state = { cart : [],input : '' , filterSearch : []  };
     this.handleAddToCart=this.handleAddToCart.bind(this);
     this.handleRemoveFromCart=this.handleRemoveFromCart.bind(this);
     this.updateInput = this.updateInput.bind(this);
     this.handleCheckBox =this.handleCheckBox.bind(this);
+    this.handleClearCart = this.handleClearCart.bind(this);
   }
 
   handleAddToCart(name,currency,price,image) {
@@ -107,6 +108,11 @@ class App extends React.Component {
     this.setState({cart : updatedCart })
   }
 
+  handleClearCart(){
+    this.setState({cart : []})
+    console.log('handleclearcart',this.state.cart)
+  }
+
   updateInput(e){
     const value = e.target.value;
     this.setState({input: value })
@@ -115,8 +121,10 @@ class App extends React.Component {
   renderCart(path){
     if (path !== '/login' && path !=='/checkout'){
     return(<div className="cartboxed">
-      <Cart data={this.state.cart}/>
+      <Cart data={this.state.cart}  clearCart={this.handleClearCart}/>
+
     </div>)}
+    console.log('render cart'.this.state.cart)
   }
 
   renderFilterBox(path){
@@ -220,7 +228,7 @@ class App extends React.Component {
               <Route path='/meat' component={() => <Meat onClick={this.handleAddToCart.bind(this)}  onRemove={this.handleRemoveFromCart.bind(this)} />}/>
               <Route path='/tea' component={() => <Tea onClick={this.handleAddToCart.bind(this)}  onRemove={this.handleRemoveFromCart.bind(this)} />}/>
               <Route path='/coffee' component={() => <Coffee onClick={this.handleAddToCart.bind(this) }   onRemove={this.handleRemoveFromCart.bind(this)} />}/>
-              <Route exact path='/checkout' component={() => <Checkout totalPrice={this.state.cart}/>}/>
+              <Route exact path='/checkout' component={() => <Checkout totalPrice={this.state.cart} />}/>
               <Route exact path='/login' component={() => <Login authentication={this.state.authentication}/>}/>
               <Route exact path='/' component={() => <ProductList onClick={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input} onFilter={this.state.filterSearch}/>}/>
 

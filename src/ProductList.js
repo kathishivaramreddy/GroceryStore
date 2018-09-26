@@ -17,6 +17,12 @@ export class ProductList extends React.Component {
         {name: 'Kiwi', price: 95, image: require('./images/kiwi.jpg'), currency: 'INR'},
         {name: 'Potato', price: 30, image: require('./images/potato.jpg'), currency: 'INR'},
         {name: 'LadiesFinger', price: 45, image: require('./images/ladiesfinger.jpg'), currency: 'INR'},
+        {name: 'Turmeric', price: 22, image: require('./images/turmeric.jpg'), currency: 'INR'},
+        {name: 'Maida', price: 75, image: require('./images/maida.jpg'), currency: 'INR'},
+        {name: 'Pomengranate', price: 125, image: require('./images/pomengranate.jpg'), currency: 'INR'},
+        {name: 'Chilli Powder', price:85, image: require('./images/chilli.jpg'), currency: 'INR'},
+        {name: 'Pear', price:64, image: require('./images/pear.jpg'), currency: 'INR'},
+        {name: 'Water Melon', price:225, image: require('./images/watermelon.jpg'), currency: 'INR'},
       ],
     };
     this.handleSelectChange=this.handleSelectChange.bind(this);
@@ -67,8 +73,6 @@ export class ProductList extends React.Component {
             </div>);
       return (
       <div >
-
-
 
         <div className="productboxed">
           <div className ="productheader">

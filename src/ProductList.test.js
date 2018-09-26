@@ -41,14 +41,14 @@ describe('product list test', () => {
   it('should return product based on checkbox seleted on filter ', () => {
     wrapper = shallow(<ProductList  onFilter={{min:1,max:100}}/>);
     // TODO
-
   });
 
   it('should return products based on select-option selected',() =>{
-
     const wrapper = mount(<ProductList onClick={callback} onRemove={callback} onSearch='' onFilter={{min:1,max:100}}/>);
     wrapper.find('select').simulate('click',{target: { value : 'low'}});
     expect(wrapper.find('img').at(0).props().src).toEqual('potato.jpg')
-
+    wrapper.find('select').simulate('click',{target: { value : 'high'}});
+    expect(wrapper.find('img').at(0).props().src).toEqual('apple.jpg')
   })
+
 });

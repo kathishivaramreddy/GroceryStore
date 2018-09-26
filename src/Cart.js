@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 export class Cart extends React.Component {
 
   render() {
-
+    console.log('props in cart',this.props)
     if(isEmpty(this.props.data)) {
         return <h3>No Products Added</h3>;
     }
@@ -17,7 +17,9 @@ export class Cart extends React.Component {
     return (
       <div >
         <h1>Cart</h1>
+        <button className="clearCart" align="right" onClick={this.props.clearCart}>Clear Cart</button>
         <p>Following products have been added to cart </p>
+
         <div className="cart">
           {listItems}
         </div>

@@ -9,7 +9,7 @@ import {Link} from 'react-router-dom';
 describe('Cart tests', () => {
 
   const passedData=[{name:'apple',price:'150',currency:'INR'}];
-
+  const callback = jest.fn();
   it('should have heading h1 with text Cart and paragraph', () => {
     const wrapper = shallow(<Cart data={passedData}/>);
     expect(wrapper.exists('h1')).toEqual(true);
@@ -21,7 +21,7 @@ describe('Cart tests', () => {
   it('should display products in cart when products are passed',() => {
 
     const wrapper = shallow(<Cart data={passedData}/>);
-    expect(wrapper.find('div').at(2).text()).toEqual(" apple INR 150  ");
+    expect(wrapper.find('div').at(2).text()).toEqual("     apple  Cost:-150 INR Quantity :-  ");
 
   })
 
@@ -34,6 +34,13 @@ describe('Cart tests', () => {
     const wrapper = shallow(<Cart data={passedData}/>);
     expect(wrapper.exists('h1')).toEqual(true);
     expect(wrapper.find('Link').props().to).toEqual('checkout')
+  })
+
+  it('should contain button which clears the cart',()=> {
+    const wrapper = shallow(<Cart data={passedData} clearCart={callback}/>);
+    expect(wrapper.exists('.clearCart')).toEqual(true);
+    wrapper.find('.clearCart').simulate('click');
+    expect(wrapper.find('h3').length).toEqual(1);
   })
 
 });
