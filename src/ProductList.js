@@ -1,6 +1,8 @@
 import React from 'react';
 import some from 'lodash/some';
+import sortBy from 'lodash/sortBy'
 import './App.css';
+import './ProductList.css'
 
 
 
@@ -17,10 +19,20 @@ export class ProductList extends React.Component {
         {name: 'LadiesFinger', price: 45, image: require('./images/ladiesfinger.jpg'), currency: 'INR'},
       ],
     };
+    this.handleSelectChange=this.handleSelectChange.bind(this);
+  }
+
+  handleSelectChange(e){
+    console.log('cart state before select-option',this.state.cart)
+    var value = e.target.value
+    let sortedState = sortBy(this.state.products,function(product){ return product.price })
+    value ==='low' ? this.setState({products : sortedState}) : this.setState({products : sortedState.reverse()})
+
+    console.log('value of select box',e.target.value,this.state.cart)
   }
 
   render() {
-
+    console.log('in productList rendering','first state of products ',this.state.products)
     const listItems = this.state.products.map((data) =>
       <div className="boxed" key={data.name}>
         <img src={data.image} alt=''/><br/>
@@ -56,11 +68,21 @@ export class ProductList extends React.Component {
       return (
       <div >
 
+
+
         <div className="productboxed">
-          <h3 align="left">All Products</h3>
+          <div className ="productheader">
+
+            <h5 className="position" >All Products</h5>
+            <select className="position" onClick={this.handleSelectChange}>
+              <option value="low" > Price-Low to High</option>
+              <option value="high" > Price-High to Low</option>
+            </select>
+
+          </div>
+          <br/>
           {searchItems.length === 0 && filterItems.length === 0 ? listItems
           : searchItems.length === 0 ? filterItems : searchItems}
-          {/* {searchItems.length === 0 ? listItems : searchItems} */}
         </div>
 
       </div>

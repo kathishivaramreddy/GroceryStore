@@ -2,7 +2,6 @@ import React from 'react';
 import {Route,Link} from 'react-router-dom';
 import isNil from 'lodash/isNil';
 import merge from 'lodash/merge';
-import pull from 'lodash/pull'
 import concat from 'lodash/concat';
 
 import {ProductList} from './ProductList';
@@ -71,17 +70,28 @@ const removeFromFilter = (items,value) =>{
   return items.filter(item => item.min !== value.min && item.max !== value.max)
 }
 
+const setFilterValue = (name) => {
+  const checkboxData = {price1:{min:1,max:100},price2:{min:101,max:200},price3:{min:201,max:1000}}
+  if(name === 'price1'){
+    return checkboxData.price1;
+  }
+  else if (name ==='price2') {
+    return checkboxData.price2;
+  }
+  else {
+    return checkboxData.price3;
+  }
+
+}
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { cart : [],input : '' , filterSearch : [] };
+    this.state = { cart : [],input : '' , filterSearch : [] ,authentication : [{userName:'abc@gmail.com',passWord:'abc',loggedIn:false}]};
     this.handleAddToCart=this.handleAddToCart.bind(this);
     this.handleRemoveFromCart=this.handleRemoveFromCart.bind(this);
     this.updateInput = this.updateInput.bind(this);
     this.handleCheckBox =this.handleCheckBox.bind(this);
-    // this.renderCart = this.renderCart.bind(this);
-    console.log('filter array', this.state.filterSearch)
   }
 
   handleAddToCart(name,currency,price,image) {
@@ -128,34 +138,22 @@ class App extends React.Component {
   }
 
   handleCheckBox(e){
-
-    const name = e.target.name
-    var value =''
-    const checkboxData = {price1:{min:1,max:100},price2:{min:101,max:200},price3:{min:201,max:1000}}
-
-    if(name === 'price1'){
-      value =checkboxData.price1;
-    }
-    else if (name ==='price2') {
-      value =checkboxData.price2;
-    }
-    else {
-        value =checkboxData.price3;
-    }
+    var filterValue = setFilterValue(e.target.name)
     if(e.target.checked){
-    const newFilterSearch = addToFilter(this.state.filterSearch,value);
-    this.setState({filterSearch: newFilterSearch})}
+    const newFilterSearch = addToFilter(this.state.filterSearch,filterValue);
+    this.setState({filterSearch: newFilterSearch})
+    }
 
     else{
-      const reducedFilterSearch = removeFromFilter(this.state.filterSearch,value);
+      const reducedFilterSearch = removeFromFilter(this.state.filterSearch,filterValue);
       this.setState({filterSearch: reducedFilterSearch})
     }
+
   }
 
   render() {
+    console.log('in app render')
 
-    console.log(window.location.pathname)
-    console.log('rendering app ', this.state.filterSearch);
     return (
       <div>
         <div className="App">
@@ -212,7 +210,7 @@ class App extends React.Component {
 
             {this.renderFilterBox(window.location.pathname)}
 
-            
+
 
             <div>
 
@@ -222,8 +220,8 @@ class App extends React.Component {
               <Route path='/meat' component={() => <Meat onClick={this.handleAddToCart.bind(this)}  onRemove={this.handleRemoveFromCart.bind(this)} />}/>
               <Route path='/tea' component={() => <Tea onClick={this.handleAddToCart.bind(this)}  onRemove={this.handleRemoveFromCart.bind(this)} />}/>
               <Route path='/coffee' component={() => <Coffee onClick={this.handleAddToCart.bind(this) }   onRemove={this.handleRemoveFromCart.bind(this)} />}/>
-              <Route exact path='/checkout' component={Checkout} />}
-              <Route exact path='/login' component={Login}/>
+              <Route exact path='/checkout' component={() => <Checkout totalPrice={this.state.cart}/>}/>
+              <Route exact path='/login' component={() => <Login authentication={this.state.authentication}/>}/>
               <Route exact path='/' component={() => <ProductList onClick={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input} onFilter={this.state.filterSearch}/>}/>
 
             </div>
@@ -231,9 +229,7 @@ class App extends React.Component {
 
 
         </div>
-        {
-          this.renderCart(window.location.pathname)
-        }
+        {this.renderCart(window.location.pathname)}
 
 
       </div>
@@ -242,3 +238,4 @@ class App extends React.Component {
 }
 
 export default App;
+// search and filter at same time.
