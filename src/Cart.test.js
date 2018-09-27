@@ -40,7 +40,7 @@ describe('Cart tests', () => {
     const wrapper = shallow(<Cart data={passedData} clearCart={callback}/>);
     expect(wrapper.exists('.clearCart')).toEqual(true);
     wrapper.find('.clearCart').simulate('click');
-    expect(wrapper.find('h3').length).toEqual(1);
+    expect(callback).toHaveBeenCalled();
   })
 
 });

@@ -1,17 +1,20 @@
 import React from 'react';
+import allProductsList from './AllProducts'
 
 export class Milk extends React.Component {
   constructor(props) {
     super(props);
 
     this.state= {
-      products: [
-        {name: 'Almond Milk ', price: 250, image: require('./images/almondmilk.jpg')},
-        {name: 'LowFat Milk', price: 150, image: require('./images/lowfatmilk.jpg')},
-        {name: 'Slim n Trim', price: 125, image: require('./images/slimtrimmilk.jpg')},
-        {name: 'Toned Milk', price: 95, image: require('./images/tonedmilk.jpg')},
-      ],
+      products: [],
     };
+  }
+  componentDidMount(){
+
+    const productList = allProductsList().products.filter(product =>  product.category === 'milk')
+
+    this.setState({products : productList})
+
   }
   render() {
     const listItems = this.state.products.map((data) =>

@@ -1,6 +1,8 @@
 import React from 'react';
 import some from 'lodash/some';
 import sortBy from 'lodash/sortBy'
+
+import allProductsList from './AllProducts'
 import './App.css';
 import './ProductList.css'
 
@@ -10,24 +12,15 @@ export class ProductList extends React.Component {
   constructor(props) {
     super(props);
     this.state={
-      products: [
-        {name: 'Apple', price: 250, image: require('./images/apple.jpg'), currency: 'INR'},
-        {name: 'Grapes - Red', price: 150, image: require('./images/grapes.jpg'), currency: 'INR'},
-        {name: 'Tomato', price: 125, image: require('./images/tomato.jpg'), currency: 'INR'},
-        {name: 'Kiwi', price: 95, image: require('./images/kiwi.jpg'), currency: 'INR'},
-        {name: 'Potato', price: 30, image: require('./images/potato.jpg'), currency: 'INR'},
-        {name: 'LadiesFinger', price: 45, image: require('./images/ladiesfinger.jpg'), currency: 'INR'},
-        {name: 'Turmeric', price: 22, image: require('./images/turmeric.jpg'), currency: 'INR'},
-        {name: 'Maida', price: 75, image: require('./images/maida.jpg'), currency: 'INR'},
-        {name: 'Pomengranate', price: 125, image: require('./images/pomengranate.jpg'), currency: 'INR'},
-        {name: 'Chilli Powder', price:85, image: require('./images/chilli.jpg'), currency: 'INR'},
-        {name: 'Pear', price:64, image: require('./images/pear.jpg'), currency: 'INR'},
-        {name: 'Water Melon', price:225, image: require('./images/watermelon.jpg'), currency: 'INR'},
-      ],
+      products: [],
     };
     this.handleSelectChange=this.handleSelectChange.bind(this);
   }
 
+  componentDidMount(){
+    const productList = allProductsList();
+    this.setState({products :  productList.products})
+  }
   handleSelectChange(e){
     console.log('cart state before select-option',this.state.cart)
     var value = e.target.value
@@ -38,7 +31,7 @@ export class ProductList extends React.Component {
   }
 
   render() {
-    console.log('in productList rendering','first state of products ',this.state.products)
+
     const listItems = this.state.products.map((data) =>
       <div className="boxed" key={data.name}>
         <img src={data.image} alt=''/><br/>
