@@ -64,6 +64,7 @@ const removefromCart = (items,newItem) => {
 const addToFilter = (items,value) => {
 
   return concat(items,value)
+
 }
 
 const removeFromFilter = (items,value) =>{
@@ -72,6 +73,7 @@ const removeFromFilter = (items,value) =>{
 
 const setFilterValue = (name) => {
   const checkboxData = {price1:{min:1,max:100},price2:{min:101,max:200},price3:{min:201,max:1000}}
+  if(name === 'price1' || name === 'price2' || name === 'price3'){
   if(name === 'price1'){
     return checkboxData.price1;
   }
@@ -80,8 +82,11 @@ const setFilterValue = (name) => {
   }
   else {
     return checkboxData.price3;
+    }
   }
-
+  else{
+    return {category:name};
+  }
 }
 
 class App extends React.Component {
@@ -141,6 +146,15 @@ class App extends React.Component {
             <input type="checkbox" name="price2"  onChange={this.handleCheckBox} /> 101-200<br/>
             <input type="checkbox" name="price3"  onChange={this.handleCheckBox} /> 201-1000<br/>
           </div>
+          <br/>
+          <div className="boxed">
+
+            <h4>Category Filter</h4>
+            <input type="checkbox" name="fruits"  onChange={this.handleCheckBox} /> Fruits <br/>
+            <input type="checkbox" name="tea"  onChange={this.handleCheckBox} /> Tea<br/>
+            <input type="checkbox" name="milk"  onChange={this.handleCheckBox} /> Milk<br/>
+          </div>
+
         </div>);
     }
   }

@@ -1,7 +1,7 @@
  const allProductsList = () => {
   return {
   products : [
-    //fruits
+//fruits
   {name: 'Apple', price: 250, image: require('./images/apple.jpg'), currency: 'INR',category:'fruits'},
   {name: 'Grapes - Red', price: 150, image: require('./images/grapes.jpg'), currency: 'INR',category:'fruits'},
   {name: 'Kiwi', price: 95, image: require('./images/kiwi.jpg'), currency: 'INR',category:'fruits'},

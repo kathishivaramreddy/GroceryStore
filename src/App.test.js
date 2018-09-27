@@ -36,6 +36,6 @@ describe('Filter box ',() => {
     expect(wrapper.exists('h3')).toEqual(true);
     expect(wrapper.find('h3').text()).toEqual('Filter here');
   })
-  
+
 
 })

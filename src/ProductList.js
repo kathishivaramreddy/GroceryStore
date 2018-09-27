@@ -26,8 +26,6 @@ export class ProductList extends React.Component {
     var value = e.target.value
     let sortedState = sortBy(this.state.products,function(product){ return product.price })
     value ==='low' ? this.setState({products : sortedState}) : this.setState({products : sortedState.reverse()})
-
-    console.log('value of select box',e.target.value,this.state.cart)
   }
 
   render() {
@@ -51,9 +49,11 @@ export class ProductList extends React.Component {
       </div>);
 
 
-
+      console.log('checkboxdata',this.props.onFilter)
       const filterItems = this.state.products.filter( (product) =>  some(this.props.onFilter,function(filterToCheck){
-            if(product.price > filterToCheck.min && product.price < filterToCheck.max){return true}}))
+            if(product.price > filterToCheck.min && product.price < filterToCheck.max ){return true}
+              }
+            ))
             .map((product) =>
             <div className="boxed" key={product.name}>
               <img src={product.image} alt=''/><br/>

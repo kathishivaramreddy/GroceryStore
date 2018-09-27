@@ -1,5 +1,20 @@
 import React from 'react';
 import allProductsList from './AllProducts'
+
+const vegetableList = (vegetables) => {
+
+  const listItems = vegetables.map((product) =>
+    <div className="boxed" key={product.name}>
+      <img src={product.image} alt=''/><br/>
+      {product.name}<br/>
+      {product.currency} {product.price}<br/>
+      <button className="addBasket" value="Add" onClick={ () => this.props.onClick(product.name, product.currency, product.price)}>Add To Cart </button>
+      <button className="addBasket" value="Remove From Cart" onClick={ () => this.props.onRemove(product.name)}>Remove From Cart </button>
+    </div>)
+
+    return listItems;
+}
+
 export class Vegetables extends React.Component {
   constructor(props) {
     super(props);
@@ -10,29 +25,22 @@ export class Vegetables extends React.Component {
   }
   componentDidMount(){
 
-    const productList = allProductsList().products.filter(product =>  product.category === 'vegetables')
+    const productList = allProductsList().products.filter( product =>  product.category === 'vegetables')
 
     this.setState({products : productList})
 
   }
-  render() {
-    const listItems = this.state.products.map((data) =>
-      <div className="boxed" key={data.name}>
-        <img src={data.image} alt=''/><br/>
-        {data.name}<br/>
-        {data.currency} {data.price}<br/>
-        <button className="addBasket" value="Add" onClick={ () => this.props.onClick(data.name, data.currency, data.price)}>Add To Cart </button>
-        <button className="addBasket" value="Remove From Cart" onClick={ () => this.props.onRemove(data.name)}>Remove From Cart </button>
-      </div>
 
-    );
+  render() {
+
     return (
       <div>
         <div className="productboxed">
           <h3 align="left" >Organic Vegetables</h3>
-          {listItems}
+          {vegetableList(this.state.products)}
         </div>
       </div>
     );
+
   }
 }
