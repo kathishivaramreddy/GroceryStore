@@ -19,7 +19,13 @@ export class ProductList extends React.Component {
 
   componentDidMount(){
     const productList = allProductsList();
-    this.setState({products :  productList.products})
+
+    // this.setState({products :  productList.products})
+
+        setTimeout(() => {
+            this.setState({products :  productList.products})
+        }, 3000);
+
   }
   handleSelectChange(e){
     console.log('cart state before select-option',this.state.cart)
@@ -29,7 +35,11 @@ export class ProductList extends React.Component {
   }
 
   render() {
-
+    console.log('loading',this.state.products)
+    if(this.state.products.length === 0){
+      return (<div className="dataloading"><img src={require('./images/dataloading.png')}/>
+        <h4 >Data Loading....</h4></div>)
+    }
     const listItems = this.state.products.map((data) =>
       <div className="boxed" key={data.name}>
         <img src={data.image} alt=''/><br/>
