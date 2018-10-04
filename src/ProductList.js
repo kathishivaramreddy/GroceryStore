@@ -1,6 +1,7 @@
 import React from 'react';
 import some from 'lodash/some';
 import sortBy from 'lodash/sortBy'
+import isEmpty from 'lodash/isEmpty'
 
 import allProductsList from './AllProducts'
 import './App.css';
@@ -20,11 +21,11 @@ export class ProductList extends React.Component {
   componentDidMount(){
     const productList = allProductsList();
 
-    // this.setState({products :  productList.products})
+    this.setState({products :  productList.products})
 
-        setTimeout(() => {
-            this.setState({products :  productList.products})
-        }, 3000);
+        // setTimeout(() => {
+        //     this.setState({products :  productList.products})
+        // }, 3000);
 
   }
   handleSelectChange(e){
@@ -36,10 +37,10 @@ export class ProductList extends React.Component {
 
   render() {
     console.log('loading',this.state.products)
-    if(this.state.products.length === 0){
-      return (<div className="dataloading"><img src={require('./images/dataloading.png')}/>
-        <h4 >Data Loading....</h4></div>)
-    }
+    // if(this.state.products.length === 0){
+    //   return (<div className="dataloading"><img src={require('./images/dataloading.png')}/>
+    //     <h4 >Data Loading....</h4></div>)
+    // }
     const listItems = this.state.products.map((data) =>
       <div className="boxed" key={data.name}>
         <img src={data.image} alt=''/><br/>
@@ -59,11 +60,27 @@ export class ProductList extends React.Component {
       </div>);
 
 
-      console.log('checkboxdata',this.props.onFilter)
-      const filterItems = this.state.products.filter( (product) =>  some(this.props.onFilter,function(filterToCheck){
-            if(product.price > filterToCheck.min && product.price < filterToCheck.max ){return true}
-              }
-            ))
+      console.log('categoryFilter props',this.props.categoryFilter,'priceFilter props',this.props.onPriceFilter)
+
+
+
+
+      const filterItems = this.state.products.filter( (product) =>  some(this.props.categoryFilter,function(filterToCheck){
+            if(filterToCheck === undefined){
+              return true;
+            }
+            else if(product.category === filterToCheck.category){
+              return true
+            }
+          }
+          )).filter( (product) =>  some(this.props.onPriceFilter,function(filterToCheck){
+                if(filterToCheck === undefined ){
+                  return true;
+                }
+                else if(product.price > filterToCheck.min && product.price < filterToCheck.max ){
+                  return true
+                } }
+                ))
             .map((product) =>
             <div className="boxed" key={product.name}>
               <img src={product.image} alt=''/><br/>
@@ -73,10 +90,10 @@ export class ProductList extends React.Component {
               Add To Cart </button>
               <button className="addBasket" value="Remove From Cart" onClick={ () => this.props.onRemove(product.name)}>
               Remove From Cart </button>
-            </div>);
+            </div>
+          );
       return (
       <div >
-
         <div className="productboxed">
           <div className ="productheader">
 

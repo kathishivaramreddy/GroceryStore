@@ -66,14 +66,23 @@ const addToFilter = (items,value) => {
   return concat(items,value)
 
 }
+const addToFilterCategory = (items,value) => {
+
+  return concat(items,value)
+
+}
 
 const removeFromFilter = (items,value) =>{
   return items.filter(item => item.min !== value.min && item.max !== value.max)
 }
 
+const removeFromFilterCategory = (items,value) =>{
+  return items.filter(item => item.category !== value.category)
+}
+
 const setFilterValue = (name) => {
   const checkboxData = {price1:{min:1,max:100},price2:{min:101,max:200},price3:{min:201,max:1000}}
-  if(name === 'price1' || name === 'price2' || name === 'price3'){
+
   if(name === 'price1'){
     return checkboxData.price1;
   }
@@ -83,21 +92,29 @@ const setFilterValue = (name) => {
   else {
     return checkboxData.price3;
     }
-  }
-  else{
-    return {category:name};
-  }
+}
+
+const setCategoryValue = (name) => {
+  const checkboxData = {category:name}
+    return checkboxData;
 }
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { cart : [],input : '' , filterSearch : []  };
+    this.state = {
+       cart : [],
+       input : '' ,
+       filterPrice : [] ,
+       filterCategory: []
+     };
     this.handleAddToCart=this.handleAddToCart.bind(this);
     this.handleRemoveFromCart=this.handleRemoveFromCart.bind(this);
     this.updateInput = this.updateInput.bind(this);
     this.handleCheckBox =this.handleCheckBox.bind(this);
     this.handleClearCart = this.handleClearCart.bind(this);
+    this.handleCategoryFilter = this.handleCategoryFilter.bind(this);
+    console.log('filterPrice',this.state.filterPrice,'filterCategory',this.state.filterCategory)
   }
 
   handleAddToCart(name,currency,price,image) {
@@ -121,6 +138,33 @@ class App extends React.Component {
   updateInput(e){
     const value = e.target.value;
     this.setState({input: value })
+  }
+
+  handleCheckBox(e){
+    var filterValue = setFilterValue(e.target.name)
+    if(e.target.checked){
+    const newFilterSearch = addToFilter(this.state.filterPrice,filterValue);
+    this.setState({filterPrice: newFilterSearch})
+    console.log('filterPrice HANDLEpRICE',this.state.filterPrice,'filterCategory',this.state.filterCategory)
+      }
+    else{
+      const reducedFilterSearch = removeFromFilter(this.state.filterPrice,filterValue);
+      this.setState({filterPrice: reducedFilterSearch})
+      console.log('filterPrice HANDLEpRICE',this.state.filterPrice,'filterCategory',this.state.filterCategory)
+      }
+  }
+  handleCategoryFilter(e){
+    var filterValueCategory = setCategoryValue(e.target.name)
+    if(e.target.checked){
+    const newFilterCategory = addToFilterCategory(this.state.filterCategory,filterValueCategory);
+    this.setState({filterCategory: newFilterCategory})
+    console.log('filterPrice HANDLEcATEGORY',this.state.filterPrice,'filterCategory',this.state.filterCategory)
+      }
+    else{
+      const reducedFilterCategory = removeFromFilterCategory(this.state.filterCategory,filterValueCategory);
+      this.setState({filterCategory: reducedFilterCategory})
+      console.log('filterPrice HANDLEcATEGORY',this.state.filterPrice,'filterCategory',this.state.filterCategory)
+      }
   }
 
   renderCart(path){
@@ -150,32 +194,20 @@ class App extends React.Component {
           <div className="boxed">
 
             <h4>Category Filter</h4>
-            <input type="checkbox" name="fruits"  onChange={this.handleCheckBox} /> Fruits <br/>
-            <input type="checkbox" name="tea"  onChange={this.handleCheckBox} /> Tea<br/>
-            <input type="checkbox" name="milk"  onChange={this.handleCheckBox} /> Milk<br/>
+            <input type="checkbox" name="fruits"  onChange={this.handleCategoryFilter} /> Fruits <br/>
+            <input type="checkbox" name="tea"  onChange={this.handleCategoryFilter} /> Tea<br/>
+            <input type="checkbox" name="milk"  onChange={this.handleCategoryFilter} /> Milk<br/>
           </div>
 
         </div>);
     }
   }
 
-  handleCheckBox(e){
-    var filterValue = setFilterValue(e.target.name)
-    if(e.target.checked){
-    const newFilterSearch = addToFilter(this.state.filterSearch,filterValue);
-    this.setState({filterSearch: newFilterSearch})
-    }
 
-    else{
-      const reducedFilterSearch = removeFromFilter(this.state.filterSearch,filterValue);
-      this.setState({filterSearch: reducedFilterSearch})
-    }
 
-  }
+
 
   render() {
-    console.log('in app render')
-
     return (
       <div>
         <div className="App">
@@ -244,7 +276,7 @@ class App extends React.Component {
               <Route path='/coffee' component={() => <Coffee onClick={this.handleAddToCart.bind(this) }   onRemove={this.handleRemoveFromCart.bind(this)} />}/>
               <Route exact path='/checkout' component={() => <Checkout totalPrice={this.state.cart} />}/>
               <Route exact path='/login' component={() => <Login authentication={this.state.authentication}/>}/>
-              <Route exact path='/' component={() => <ProductList onClick={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input} onFilter={this.state.filterSearch}/>}/>
+              <Route exact path='/' component={() => <ProductList onClick={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input} onPriceFilter={this.state.filterPrice} categoryFilter={this.state.filterCategory}/>}/>
 
             </div>
           </div>
