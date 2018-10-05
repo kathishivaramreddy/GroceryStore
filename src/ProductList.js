@@ -1,9 +1,9 @@
 import React from 'react';
 import some from 'lodash/some';
-import sortBy from 'lodash/sortBy'
-import isEmpty from 'lodash/isEmpty'
+import sortBy from 'lodash/sortBy';
 
-import allProductsList from './AllProducts'
+// import {getProducts} from './client/AmbrosiaClient';
+import {PriceSorter} from './PriceSorter'
 import './App.css';
 import './ProductList.css'
 
@@ -14,20 +14,37 @@ export class ProductList extends React.Component {
     super(props);
     this.state={
       products: [],
+      isLoaded:false,
     };
     this.handleSelectChange=this.handleSelectChange.bind(this);
   }
 
   componentDidMount(){
-    const productList = allProductsList();
 
-    this.setState({products :  productList.products})
-
-        // setTimeout(() => {
-        //     this.setState({products :  productList.products})
-        // }, 3000);
+  //   getProducts().then(function(value) {
+  //   console.log(value)
+  // })
+        this.fetchData();
 
   }
+
+  fetchData(){
+
+    fetch('http://localhost:8080/products')
+    .then(res => res.json())
+    .then( json => {
+      this.setState({
+                      products : json.products,
+                      isLoaded: true,
+                    })
+    })
+    .catch(
+      error => console.log('fetch error',error)
+    )
+
+  }
+
+
   handleSelectChange(e){
     console.log('cart state before select-option',this.state.cart)
     var value = e.target.value
@@ -35,13 +52,17 @@ export class ProductList extends React.Component {
     value ==='low' ? this.setState({products : sortedState}) : this.setState({products : sortedState.reverse()})
   }
 
-  render() {
-    console.log('loading',this.state.products)
-    // if(this.state.products.length === 0){
-    //   return (<div className="dataloading"><img src={require('./images/dataloading.png')}/>
-    //     <h4 >Data Loading....</h4></div>)
-    // }
-    const listItems = this.state.products.map((data) =>
+render() {
+
+    var {isLoaded,products} = this.state;
+
+    if(!isLoaded){
+      return (
+        <div>
+          <h5>Data Loading....</h5>
+        </div>)
+    }
+    const listItems = products.map((data) =>
       <div className="boxed" key={data.name}>
         <img src={data.image} alt=''/><br/>
         {data.name}<br/>
@@ -50,7 +71,7 @@ export class ProductList extends React.Component {
         <button className="addBasket" value="Remove From Cart" onClick={ () => this.props.onRemove(data.name,data.currency,data.price)}>Remove From Cart </button>
       </div>);
 
-    const searchItems = this.state.products.filter((data) => data.name.toUpperCase() === this.props.onSearch.toUpperCase()).map((data) =>
+    const searchItems = products.filter((data) => data.name.toUpperCase() === this.props.onSearch.toUpperCase()).map((data) =>
       <div className="boxed" key={data.name}>
         <img src={data.image} alt=''/><br/>
         {data.name}<br/>
@@ -59,13 +80,7 @@ export class ProductList extends React.Component {
         <button className="addBasket" value="Remove From Cart" onClick={ () => this.props.onRemove(data.name)}>Remove From Cart </button>
       </div>);
 
-
-      console.log('categoryFilter props',this.props.categoryFilter,'priceFilter props',this.props.onPriceFilter)
-
-
-
-
-      const filterItems = this.state.products.filter( (product) =>  some(this.props.categoryFilter,function(filterToCheck){
+      const filterItems = products.filter( (product) =>  some(this.props.categoryFilter,function(filterToCheck){
             if(filterToCheck === undefined){
               return true;
             }
@@ -92,18 +107,17 @@ export class ProductList extends React.Component {
               Remove From Cart </button>
             </div>
           );
+
       return (
       <div >
         <div className="productboxed">
           <div className ="productheader">
 
             <h5 className="position" >All Products</h5>
-            <select className="position" onClick={this.handleSelectChange}>
-              <option value="low" > Price-Low to High</option>
-              <option value="high" > Price-High to Low</option>
-            </select>
+            <PriceSorter sorter={this.handleSelectChange}/>
 
           </div>
+
           <br/>
           {searchItems.length === 0 && filterItems.length === 0 ? listItems
           : searchItems.length === 0 ? filterItems : searchItems}

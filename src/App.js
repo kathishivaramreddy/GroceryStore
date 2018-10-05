@@ -107,14 +107,14 @@ class App extends React.Component {
        input : '' ,
        filterPrice : [] ,
        filterCategory: []
-     };
+          };
     this.handleAddToCart=this.handleAddToCart.bind(this);
     this.handleRemoveFromCart=this.handleRemoveFromCart.bind(this);
     this.updateInput = this.updateInput.bind(this);
     this.handleCheckBox =this.handleCheckBox.bind(this);
     this.handleClearCart = this.handleClearCart.bind(this);
     this.handleCategoryFilter = this.handleCategoryFilter.bind(this);
-    console.log('filterPrice',this.state.filterPrice,'filterCategory',this.state.filterCategory)
+
   }
 
   handleAddToCart(name,currency,price,image) {
@@ -158,12 +158,11 @@ class App extends React.Component {
     if(e.target.checked){
     const newFilterCategory = addToFilterCategory(this.state.filterCategory,filterValueCategory);
     this.setState({filterCategory: newFilterCategory})
-    console.log('filterPrice HANDLEcATEGORY',this.state.filterPrice,'filterCategory',this.state.filterCategory)
+
       }
     else{
       const reducedFilterCategory = removeFromFilterCategory(this.state.filterCategory,filterValueCategory);
       this.setState({filterCategory: reducedFilterCategory})
-      console.log('filterPrice HANDLEcATEGORY',this.state.filterPrice,'filterCategory',this.state.filterCategory)
       }
   }
 
@@ -268,7 +267,10 @@ class App extends React.Component {
 
             <div>
 
+              <Route exact path='/' component={() => <ProductList onClick={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input}/>} />
+              {/* onPriceFilter={this.state.filterPrice} categoryFilter={this.state.filterCategory} */}
               <Route path='/fruits' component={() => <Fruits onClick={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)}  />}/>
+
               <Route path='/organic' component={() => <Vegetables onClick={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)}  />}/>
               <Route path='/milk' component={() => <Milk onClick={this.handleAddToCart.bind(this)}  onRemove={this.handleRemoveFromCart.bind(this)} />}/>
               <Route path='/meat' component={() => <Meat onClick={this.handleAddToCart.bind(this)}  onRemove={this.handleRemoveFromCart.bind(this)} />}/>
@@ -276,7 +278,7 @@ class App extends React.Component {
               <Route path='/coffee' component={() => <Coffee onClick={this.handleAddToCart.bind(this) }   onRemove={this.handleRemoveFromCart.bind(this)} />}/>
               <Route exact path='/checkout' component={() => <Checkout totalPrice={this.state.cart} />}/>
               <Route exact path='/login' component={() => <Login authentication={this.state.authentication}/>}/>
-              <Route exact path='/' component={() => <ProductList onClick={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input} onPriceFilter={this.state.filterPrice} categoryFilter={this.state.filterCategory}/>}/>
+
 
             </div>
           </div>

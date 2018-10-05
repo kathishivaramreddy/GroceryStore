@@ -37,5 +37,10 @@ describe('Filter box ',() => {
     expect(wrapper.find('h3').text()).toEqual('Filter here');
   })
 
+  it('should pass correct props to ProductList ', () => {
+    const wrapper = shallow(<App/>);
+    wrapper.find('input[type=checkbox]').at(0).simulate('click');
+    expect(wrapper.find('Route').at(0).props().onPriceFilter).toEqual('')
+  });
 
 })

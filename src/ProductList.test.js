@@ -1,54 +1,28 @@
 import React from 'react';
-import {ProductList} from './ProductList';
+import {shallow} from 'enzyme';
 import {configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({adapter: new Adapter()});
-import {shallow} from 'enzyme';
-import {mount} from 'enzyme';
+import fetch from 'jest-fetch-mock';
 
+import {ProductList} from './ProductList'
 
-describe('product list test', () => {
-  let wrapper;
-  let callback = jest.fn();
-  const searchItem = 'potato';
-  const filterItem = {min:1,max:100}
-  const initProp = { a:1}
+global.fetch = fetch;
 
+describe('ProductList test' ,() => {
 
-  beforeEach(() =>{
-    wrapper = shallow(<ProductList onClick={callback} onRemove={callback} onSearch={searchItem} onFilter={filterItem}/>);
-  });
+  it('should have div,button elements',() => {
 
-  test('should have div,br,button elements', () =>{
+    const wrapper = shallow(<ProductList />)
     expect(wrapper.exists('div')).toEqual(true);
-    expect(wrapper.exists('br')).toEqual(true);
-    expect(wrapper.exists('button')).toEqual(true);
-  });
-
-  it('should call a function on button click', () => {
-    wrapper.find('button').at(0).simulate('click');
-    wrapper.find('button').at(0).simulate('click');
-    expect(callback).toHaveBeenCalledTimes(2);
-
-    wrapper.find('button').at(1).simulate('click');
-    expect(callback).toHaveBeenCalled();
-  });
-
-  it('should return product on successful search', () => {
-    expect(wrapper.find('img').at(0).props().src).toEqual('potato.jpg');
-  });
-
-  it('should return product based on checkbox seleted on filter ', () => {
-    wrapper = shallow(<ProductList  onFilter={{min:1,max:100}}/>);
-    // TODO
-  });
-
-  it('should return products based on select-option selected',() =>{
-    const wrapper = mount(<ProductList onClick={callback} onRemove={callback} onSearch='' onFilter={{min:1,max:100}}/>);
-    wrapper.find('select').simulate('click',{target: { value : 'low'}});
-    expect(wrapper.find('img').at(0).props().src).toEqual('potato.jpg')
-    wrapper.find('select').simulate('click',{target: { value : 'high'}});
-    expect(wrapper.find('img').at(0).props().src).toEqual('apple.jpg')
+    expect(wrapper.exists('h5')).toEqual(true);
   })
 
-});
+  it('fetch should be called ', () => {
+
+    const wrapper = shallow(<ProductList />)
+    expect(fetch).toHaveBeenCalledWith("http://localhost:8080/products");
+
+  });
+
+})
