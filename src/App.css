@@ -9,7 +9,7 @@
 
   height: 80px;
   position: relative;
-  
+
 
 }
 .App-header {
@@ -85,12 +85,11 @@
 
 .productboxed {
   border: 2px solid green ;
-  width: 59.6%;
+  width: 70;
   height:auto;
   float: left;
   padding: 5px;
 }
-
 .checkoutboxed {
   border: 2px solid green ;
   width: 100%;
@@ -105,8 +104,6 @@
   float: left;
   padding: 5px;
 }
-
-
 .cart {
   border: 2px solid green ;
   width: auto;
@@ -129,9 +126,6 @@
   padding: 3px;
 }
 .button{
-
-  /* background-color: #707070; */
-  /* color: white; */
   background-color: green;
   padding: 15px;
   font-size: 16px;
@@ -142,8 +136,6 @@
 * {
     box-sizing: border-box;
 }
-
-
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

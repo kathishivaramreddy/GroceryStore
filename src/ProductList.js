@@ -3,6 +3,7 @@ import some from 'lodash/some';
 import sortBy from 'lodash/sortBy';
 
 // import {getProducts} from './client/AmbrosiaClient';
+import {Filter} from './Filter';
 import {PriceSorter} from './PriceSorter'
 import './App.css';
 import './ProductList.css'
@@ -52,7 +53,7 @@ export class ProductList extends React.Component {
     value ==='low' ? this.setState({products : sortedState}) : this.setState({products : sortedState.reverse()})
   }
 
-render() {
+  render() {
 
     var {isLoaded,products} = this.state;
 
@@ -119,6 +120,10 @@ render() {
             <h5 className="position" >All Products</h5>
             <PriceSorter sorter={this.handleSelectChange}/>
 
+          </div>
+
+          <div>
+            <Filter/>
           </div>
 
           <br/>

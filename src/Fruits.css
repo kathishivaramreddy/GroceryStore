@@ -1,0 +1,19 @@
+.position{
+  position: relative;
+  display: inline-block;
+}
+.productboxed {
+  border: 2px solid green ;
+  width: 71%;
+  height:auto;
+  float: left;
+  padding: 5px;
+}
+.productheader{
+
+  border: 2px solid green ;
+  width: 100%;
+  height:auto;
+  float: left;
+  padding: 1px;
+}

@@ -100,6 +100,7 @@ const setCategoryValue = (name) => {
     return checkboxData;
 }
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -241,12 +242,6 @@ class App extends React.Component {
             <div className="login">
               <Link to='login'><button className="dropbtn">Login</button></Link>
             </div>
-
-            <br/>
-
-            {this.renderFilterBox(window.location.pathname)}
-
-
 
             <div>
 

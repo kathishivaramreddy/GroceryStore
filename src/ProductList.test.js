@@ -3,8 +3,8 @@ import {shallow} from 'enzyme';
 import {configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({adapter: new Adapter()});
-import fetch from 'jest-fetch-mock';
 
+import {FIlter} from './Filter';
 import {ProductList} from './ProductList'
 
 global.fetch = fetch;
@@ -24,5 +24,7 @@ describe('ProductList test' ,() => {
     expect(fetch).toHaveBeenCalledWith("http://localhost:8080/products");
 
   });
+
+
 
 })

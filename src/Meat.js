@@ -1,5 +1,7 @@
 import React from 'react';
-import allProductsList from './AllProducts'
+import allProductsList from './AllProducts';
+import {PriceSorter} from './PriceSorter';
+import {Filter} from './Filter';
 
 export class Meat extends React.Component {
   constructor(props) {
@@ -30,8 +32,10 @@ export class Meat extends React.Component {
     return (
       <div>
         <div className="productboxed">
-          <h3 align="left" >Meat</h3>
-          {listItems}
+          <PriceSorter/>
+            <h3 >Meat</h3>
+            <Filter/>
+            {listItems}
         </div>
       </div>
     );

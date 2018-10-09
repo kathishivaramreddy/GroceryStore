@@ -1,5 +1,7 @@
 import React from 'react';
-import allProductsList from './AllProducts'
+import allProductsList from './AllProducts';
+import {PriceSorter} from './PriceSorter';
+import {Filter} from './Filter';
 
 const vegetableList = (vegetables) => {
 
@@ -36,9 +38,12 @@ export class Vegetables extends React.Component {
     return (
       <div>
         <div className="productboxed">
-          <h3 align="left" >Organic Vegetables</h3>
+          <PriceSorter/>
+          <h3>Organic Vegetables</h3>
+          <Filter/>
           {vegetableList(this.state.products)}
         </div>
+
       </div>
     );
 

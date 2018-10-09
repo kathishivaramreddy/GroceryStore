@@ -1,6 +1,8 @@
 import React from 'react';
 import {PriceSorter} from './PriceSorter';
-import allProductsList from './AllProducts'
+import {Filter} from './Filter';
+import allProductsList from './AllProducts';
+import './Fruits.css';
 
 export class Fruits extends React.Component {
   constructor(props) {
@@ -32,18 +34,14 @@ export class Fruits extends React.Component {
     );
     return (
       <div>
+
         <div className="productboxed">
-          <div className ="productheader">
-
-            <h3 align="position">Fruits</h3>
-            <PriceSorter/>
-
-          </div>
-
-            {listItems}
-
-
+          <PriceSorter/>
+          <h3>Fruits</h3>
+          <Filter />
+          {listItems}
         </div>
+        
       </div>
     );
   }

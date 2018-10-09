@@ -30,4 +30,10 @@ describe('product list test', () => {
 
     expect(wrapper.exists('PriceSorter')).toEqual(true);
   })
+
+  it('should render Filter Box',() => {
+
+    expect(wrapper.exists('Filter')).toEqual(true);
+
+  })
 });
