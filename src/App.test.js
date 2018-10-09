@@ -31,16 +31,17 @@ it('should have search box ', () => {
 
 describe('Filter box ',() => {
 
-  it('should have h3 heading with text Filter Here',() => {
+  it('should render Filter Box',() => {
     const wrapper = shallow(<App />);
-    expect(wrapper.exists('h3')).toEqual(true);
-    expect(wrapper.find('h3').text()).toEqual('Filter here');
+    expect(wrapper.exists('Filter')).toEqual(true);
   })
 
-  it('should pass correct props to ProductList ', () => {
-    const wrapper = shallow(<App/>);
-    wrapper.find('input[type=checkbox]').at(0).simulate('click');
-    expect(wrapper.find('Route').at(0).props().onPriceFilter).toEqual('')
-  });
+  // it('should have h3 heading with text Filter Here',() => {
+  //   const wrapper = shallow(<App />);
+  //   expect(wrapper.exists('h3')).toEqual(true);
+  //   expect(wrapper.find('h3').text()).toEqual('Filter here');
+  // })
+  //
+
 
 })
