@@ -34,14 +34,14 @@ export class Vegetables extends React.Component {
   }
 
   render() {
-
+    const {products} = this.state;
     return (
       <div>
         <div className="productboxed">
           <PriceSorter/>
           <h3>Organic Vegetables</h3>
           <Filter/>
-          {vegetableList(this.state.products)}
+          {vegetableList(products)}
         </div>
 
       </div>

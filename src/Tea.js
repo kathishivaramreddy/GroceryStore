@@ -34,14 +34,14 @@ export class Tea extends React.Component {
   }
 
   render() {
-
+    const {products} = this.state;
     return (
       <div>
         <div className="productboxed">
           <PriceSorter/>
           <h3 align="left" >Tea</h3>
           <Filter />
-          {teaList(this.state.products)}
+          {teaList(products)}
         </div>
       </div>
     );
