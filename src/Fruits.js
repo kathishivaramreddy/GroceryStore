@@ -1,4 +1,5 @@
 import React from 'react';
+import {PriceSorter} from './PriceSorter';
 import allProductsList from './AllProducts'
 
 export class Fruits extends React.Component {
@@ -18,7 +19,7 @@ export class Fruits extends React.Component {
   }
 
   render() {
-    console.log('in fruit');
+
     const listItems = this.state.products.map((data) =>
       <div className="boxed" key={data.name}>
 
@@ -32,8 +33,16 @@ export class Fruits extends React.Component {
     return (
       <div>
         <div className="productboxed">
-          <h3 align="left">Fruits</h3>
-          {listItems}
+          <div className ="productheader">
+
+            <h3 align="position">Fruits</h3>
+            <PriceSorter/>
+
+          </div>
+
+            {listItems}
+
+
         </div>
       </div>
     );

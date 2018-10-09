@@ -254,7 +254,7 @@ class App extends React.Component {
               <input className="searchbox" type="search"  placeholder="Search Here.." name="search" onChange={this.updateInput}/>
 
             </div>
-
+            
             <div className="login">
               <Link to='login'><button className="dropbtn">Login</button></Link>
             </div>

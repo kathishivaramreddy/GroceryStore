@@ -25,4 +25,9 @@ describe('product list test', () => {
   it('should have image element with source attribute', () => {
     expect(wrapper.find('img').at(0).props().src).toEqual('apple.jpg');
   });
+
+  it('should render PriceSorter',() => {
+
+    expect(wrapper.exists('PriceSorter')).toEqual(true);
+  })
 });

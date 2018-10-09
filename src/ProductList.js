@@ -59,8 +59,11 @@ render() {
     if(!isLoaded){
       return (
         <div>
-          <h5>Data Loading....</h5>
-        </div>)
+          <div className="loader">
+          </div>
+          <h5 className="loaderData">Data Loading ... </h5>
+        </div>
+      )
     }
     const listItems = products.map((data) =>
       <div className="boxed" key={data.name}>
