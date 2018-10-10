@@ -201,46 +201,46 @@ class App extends React.Component {
 
           <div>
             <hr/>
-            <div className="dropdown">
-              <button className="dropbtn">Home</button>
-              <div className="dropdown-content">
+            <div className="navdown">
+              <button className="navbtn">Home</button>
+              <div className="navdown-content">
                 <Link to='/'>All Products</Link>
               </div>
             </div>
 
-            <div className="dropdown">
-              <button className="dropbtn">Vegetables</button>
-              <div className="dropdown-content">
+            <div className="navdown">
+              <button className="navbtn">Vegetables</button>
+              <div className="navdown-content">
                 <Link to='/fruits'>Fruits</Link>
                 <Link to='organic'>Organic Vegetables</Link>
               </div>
             </div>
 
-            <div className="dropdown">
-              <button className="dropbtn">Dairy</button>
-              <div className="dropdown-content">
+            <div className="navdown">
+              <button className="navbtn">Dairy</button>
+              <div className="navdown-content">
                 <Link to='/milk'>Milk</Link>
                 <Link to='meat'>Meat</Link>
 
               </div>
             </div>
 
-            <div className="dropdown">
-              <button className="dropbtn">Beverages</button>
-              <div className="dropdown-content">
+            <div className="navdown">
+              <button className="navbtn">Beverages</button>
+              <div className="navdown-content">
                 <Link to='tea'>Tea</Link>
                 <Link to='coffee'>Coffee</Link>
               </div>
             </div>
 
-            <div className="dropdown">
+            <div className="navdown">
               <input className="searchbox" type="search"  placeholder="Search Here.." name="search" onChange={this.updateInput}/>
 
             </div>
 
-            <ul class="login">
+            <div class="login">
               {this.renderCart(window.location.pathname)}
-            </ul>
+            </div>
 
             <div>
 

@@ -23,9 +23,11 @@ export class Cart extends React.Component {
         <div class="dropdown">
           <button class="dropbtn" >Cart </button>
           <div class="dropdown-content">
+
             <ul className="cart">
-              {isEmpty(this.props.data) ? emptyCart:listItems}
-            </ul>
+              {isEmpty(this.props.data) ? emptyCart : listItems }
+                </ul>
+
           </div>
         </div>
 
