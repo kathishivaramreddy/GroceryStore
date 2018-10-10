@@ -21,7 +21,7 @@ export class Cart extends React.Component {
         <button className="clearCart" align="right" onClick={this.props.clearCart}>Clear Cart</button> */}
 
         <div class="dropdown">
-          <button class="dropbtn" >Cart </button>
+          <button class="dropbtn" ><img className="cartIcon" src={require('./images/cartimage.jpg')}/>Cart </button>
           <div class="dropdown-content">
 
             <ul className="cart">
