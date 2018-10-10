@@ -8,18 +8,19 @@ import {shallow} from 'enzyme';
 
 describe('product list test', () => {
   let wrapper;
-  let callback = jest.fn();
+  const addelement = jest.fn();
+  const removeelement = jest.fn();
+  const event = {target : {value :'low'}}
   beforeEach(() =>{
-    wrapper = shallow(<Fruits onClick={callback} onRemove={callback}/>);
+    wrapper = shallow(<Fruits onAdd={addelement} onRemove={removeelement}/>);
   });
-
 
   it('should call a function on button click', () => {
     wrapper.find('button').at(0).simulate('click');
     wrapper.find('button').at(0).simulate('click');
-    expect(callback).toHaveBeenCalledTimes(2);
+    expect(addelement).toHaveBeenCalledTimes(2);
     wrapper.find('button').at(1).simulate('click');
-    expect(callback).toHaveBeenCalled();
+    expect(removeelement).toHaveBeenCalled();
   });
 
   it('should have image element with source attribute', () => {
@@ -36,4 +37,13 @@ describe('product list test', () => {
     expect(wrapper.exists('Filter')).toEqual(true);
 
   })
+
+  it('should sort based on option selected',()=> {
+
+    const fn = wrapper.find('PriceSorter').props().sorter
+    fn(event);
+    expect(wrapper.find('img').at(0).props().src).toEqual('pear.jpg');
+
+  })
+
 });

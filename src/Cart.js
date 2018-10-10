@@ -9,12 +9,10 @@ export class Cart extends React.Component {
   render() {
 
     const emptyCart =  <p>Your Cart is empty.Start shopping now</p>;
-
-
     const listItems = this.props.data.map( (value) =>
 
-    <li className="cart" key={value.name}>
-      <img className ="cartImage" src={value.image} alt='image' /> <br/> {value.name} <br/> Cost:-{value.price} {value.currency} <br/>Quantity :- {value.quantity}
+    <li className ="cart" key={value.name}>
+      <img className ="cartImage" src={value.image} alt='product' /> <br/> {value.name} <br/> Cost:-{value.price} {value.currency} <br/>Quantity :- {value.quantity}
     </li>);
 
     const total = <div> <b> Total Charges:-</b>{sum(this.props.data.map((product) =>
@@ -26,9 +24,9 @@ export class Cart extends React.Component {
       return (
       <div >
 
-        <div class="dropdown">
-          <button class="dropbtn" ><img className="cartIcon" src={require('./images/cartimage.jpg')}/>Cart </button>
-          <div class="dropdown-content">
+        <div className="dropdown">
+          <button className="dropbtn" ><img className="cartIcon" src={require('./images/cartimage.jpg')}/>Cart </button>
+          <div className="dropdown-content">
             {isEmpty(this.props.data) ? '' : clearCart }
             <ul className="cart">
               {isEmpty(this.props.data) ? emptyCart : listItems }

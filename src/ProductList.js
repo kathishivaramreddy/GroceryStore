@@ -21,16 +21,11 @@ export class ProductList extends React.Component {
   }
 
   componentDidMount(){
-
-  //   getProducts().then(function(value) {
-  //   console.log(value)
-  // })
+  //use function to get products
         this.fetchData();
-
   }
 
   fetchData(){
-
     fetch('http://localhost:8080/products')
     .then(res => res.json())
     .then( json => {
@@ -42,12 +37,9 @@ export class ProductList extends React.Component {
     .catch(
       error => console.log('fetch error',error)
     )
-
   }
 
-
   handleSelectChange(e){
-    console.log('cart state before select-option',this.state.cart)
     var value = e.target.value
     let sortedState = sortBy(this.state.products,function(product){ return product.price })
     value ==='low' ? this.setState({products : sortedState}) : this.setState({products : sortedState.reverse()})

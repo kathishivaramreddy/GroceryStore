@@ -107,7 +107,7 @@ class App extends React.Component {
     this.state = {
        cart : [],
        input : '' ,
-       filterPrice : [] ,
+       filterPrice : [],
        filterCategory: []
           };
     this.handleAddToCart=this.handleAddToCart.bind(this);
@@ -238,7 +238,7 @@ class App extends React.Component {
 
             </div>
 
-            <div class="login">
+            <div className="login">
               {this.renderCart(window.location.pathname)}
             </div>
 

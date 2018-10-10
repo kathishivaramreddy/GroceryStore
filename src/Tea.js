@@ -2,6 +2,7 @@ import React from 'react';
 import allProductsList from './AllProducts';
 import {PriceSorter} from './PriceSorter';
 import {Filter} from './Filter';
+import sortBy from 'lodash/sortBy';
 
 export class Tea extends React.Component {
   constructor(props) {
@@ -10,12 +11,21 @@ export class Tea extends React.Component {
     this.state= {
       products: [],
     };
+    this.handleSelectChange=this.handleSelectChange.bind(this);
   }
 
   componentDidMount(){
 
     const productList = allProductsList().products.filter(product =>  product.category === 'tea')
     this.setState({products : productList})
+  }
+
+  handleSelectChange(e){
+    const value = e.target.value
+    const sortedState = sortBy(this.state.products,function(product){
+       return product.price
+     })
+    value ==='low' ? this.setState({products : sortedState}) : this.setState({products : sortedState.reverse()})
   }
 
   render() {
@@ -33,7 +43,7 @@ export class Tea extends React.Component {
     return (
       <div>
         <div className="productboxed">
-          <PriceSorter/>
+          <PriceSorter sorter={this.handleSelectChange}/>
           <h3 align="left" >Tea</h3>
           <Filter />
           {listItems}

@@ -1,6 +1,6 @@
 .cart{
 
-   overflow:auto
+   overflow:auto;
  }
 
 .cartImage{
@@ -12,21 +12,18 @@
  .cartIcon{
    width:40px;
    float: left;
-
-
  }
+
  .clearCart{
    position:absolute;
    top:3%;
    right:1%;
  }
  .dropbtn {
-    /*Add image of cart  */
-    /* background-image: url(./images/cartimage.jpg);  */
-     color: white;
-     padding: 16px;
+
+     color: black;
+     padding: 3px;
      font-size: 16px;
-     border: none;
      width: 110px;
  }
 
@@ -48,9 +45,14 @@
  }
  .dropdown:hover .dropdown-content {
      display: block;
+
+
  }
  .dropdown:hover .dropbtn {
     background-color: #3e8e41;
 
 }
-.dropdown-content li:hover {background-color:yellow}
+.dropdown-content li:hover {
+  box-shadow: 0px 8px 16px red;
+
+}

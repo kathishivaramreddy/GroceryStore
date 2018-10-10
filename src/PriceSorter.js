@@ -9,6 +9,7 @@ export class PriceSorter extends React.Component{
   }
 
   render(){
+    console.log('props in cart',this.props)
     return(
     <div>
       <select className="priceSorter" onClick={this.props.sorter}>
