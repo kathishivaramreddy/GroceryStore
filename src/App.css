@@ -104,17 +104,8 @@
   float: left;
   padding: 5px;
 }
-.cart {
-  border: 2px solid green ;
-  width: auto;
-  height:auto;
-  float: left;
-  padding: 5px;
-}
 .cartboxed {
   border: 2px solid green ;
-  width: 29%;
-  height:auto;
   float: right;
   padding: 5px;
 }

@@ -147,12 +147,11 @@ class App extends React.Component {
     if(e.target.checked){
     const newFilterSearch = addToFilter(this.state.filterPrice,filterValue);
     this.setState({filterPrice: newFilterSearch})
-    console.log('filterPrice HANDLEpRICE',this.state.filterPrice,'filterCategory',this.state.filterCategory)
-      }
+    }
     else{
       const reducedFilterSearch = removeFromFilter(this.state.filterPrice,filterValue);
       this.setState({filterPrice: reducedFilterSearch})
-      console.log('filterPrice HANDLEpRICE',this.state.filterPrice,'filterCategory',this.state.filterCategory)
+
       }
   }
   handleCategoryFilter(e){
@@ -239,15 +238,15 @@ class App extends React.Component {
 
             </div>
 
-            <div className="login">
-              <Link to='login'><button className="dropbtn">Login</button></Link>
-            </div>
+            <ul class="login">
+              {this.renderCart(window.location.pathname)}
+            </ul>
 
             <div>
 
               <Route exact path='/' component={() => <ProductList onClick={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input}/>} />
               {/* onPriceFilter={this.state.filterPrice} categoryFilter={this.state.filterCategory} */}
-              <Route path='/fruits' component={() => <Fruits onClick={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)}  />}/>
+              <Route path='/fruits' component={() => <Fruits onAdd={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)}  />}/>
 
               <Route path='/organic' component={() => <Vegetables onClick={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)}  />}/>
               <Route path='/milk' component={() => <Milk onClick={this.handleAddToCart.bind(this)}  onRemove={this.handleRemoveFromCart.bind(this)} />}/>
@@ -255,7 +254,7 @@ class App extends React.Component {
               <Route path='/tea' component={() => <Tea onClick={this.handleAddToCart.bind(this)}  onRemove={this.handleRemoveFromCart.bind(this)} />}/>
               <Route path='/coffee' component={() => <Coffee onClick={this.handleAddToCart.bind(this) }   onRemove={this.handleRemoveFromCart.bind(this)} />}/>
               <Route exact path='/checkout' component={() => <Checkout totalPrice={this.state.cart} />}/>
-              <Route exact path='/login' component={() => <Login authentication={this.state.authentication}/>}/>
+              <Route exact path='/cart' component={Cart} />
 
 
             </div>
@@ -263,7 +262,7 @@ class App extends React.Component {
 
 
         </div>
-        {this.renderCart(window.location.pathname)}
+
 
 
       </div>
