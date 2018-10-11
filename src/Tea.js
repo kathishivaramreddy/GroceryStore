@@ -42,11 +42,19 @@ export class Tea extends React.Component {
 
     return (
       <div>
-        <div className="productboxed">
-          <PriceSorter sorter={this.handleSelectChange}/>
-          <h3 align="left" >Tea</h3>
-          <Filter />
-          {listItems}
+        <div>
+
+          <div className="productsheader">
+            <PriceSorter sorter={this.handleSelectChange}/>
+            <h3 align="left" >Tea</h3>
+          </div>
+          <div className="productsboxed">
+            <div>
+              <Filter />
+            </div>
+              {listItems}
+          </div>
+
         </div>
       </div>
     );

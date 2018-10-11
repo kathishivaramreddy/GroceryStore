@@ -1,17 +1,41 @@
-.productboxed {
-  border: 2px solid green ;
-  width: 59.6%;
-  height:auto;
+.boxed {
+  border:1px solid white;
+  width: 178.5px;
+  height:260px;
   float: left;
   padding: 5px;
+  box-shadow: 0px 8px 16px grey;
+  margin:15px;
+  /* position:fixed; */
 }
-.productheader{
+.boxed :hover{
+  box-shadow: 0px 8px 16px darkslategray;
+}
 
-  border: 2px solid green ;
-  width: 100%;
+.productsheader{
+
+  /* border: 2px solid green ; */
+  position:fixed;
+  width: 70%;
   height:auto;
-  float: left;
+  top:16%;
+  left:15.5%;
   padding: 1px;
+  margin:3px;
+  box-shadow: 0px 8px 16px darkslategrey;
+  clear: both;
+  /* z-index: 1; */
+}
+.productsboxed {
+  position:absolute;
+  width: 70%;
+  height:90%;
+  margin: 15px;
+  background-color: white;
+  box-shadow: 0px 8px 16px darkslategrey;
+  top:24%;
+  left:15%;
+  overflow: auto;
 }
 .position{
 

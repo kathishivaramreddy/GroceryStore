@@ -30,7 +30,7 @@ export class Fruits extends React.Component {
   }
 
   render() {
-    console.log('render Fruits')
+
     const {products} = this.state;
 
     const listItems = products.map((product) =>
@@ -44,12 +44,25 @@ export class Fruits extends React.Component {
 
     return (
       <div>
-        <div className="productboxed">
-          <PriceSorter sorter={this.handleSelectChange}/>
-          <h3>Fruits</h3>
-          <Filter />
-          {listItems}
-        </div>
+
+        <div>
+
+          <div className="productsheader">
+
+            <PriceSorter sorter={this.handleSelectChange}/>
+            <h5>Fruits</h5>
+          </div>
+
+          <div className="productsboxed">
+
+              <div>
+                <Filter />
+              </div>
+              {listItems}
+
+            </div>
+
+          </div>
 
       </div>
     );

@@ -42,11 +42,20 @@ export class Coffee extends React.Component {
 
     return (
       <div>
-        <div className="productboxed">
-          <PriceSorter sorter={this.handleSelectChange}/>
-          <h3>Coffee</h3>
-          <Filter />
-          {listItems}
+        <div>
+
+          <div className="productsheader">
+            <PriceSorter sorter={this.handleSelectChange}/>
+            <h3>Coffee</h3>
+          </div>
+
+          <div className="productsboxed">
+            <div>
+              <Filter />
+            </div>
+            {listItems}
+          </div>
+
         </div>
       </div>
     );

@@ -5,7 +5,7 @@ import sortBy from 'lodash/sortBy';
 // import {getProducts} from './client/AmbrosiaClient';
 import {Filter} from './Filter';
 import {PriceSorter} from './PriceSorter'
-import './App.css';
+// import './App.css';
 import './ProductList.css'
 
 
@@ -106,21 +106,28 @@ export class ProductList extends React.Component {
 
       return (
       <div >
-        <div className="productboxed">
-          <div className ="productheader">
 
-            <h5 className="position" >All Products</h5>
+        <div >
+
+          <div className ="productsheader">
+
+            <h5>All Products</h5>
             <PriceSorter sorter={this.handleSelectChange}/>
 
           </div>
 
-          <div>
-            <Filter/>
+          <div className="productsboxed">
+
+            <div>
+              <Filter/>
+            </div>
+
+
+            {searchItems.length === 0 && filterItems.length === 0 ? listItems
+            : searchItems.length === 0 ? filterItems : searchItems}
+
           </div>
 
-          <br/>
-          {searchItems.length === 0 && filterItems.length === 0 ? listItems
-          : searchItems.length === 0 ? filterItems : searchItems}
         </div>
 
       </div>

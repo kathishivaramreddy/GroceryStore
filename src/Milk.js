@@ -3,6 +3,7 @@ import allProductsList from './AllProducts';
 import {PriceSorter} from './PriceSorter';
 import {Filter} from './Filter';
 import sortBy from 'lodash/sortBy';
+import './Milk.css'
 
 
 export class Milk extends React.Component {
@@ -42,11 +43,21 @@ export class Milk extends React.Component {
 
     return (
       <div>
-        <div className="productboxed">
-          <PriceSorter sorter={this.handleSelectChange}/>
-          <h3 align="left" >Milk</h3>
-          <Filter/>
-          {listItems}
+        <div>
+
+          <div className="productsheader">
+            <PriceSorter sorter={this.handleSelectChange}/>
+            <h3 align="left" >Milk</h3>
+          </div>
+
+          <div className="productsboxed">
+
+            <div>
+              <Filter/>
+            </div>
+
+            {listItems}
+          </div>
 
         </div>
       </div>

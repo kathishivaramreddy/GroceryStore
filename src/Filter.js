@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import './Filter.css';
 
 export class Filter extends React.Component{
 
@@ -10,7 +11,7 @@ export class Filter extends React.Component{
     return(
     <div className="filterboxed">
       <h3>Filter here</h3>
-      <hr/>
+      
       <div className="boxed">
 
         <h4>Price Filter</h4>

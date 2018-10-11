@@ -1,16 +1,18 @@
 .position{
+
   position: relative;
   display: inline-block;
+
 }
 .productboxed {
-  
+
   width: 71%;
   height:auto;
   float: left;
   padding: 5px;
+
 }
 .productheader{
-
 
   width: 100%;
   height:auto;
