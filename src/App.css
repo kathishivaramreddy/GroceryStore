@@ -1,30 +1,38 @@
 .App {
-  text-align: center;
+
+  text-align: left;
 }
 
-.App-logo {
+/* .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
-}.dataloading{
-
-  height: 80px;
-  position: relative;
-
-
-}
+} */
 .App-header {
-  background-color: #222;
+  background-color: darkblue;
   height: 90px;
   padding: 20px;
   color: white;
+
 }
 
 .App-title {
+  position: absolute;
   font-size: 1.5em;
+  left:15%;
 }
 
 .App-intro {
   font-size: large;
+}
+.dataloading{
+
+  height: 80px;
+  position: relative;
+}
+
+.Navigation{
+  text-align : center;
+  /* position: fixed */
 }
 .navbtn {
     background-color: #4CAF50;
@@ -40,9 +48,11 @@
 }
 .login {
     position: absolute;
-    right:3%;
-    display: inline-block;
-    float :right;
+    top:4%;
+    right:1%;
+    width:auto;
+    /* display: inline-block;
+    float :right; */
 }
 
 .navdown-content {
@@ -67,13 +77,17 @@
 
 .navdropdown:hover .navbtn {background-color: #3e8e41;}
 
+.searchbar{
+  position:absolute;
+  top:4%;
+  left:26%;
+}
 .searchbox {
 
   border: 2px solid green ;
-  padding: 14.5px;
-
-  font-size: 16px;
-
+  padding: 12px;
+  width:460px;
+  font-size: 14px;
 }
 
 .filterboxed {
@@ -108,9 +122,9 @@
   padding: 5px;
 }
 .cartboxed {
-  border: 2px solid green ;
-  float: right;
-  padding: 5px;
+  /* border: 2px solid green ; */
+  /* float: right; */
+  /* padding: 5px; */
 }
 .totalbox {
   border: 2px solid red ;

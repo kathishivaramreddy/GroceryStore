@@ -199,7 +199,7 @@ class App extends React.Component {
           </header>
 
 
-          <div>
+          <div className="Navigation">
             <hr/>
             <div className="navdown">
               <button className="navbtn">Home</button>
@@ -233,8 +233,8 @@ class App extends React.Component {
               </div>
             </div>
 
-            <div className="navdown">
-              <input className="searchbox" type="search"  placeholder="Search Here.." name="search" onChange={this.updateInput}/>
+            <div className="searchbar">
+              <input className="searchbox" type="search"  placeholder="Search for products and more" name="search" onChange={this.updateInput} autoComplete="off"/>
 
             </div>
 
