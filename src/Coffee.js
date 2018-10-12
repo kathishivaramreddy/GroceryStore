@@ -3,6 +3,8 @@ import allProductsList from './AllProducts';
 import {PriceSorter} from './PriceSorter';
 import {Filter} from './Filter';
 import sortBy from 'lodash/sortBy';
+import {searchBar} from './Searchbar';
+import {productDisplay} from './productsDisplay';
 
 export class Coffee extends React.Component {
   constructor(props) {
@@ -30,15 +32,11 @@ export class Coffee extends React.Component {
 
   render() {
     const {products } = this.state;
+    const {onAdd,onRemove,onSearch} = this.props;
 
-    const listItems = products.map((product) =>
-      <div className="boxed" key={product.name}>
-        <img src={product.image} alt=''/><br/>
-        {product.name}<br/>
-        {product.currency} {product.price}<br/>
-        <button className="addBasket" value="Add" onClick={ () => this.props.onAdd(product.name, product.currency, product.price,product.image,product.image)}>Add To Cart </button>
-        <button className="addBasket" value="Remove From Cart" onClick={ () => this.props.onRemove(product.name)}>Remove From Cart </button>
-      </div>)
+    const listItems = productDisplay(products,onAdd,onRemove)
+    const searchItems =searchBar(products,onAdd,onRemove,
+      onSearch)
 
     return (
       <div>
@@ -53,7 +51,7 @@ export class Coffee extends React.Component {
             <div>
               <Filter />
             </div>
-            {listItems}
+            {searchItems.length === 0 ? listItems : searchItems}
           </div>
 
         </div>

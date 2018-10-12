@@ -1,11 +1,10 @@
 import React from 'react';
 import some from 'lodash/some';
 import sortBy from 'lodash/sortBy';
-
-// import {getProducts} from './client/AmbrosiaClient';
 import {Filter} from './Filter';
-import {PriceSorter} from './PriceSorter'
-// import './App.css';
+import {PriceSorter} from './PriceSorter';
+import {searchBar} from './Searchbar';
+import {productDisplay} from './productsDisplay';
 import './ProductList.css'
 
 
@@ -47,8 +46,8 @@ export class ProductList extends React.Component {
 
   render() {
 
-    var {isLoaded,products} = this.state;
-
+    const {isLoaded,products} = this.state;
+    const {onAdd,onRemove,onSearch } = this.props;
     if(!isLoaded){
       return (
         <div>
@@ -58,23 +57,10 @@ export class ProductList extends React.Component {
         </div>
       )
     }
-    const listItems = products.map((data) =>
-      <div className="boxed" key={data.name}>
-        <img src={data.image} alt=''/><br/>
-        {data.name}<br/>
-        {data.currency} {data.price}<br/>
-        <button className="addBasket" value="Add" onClick={ () => this.props.onAdd(data.name, data.currency, data.price,data.image)}>Add To Cart </button>
-        <button className="addBasket" value="Remove From Cart" onClick={ () => this.props.onRemove(data.name,data.currency,data.price)}>Remove From Cart </button>
-      </div>);
+    const listItems = productDisplay(products,onAdd,onRemove)
 
-    const searchItems = products.filter((data) => data.name.toUpperCase() === this.props.onSearch.toUpperCase()).map((data) =>
-      <div className="boxed" key={data.name}>
-        <img src={data.image} alt=''/><br/>
-        {data.name}<br/>
-        {data.currency} {data.price}<br/>
-        <button className="addBasket" value="Add" onClick={ () => this.props.onClick(data.name, data.currency, data.price,data.image)}>Add To Cart </button>
-        <button className="addBasket" value="Remove From Cart" onClick={ () => this.props.onRemove(data.name)}>Remove From Cart </button>
-      </div>);
+    const searchItems =searchBar(products,onAdd,onRemove,
+      onSearch)
 
       const filterItems = products.filter( (product) =>  some(this.props.categoryFilter,function(filterToCheck){
             if(filterToCheck === undefined){

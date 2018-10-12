@@ -62,43 +62,43 @@ const removefromCart = (items,newItem) => {
     }
 }
 
-const addToFilter = (items,value) => {
-
-  return concat(items,value)
-
-}
-const addToFilterCategory = (items,value) => {
-
-  return concat(items,value)
-
-}
-
-const removeFromFilter = (items,value) =>{
-  return items.filter(item => item.min !== value.min && item.max !== value.max)
-}
-
-const removeFromFilterCategory = (items,value) =>{
-  return items.filter(item => item.category !== value.category)
-}
-
-const setFilterValue = (name) => {
-  const checkboxData = {price1:{min:1,max:100},price2:{min:101,max:200},price3:{min:201,max:1000}}
-
-  if(name === 'price1'){
-    return checkboxData.price1;
-  }
-  else if (name ==='price2') {
-    return checkboxData.price2;
-  }
-  else {
-    return checkboxData.price3;
-    }
-}
-
-const setCategoryValue = (name) => {
-  const checkboxData = {category:name}
-    return checkboxData;
-}
+// const addToFilter = (items,value) => {
+//
+//   return concat(items,value)
+//
+// }
+// const addToFilterCategory = (items,value) => {
+//
+//   return concat(items,value)
+//
+// }
+//
+// const removeFromFilter = (items,value) =>{
+//   return items.filter(item => item.min !== value.min && item.max !== value.max)
+// }
+//
+// const removeFromFilterCategory = (items,value) =>{
+//   return items.filter(item => item.category !== value.category)
+// }
+//
+// const setFilterValue = (name) => {
+//   const checkboxData = {price1:{min:1,max:100},price2:{min:101,max:200},price3:{min:201,max:1000}}
+//
+//   if(name === 'price1'){
+//     return checkboxData.price1;
+//   }
+//   else if (name ==='price2') {
+//     return checkboxData.price2;
+//   }
+//   else {
+//     return checkboxData.price3;
+//     }
+// }
+//
+// const setCategoryValue = (name) => {
+//   const checkboxData = {category:name}
+//     return checkboxData;
+// }
 
 
 class App extends React.Component {
@@ -107,19 +107,18 @@ class App extends React.Component {
     this.state = {
        cart : [],
        input : '' ,
-       filterPrice : [],
-       filterCategory: []
+       // filterPrice : [],
+       // filterCategory: []
           };
     this.handleAddToCart=this.handleAddToCart.bind(this);
     this.handleRemoveFromCart=this.handleRemoveFromCart.bind(this);
     this.updateInput = this.updateInput.bind(this);
-    this.handleCheckBox =this.handleCheckBox.bind(this);
-    this.handleClearCart = this.handleClearCart.bind(this);
-    this.handleCategoryFilter = this.handleCategoryFilter.bind(this);
+    this.handleClearCart = this.handleClearCart.bind(this);//shift to cart
 
   }
 
   handleAddToCart(name,currency,price,image) {
+    console.log('in add cart')
     const cartItem = {name, currency, price,image,quantity: 1};
     const updatedCart = concatCart(this.state.cart, cartItem);
     this.setState({ cart: updatedCart});
@@ -142,52 +141,37 @@ class App extends React.Component {
     this.setState({input: value })
   }
 
-  handleCheckBox(e){
-    var filterValue = setFilterValue(e.target.name)
-    if(e.target.checked){
-    const newFilterSearch = addToFilter(this.state.filterPrice,filterValue);
-    this.setState({filterPrice: newFilterSearch})
-    }
-    else{
-      const reducedFilterSearch = removeFromFilter(this.state.filterPrice,filterValue);
-      this.setState({filterPrice: reducedFilterSearch})
-
-      }
-  }
-  handleCategoryFilter(e){
-    var filterValueCategory = setCategoryValue(e.target.name)
-    if(e.target.checked){
-    const newFilterCategory = addToFilterCategory(this.state.filterCategory,filterValueCategory);
-    this.setState({filterCategory: newFilterCategory})
-
-      }
-    else{
-      const reducedFilterCategory = removeFromFilterCategory(this.state.filterCategory,filterValueCategory);
-      this.setState({filterCategory: reducedFilterCategory})
-      }
-  }
+  // handleCheckBox(e){
+  //   var filterValue = setFilterValue(e.target.name)
+  //   if(e.target.checked){
+  //   const newFilterSearch = addToFilter(this.state.filterPrice,filterValue);
+  //   this.setState({filterPrice: newFilterSearch})
+  //   }
+  //   else{
+  //     const reducedFilterSearch = removeFromFilter(this.state.filterPrice,filterValue);
+  //     this.setState({filterPrice: reducedFilterSearch})
+  //
+  //     }
+  // }
+  // handleCategoryFilter(e){
+  //   var filterValueCategory = setCategoryValue(e.target.name)
+  //   if(e.target.checked){
+  //   const newFilterCategory = addToFilterCategory(this.state.filterCategory,filterValueCategory);
+  //   this.setState({filterCategory: newFilterCategory})
+  //
+  //     }
+  //   else{
+  //     const reducedFilterCategory = removeFromFilterCategory(this.state.filterCategory,filterValueCategory);
+  //     this.setState({filterCategory: reducedFilterCategory})
+  //     }
+  // }
 
   renderCart(path){
     if (path !== '/login' && path !=='/checkout'){
     return(<div className="cartboxed">
       <Cart data={this.state.cart}  clearCart={this.handleClearCart}/>
-
     </div>)}
-    console.log('render cart'.this.state.cart)
   }
-
-  renderFilterBox(path){
-    if(path !== '/login' && path !=='/checkout')
-    {
-      return(
-        <Filter />
-        );
-    }
-  }
-
-
-
-
 
   render() {
     return (
@@ -245,15 +229,15 @@ class App extends React.Component {
 
         <div className="route">
 
-          <Route exact path='/' component={() => <ProductList onAdd={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input}/>} />
+          <Route exact path='/' component={ () => <ProductList onAdd={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input}/>} />
           {/* onPriceFilter={this.state.filterPrice} categoryFilter={this.state.filterCategory} */}
-          <Route path='/fruits' component={() => <Fruits onAdd={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)}  />}/>
+          <Route path='/fruits' component={() => <Fruits onAdd={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)}  onSearch={this.state.input}/>}/>
 
-          <Route path='/organic' component={() => <Vegetables onAdd={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)}  />}/>
-          <Route path='/milk' component={() => <Milk onAdd={this.handleAddToCart.bind(this)}  onRemove={this.handleRemoveFromCart.bind(this)} />}/>
-          <Route path='/meat' component={() => <Meat onAdd={this.handleAddToCart.bind(this)}  onRemove={this.handleRemoveFromCart.bind(this)} />}/>
-          <Route path='/tea' component={() => <Tea onAdd={this.handleAddToCart.bind(this)}  onRemove={this.handleRemoveFromCart.bind(this)} />}/>
-          <Route path='/coffee' component={() => <Coffee onAdd={this.handleAddToCart.bind(this) }   onRemove={this.handleRemoveFromCart.bind(this)} />}/>
+          <Route path='/organic' component={() => <Vegetables onAdd={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input} />}/>
+          <Route path='/milk' component={() => <Milk onAdd={this.handleAddToCart.bind(this)}  onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input} />}/>
+          <Route path='/meat' component={() => <Meat onAdd={this.handleAddToCart.bind(this)}  onRemove={this.handleRemoveFromCart.bind(this)}  onSearch={this.state.input}/>}/>
+          <Route path='/tea' component={() => <Tea onAdd={this.handleAddToCart.bind(this)}  onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input}/>}/>
+          <Route path='/coffee' component={() => <Coffee onAdd={this.handleAddToCart.bind(this) }   onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input} />}/>
           <Route exact path='/checkout' component={() => <Checkout totalPrice={this.state.cart} />}/>
           <Route exact path='/cart' component={Cart} />
 

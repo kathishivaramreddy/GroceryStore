@@ -73,11 +73,12 @@
      max-height: 280px;
      overflow: auto;
      box-shadow: 0 3px 5px rgba(0,0,0,.175);
-     z-index: 1;
+     /* z-index: 5; */
      padding-right: 20px;
  }
  .dropdown:hover .dropdown-content {
      display: block;
+     /* z-index: 100; */
  }
  .dropdown:hover .dropbtn {
     /* background-color: #3e8e41; */

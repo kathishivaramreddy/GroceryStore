@@ -27,7 +27,7 @@
   /* z-index: 1; */
 }
 .productsboxed {
-  position:absolute;
+  position:fixed;
   width: 70%;
   height:90%;
   margin: 15px;

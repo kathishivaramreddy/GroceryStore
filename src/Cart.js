@@ -1,8 +1,9 @@
 import React from 'react';
+import './Cart.css';
 import sum from 'lodash/sum';
 import isEmpty from 'lodash/isEmpty';
 import {Link} from 'react-router-dom';
-import './Cart.css';
+
 
 export class Cart extends React.Component {
 
@@ -28,7 +29,7 @@ export class Cart extends React.Component {
         <div className="dropdown">
           <button className="dropbtn" ><img className="cartIcon" src={require('./images/cartimage.jpg')}/>Cart </button>
           <div className="dropdown-content">
-            {/* {isEmpty(this.props.data) ? '' : clearCart } */}
+            {isEmpty(this.props.data) ? '' : clearCart }
             <ul className="cart">
               {isEmpty(this.props.data) ? emptyCart : listItems }
             </ul>
