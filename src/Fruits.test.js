@@ -11,8 +11,8 @@ describe('product list test', () => {
   const addelement = jest.fn();
   const removeelement = jest.fn();
   const event = {target : {value :'low'}}
-  const priceCheck = {target :{name:'price1'},checked:true}
-  const categoryCheck = {target :{name:'tea'},checked:true}
+  const priceCheck = {target :{name:'price1', checked:true}}
+  const categoryCheck = {target :{name:'tea', checked:true}}
   beforeEach(() =>{
     wrapper = shallow(<Fruits onAdd={addelement} onRemove={removeelement} onSearch={''} />);
   });

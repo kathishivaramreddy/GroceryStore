@@ -58,9 +58,10 @@
 }
 .login {
     position: absolute;
-    top:8%;
+    top:29%;
     right:1%;
     width:auto;
+    /* mix-blend-mode: */
     /* display: inline-block;
     float :right; */
 }

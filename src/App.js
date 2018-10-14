@@ -50,12 +50,11 @@ class App extends React.Component {
     this.setState({input: value});
   }
 
-  renderCart(path) {
-    if (path !== '/login' && path !=='/checkout') {
+  renderCart() {
       return (<div className="cartboxed">
         <Cart data={this.state.cart} clearCart={this.handleClearCart}/>
       </div>);
-    }
+
   }
 
   render() {
@@ -106,7 +105,7 @@ class App extends React.Component {
             </div>
 
             <div className="login">
-              {this.renderCart(window.location.pathname)}
+              {this.renderCart()}
             </div>
           </div>{/* Navigation */}
 

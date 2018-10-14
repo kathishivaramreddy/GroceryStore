@@ -8,6 +8,26 @@ import {setFilterValue,addToFilter,removeFromFilter,setCategoryValue,
 import {searchBar} from './Searchbar';
 import {productDisplay} from './productsDisplay';
 import './Fruits.css';
+import isEmpty from "lodash/isEmpty";
+import some from "lodash/some";
+
+function applyCategoryFilter(searchItems, filterCategory) {
+  return searchItems.filter(product => {
+    return some(filterCategory, (filterToCheck) => product.category === filterToCheck.category);
+  });
+}
+
+function applyPriceFilter(itemsAfterCategoryFilter, filterPrice) {
+  return itemsAfterCategoryFilter.filter((product) =>
+    some(filterPrice, function (filter) {
+        if (product.price > filter.min && product.price < filter.max) {
+          return true;
+        }
+        return false;
+      }
+    )
+  )
+}
 
 export class Fruits extends React.Component {
   constructor(props) {
@@ -73,11 +93,12 @@ export class Fruits extends React.Component {
     const {products,filterCategory,filterPrice} = this.state;
     const {onAdd,onRemove,onSearch} = this.props;
 
-    const listItems = productDisplay(products,onAdd,onRemove)
-    const searchItems =searchBar(products,onAdd,onRemove,
-      onSearch)
+    const searchItems = onSearch === "" ? products : products.filter(product => product.name.toUpperCase() === onSearch.toUpperCase())
 
-    const filterItems = getFilteredList(products,filterCategory,filterPrice,onAdd,onRemove)
+    const itemsAfterCategoryFilter = isEmpty(filterCategory) ? searchItems : applyCategoryFilter(searchItems, filterCategory)
+    const itemsAfterPriceFilter = isEmpty(filterPrice) ? itemsAfterCategoryFilter : applyPriceFilter(itemsAfterCategoryFilter, filterPrice);
+
+    const listItems = productDisplay(itemsAfterPriceFilter,onAdd,onRemove);
 
     return (
       <div>
@@ -97,8 +118,7 @@ export class Fruits extends React.Component {
 
             </div>
 
-            {searchItems.length === 0 ? filterItems.length === 0 ? listItems: filterItems
-            : searchItems}
+            {listItems}
 
           </div>
 

@@ -42,14 +42,7 @@ export const getFilteredList = (products, filterCategory, filterPrice,onAdd,onRe
     if (isEmpty(filterCategory)) {
       return true;
     } else {
-      some(filterCategory, function(filterToCheck) {
-        if (product.category === filterToCheck.category) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-      );
+        return some(filterCategory, (filterToCheck) => product.category === filterToCheck.category);
     }
   })
       .filter( (product) =>
