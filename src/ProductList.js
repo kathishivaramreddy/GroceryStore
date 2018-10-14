@@ -5,7 +5,7 @@ import {Filter} from './Filter';
 import {PriceSorter} from './PriceSorter';
 import {searchBar} from './Searchbar';
 import {productDisplay} from './productsDisplay';
-import './ProductList.css'
+import './ProductList.css';
 
 
 

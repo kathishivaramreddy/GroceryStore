@@ -62,53 +62,12 @@ const removefromCart = (items,newItem) => {
     }
 }
 
-// const addToFilter = (items,value) => {
-//
-//   return concat(items,value)
-//
-// }
-// const addToFilterCategory = (items,value) => {
-//
-//   return concat(items,value)
-//
-// }
-//
-// const removeFromFilter = (items,value) =>{
-//   return items.filter(item => item.min !== value.min && item.max !== value.max)
-// }
-//
-// const removeFromFilterCategory = (items,value) =>{
-//   return items.filter(item => item.category !== value.category)
-// }
-//
-// const setFilterValue = (name) => {
-//   const checkboxData = {price1:{min:1,max:100},price2:{min:101,max:200},price3:{min:201,max:1000}}
-//
-//   if(name === 'price1'){
-//     return checkboxData.price1;
-//   }
-//   else if (name ==='price2') {
-//     return checkboxData.price2;
-//   }
-//   else {
-//     return checkboxData.price3;
-//     }
-// }
-//
-// const setCategoryValue = (name) => {
-//   const checkboxData = {category:name}
-//     return checkboxData;
-// }
-
-
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
        cart : [],
        input : '' ,
-       // filterPrice : [],
-       // filterCategory: []
           };
     this.handleAddToCart=this.handleAddToCart.bind(this);
     this.handleRemoveFromCart=this.handleRemoveFromCart.bind(this);
@@ -140,31 +99,6 @@ class App extends React.Component {
     const value = e.target.value;
     this.setState({input: value })
   }
-
-  // handleCheckBox(e){
-  //   var filterValue = setFilterValue(e.target.name)
-  //   if(e.target.checked){
-  //   const newFilterSearch = addToFilter(this.state.filterPrice,filterValue);
-  //   this.setState({filterPrice: newFilterSearch})
-  //   }
-  //   else{
-  //     const reducedFilterSearch = removeFromFilter(this.state.filterPrice,filterValue);
-  //     this.setState({filterPrice: reducedFilterSearch})
-  //
-  //     }
-  // }
-  // handleCategoryFilter(e){
-  //   var filterValueCategory = setCategoryValue(e.target.name)
-  //   if(e.target.checked){
-  //   const newFilterCategory = addToFilterCategory(this.state.filterCategory,filterValueCategory);
-  //   this.setState({filterCategory: newFilterCategory})
-  //
-  //     }
-  //   else{
-  //     const reducedFilterCategory = removeFromFilterCategory(this.state.filterCategory,filterValueCategory);
-  //     this.setState({filterCategory: reducedFilterCategory})
-  //     }
-  // }
 
   renderCart(path){
     if (path !== '/login' && path !=='/checkout'){

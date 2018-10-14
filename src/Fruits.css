@@ -1,22 +1,35 @@
+.fruits{
+  overflow: auto;
+}
 .position{
   position: relative;
   display: inline-block;
+
 }
-.productboxed {
+.productsheader{
 
-  width: 71%;
+
+  /* position:absolute; */
+  width: 70%;
   height:auto;
-  float: left;
-  padding: 5px;
-}
-.productheader{
-
-
-  width: 100%;
-  height:auto;
-  float: left;
+  top:16%;
+  left:15.5%;
   padding: 1px;
+  margin:3px;
+  box-shadow: 0px 8px 16px darkslategrey;
+  /* overflow: auto */
 
+}
+.productsboxed {
+  position:absolute;
+  width: 70%;
+  height:90%;
+  margin: 15px;
+  background-color: white;
+  box-shadow: 0px 8px 16px darkslategrey;
+  top:24%;
+  left:15%;
+  /* overflow: visible; */
 }
 
 .popup {

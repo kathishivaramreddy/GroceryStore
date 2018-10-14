@@ -23,7 +23,7 @@
   padding: 1px;
   margin:3px;
   box-shadow: 0px 8px 16px darkslategrey;
-  clear: both;
+  /* clear: both; */
   /* z-index: 1; */
 }
 .productsboxed {
