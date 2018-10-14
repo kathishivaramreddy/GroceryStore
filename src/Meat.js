@@ -16,28 +16,26 @@ export class Meat extends React.Component {
     };
     this.handleSelectChange=this.handleSelectChange.bind(this);
   }
-  componentDidMount(){
+  componentDidMount() {
+    const productList = allProductsList().products.filter((product) => product.category === 'meat');
 
-    const productList = allProductsList().products.filter(product =>  product.category === 'meat')
-
-    this.setState({products : productList})
-
+    this.setState({products: productList});
   }
-  handleSelectChange(e){
-    const value = e.target.value
-    const sortedState = sortBy(this.state.products,function(product){
-       return product.price
-     })
-    value ==='low' ? this.setState({products : sortedState}) : this.setState({products : sortedState.reverse()})
+  handleSelectChange(e) {
+    const value = e.target.value;
+    const sortedState = sortBy(this.state.products, function(product) {
+      return product.price;
+    });
+    value ==='low' ? this.setState({products: sortedState}) : this.setState({products: sortedState.reverse()});
   }
   render() {
     const {products} = this.state;
-    const {onAdd,onRemove,onSearch} = this.props;
+    const {onAdd, onRemove, onSearch} = this.props;
 
-    const listItems = productDisplay(products,onAdd,onRemove)
+    const listItems = productDisplay(products, onAdd, onRemove);
 
-    const searchItems =searchBar(products,onAdd,onRemove,
-      onSearch)
+    const searchItems =searchBar(products, onAdd, onRemove,
+        onSearch);
 
 
     return (

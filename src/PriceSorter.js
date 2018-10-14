@@ -2,12 +2,7 @@ import React from 'react';
 import './PriceSorter.css';
 
 export class PriceSorter extends React.Component{
-
-  constructor(props){
-    super(props);
-
-  }
-
+  
   render(){
     console.log('props in cart',this.props)
     return(

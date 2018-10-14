@@ -1,10 +1,11 @@
 import React from 'react';
-import some from 'lodash/some';
 import sortBy from 'lodash/sortBy';
 import {Filter} from './Filter';
 import {PriceSorter} from './PriceSorter';
 import {searchBar} from './Searchbar';
 import {productDisplay} from './productsDisplay';
+import {setFilterValue,addToFilter,removeFromFilter,setCategoryValue,
+  addToFilterCategory,removeFromFilterCategory,getFilteredList} from './FilterUtil.js';
 import './ProductList.css';
 
 
@@ -15,12 +16,15 @@ export class ProductList extends React.Component {
     this.state={
       products: [],
       isLoaded:false,
+      filterPrice : [],
+      filterCategory: []
     };
     this.handleSelectChange=this.handleSelectChange.bind(this);
+    this.handlePriceFilter=this.handlePriceFilter.bind(this);
+    this.handleCategoryFilter=this.handleCategoryFilter.bind(this);
   }
 
   componentDidMount(){
-  //use function to get products
         this.fetchData();
   }
 
@@ -44,9 +48,35 @@ export class ProductList extends React.Component {
     value ==='low' ? this.setState({products : sortedState}) : this.setState({products : sortedState.reverse()})
   }
 
+  handlePriceFilter(e){
+    const filterValue = setFilterValue(e.target.name)
+    if(e.target.checked){
+    const newFilterSearch = addToFilter(this.state.filterPrice,filterValue);
+    this.setState({filterPrice: newFilterSearch})
+    }
+    else{
+      const reducedFilterSearch = removeFromFilter(this.state.filterPrice,filterValue);
+      this.setState({filterPrice: reducedFilterSearch})
+      }
+
+  }
+
+  handleCategoryFilter(e){
+    const filterValueCategory = setCategoryValue(e.target.name)
+    if(e.target.checked){
+    const newFilterCategory = addToFilterCategory(this.state.filterCategory,filterValueCategory);
+    this.setState({filterCategory: newFilterCategory})
+
+      }
+    else{
+      const reducedFilterCategory = removeFromFilterCategory(this.state.filterCategory,filterValueCategory);
+      this.setState({filterCategory: reducedFilterCategory})
+      }
+  }
+
   render() {
 
-    const {isLoaded,products} = this.state;
+    const {isLoaded,products,filterCategory,filterPrice} = this.state;
     const {onAdd,onRemove,onSearch } = this.props;
     if(!isLoaded){
       return (
@@ -62,34 +92,7 @@ export class ProductList extends React.Component {
     const searchItems =searchBar(products,onAdd,onRemove,
       onSearch)
 
-      const filterItems = products.filter( (product) =>  some(this.props.categoryFilter,function(filterToCheck){
-            if(filterToCheck === undefined){
-              return true;
-            }
-            else if(product.category === filterToCheck.category){
-              return true
-            }
-          }
-          )).filter( (product) =>  some(this.props.onPriceFilter,function(filterToCheck){
-                if(filterToCheck === undefined ){
-                  return true;
-                }
-                else if(product.price > filterToCheck.min && product.price < filterToCheck.max ){
-                  return true
-                } }
-                ))
-            .map((product) =>
-            <div className="boxed" key={product.name}>
-              <img src={product.image} alt=''/><br/>
-              {product.name}<br/>
-              {product.currency} {product.price}<br/>
-              <button className="addBasket" value="Add" onClick={ () => this.props.onClick(product.name,product.currency,product.price,product.image)}>
-              Add To Cart </button>
-              <button className="addBasket" value="Remove From Cart" onClick={ () => this.props.onRemove(product.name)}>
-              Remove From Cart </button>
-            </div>
-          );
-
+      const filterItems = getFilteredList(products,filterCategory,filterPrice,onAdd,onRemove)
       return (
       <div >
 
@@ -105,7 +108,7 @@ export class ProductList extends React.Component {
           <div className="productsboxed">
 
             <div>
-              <Filter/>
+              <Filter onPriceFilter={this.handlePriceFilter} onCategoryFilter={this.handleCategoryFilter}/>
             </div>
 
 

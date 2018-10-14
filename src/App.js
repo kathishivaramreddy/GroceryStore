@@ -1,10 +1,6 @@
 import React from 'react';
-import {Route,Link} from 'react-router-dom';
-import isNil from 'lodash/isNil';
-import merge from 'lodash/merge';
-import concat from 'lodash/concat';
-
-import {Filter} from './Filter';
+import {Route, Link} from 'react-router-dom';
+// import {Filter} from './Filter';
 import {ProductList} from './ProductList';
 import {Fruits} from './Fruits';
 import {Cart} from './Cart';
@@ -15,96 +11,51 @@ import {Tea} from './Tea';
 import {Coffee} from './Coffee';
 import {Checkout} from './Checkout';
 import {Login} from './Login';
+import {concatCart,removefromCart} from './CartUtil.js'
 import './App.css';
-
-const mergeProduct = (item, newItem) => {
-  return merge(item, {quantity: item.quantity + newItem.quantity});
-};
-
-const updateItems = (items, newItem) => {
-    return items.map((item) => {
-      return (item.name === newItem.name) ? mergeProduct(item, newItem) : item;
-    });
-};
-
-const concatCart = (items, newItem) => {
-  const itemToBeUpdated = items.find((item) => { return item.name === newItem.name; });
-  return isNil(itemToBeUpdated) ? concat(items, newItem) : updateItems(items, newItem);
-};
-
-const updateDecreasedQuantity = (item, newItem) => {
-  return merge(item, {quantity: item.quantity - newItem.quantity});
-};
-
-const decreaseQuantity = (items, newItem) => {
-    return items.map( (item) => {
-      return (item.name === newItem.name  ) ? updateDecreasedQuantity(item,newItem) : item;
-    });
-};
-const removeItemFromCart = (items,itemToBeDeleted) => {
-
-    return items.filter( (item) =>  item.name !== itemToBeDeleted.name)
-
-}
-const removefromCart = (items,newItem) => {
-
-  const itemQuantityToBeUpdated = items.find( (item) => { return item.name === newItem.name && item.quantity > 1});
-  const itemToBeDeleted = items.find( (item) => { return item.name === newItem.name && item.quantity === 1});
-
-  if(itemQuantityToBeUpdated){
-      return decreaseQuantity(items,newItem)
-  }
-  else if(itemToBeDeleted){
-    return removeItemFromCart(items,itemToBeDeleted)
-  }
-  else{
-    return items;
-    }
-}
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-       cart : [],
-       input : '' ,
-          };
+      cart: [],
+      input: '',
+    };
     this.handleAddToCart=this.handleAddToCart.bind(this);
     this.handleRemoveFromCart=this.handleRemoveFromCart.bind(this);
     this.updateInput = this.updateInput.bind(this);
-    this.handleClearCart = this.handleClearCart.bind(this);//shift to cart
-
+    this.handleClearCart = this.handleClearCart.bind(this);// shift to cart
   }
 
-  handleAddToCart(name,currency,price,image) {
-    console.log('in add cart')
-    const cartItem = {name, currency, price,image,quantity: 1};
+  handleAddToCart(name, currency, price, image) {
+    console.log('in add cart');
+    const cartItem = {name, currency, price, image, quantity: 1};
     const updatedCart = concatCart(this.state.cart, cartItem);
-    this.setState({ cart: updatedCart});
+    this.setState({cart: updatedCart});
   }
 
-  handleRemoveFromCart(name,currency,price){
-
+  handleRemoveFromCart(name, currency, price) {
     const cartItem = {name, currency, price, quantity: 1};
     const updatedCart = removefromCart(this.state.cart, cartItem);
-    this.setState({cart : updatedCart })
+    this.setState({cart: updatedCart});
   }
 
-  handleClearCart(){
-    this.setState({cart : []})
-    console.log('handleclearcart',this.state.cart)
+  handleClearCart() {
+    this.setState({cart: []});
+    console.log('handleclearcart', this.state.cart);
   }
 
-  updateInput(e){
+  updateInput(e) {
     const value = e.target.value;
-    this.setState({input: value })
+    this.setState({input: value});
   }
 
-  renderCart(path){
-    if (path !== '/login' && path !=='/checkout'){
-    return(<div className="cartboxed">
-      <Cart data={this.state.cart}  clearCart={this.handleClearCart}/>
-    </div>)}
+  renderCart(path) {
+    if (path !== '/login' && path !=='/checkout') {
+      return (<div className="cartboxed">
+        <Cart data={this.state.cart} clearCart={this.handleClearCart}/>
+      </div>);
+    }
   }
 
   render() {
@@ -151,7 +102,7 @@ class App extends React.Component {
             </div>
 
             <div className="searchbar">
-              <input className="searchbox" type="search"  placeholder="Search for products and more" name="search" onChange={this.updateInput} autoComplete="off"/>
+              <input className="searchbox" type="search" placeholder="Search for products and more" name="search" onChange={this.updateInput} autoComplete="off"/>
             </div>
 
             <div className="login">
@@ -165,13 +116,13 @@ class App extends React.Component {
 
           <Route exact path='/' component={ () => <ProductList onAdd={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input}/>} />
           {/* onPriceFilter={this.state.filterPrice} categoryFilter={this.state.filterCategory} */}
-          <Route path='/fruits' component={() => <Fruits onAdd={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)}  onSearch={this.state.input}/>}/>
+          <Route path='/fruits' component={() => <Fruits onAdd={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input}/>}/>
 
           <Route path='/organic' component={() => <Vegetables onAdd={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input} />}/>
-          <Route path='/milk' component={() => <Milk onAdd={this.handleAddToCart.bind(this)}  onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input} />}/>
-          <Route path='/meat' component={() => <Meat onAdd={this.handleAddToCart.bind(this)}  onRemove={this.handleRemoveFromCart.bind(this)}  onSearch={this.state.input}/>}/>
-          <Route path='/tea' component={() => <Tea onAdd={this.handleAddToCart.bind(this)}  onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input}/>}/>
-          <Route path='/coffee' component={() => <Coffee onAdd={this.handleAddToCart.bind(this) }   onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input} />}/>
+          <Route path='/milk' component={() => <Milk onAdd={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input} />}/>
+          <Route path='/meat' component={() => <Meat onAdd={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input}/>}/>
+          <Route path='/tea' component={() => <Tea onAdd={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input}/>}/>
+          <Route path='/coffee' component={() => <Coffee onAdd={this.handleAddToCart.bind(this) } onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input} />}/>
           <Route exact path='/checkout' component={() => <Checkout totalPrice={this.state.cart} />}/>
           <Route exact path='/cart' component={Cart} />
 

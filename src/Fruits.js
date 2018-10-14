@@ -3,8 +3,6 @@ import {PriceSorter} from './PriceSorter';
 import {Filter} from './Filter';
 import allProductsList from './AllProducts';
 import sortBy from 'lodash/sortBy';
-import concat from 'lodash/concat';
-import some from 'lodash/some';
 import {setFilterValue,addToFilter,removeFromFilter,setCategoryValue,
   addToFilterCategory,removeFromFilterCategory,getFilteredList} from './FilterUtil.js';
 import {searchBar} from './Searchbar';
@@ -79,7 +77,7 @@ export class Fruits extends React.Component {
     const searchItems =searchBar(products,onAdd,onRemove,
       onSearch)
 
-    const filterItems = getFilteredList(products,filterCategory,filterPrice)
+    const filterItems = getFilteredList(products,filterCategory,filterPrice,onAdd,onRemove)
 
     return (
       <div>
