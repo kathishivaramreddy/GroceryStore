@@ -37,7 +37,7 @@ export const setCategoryValue = (name) => {
   return checkboxData;
 };
 
-export const getFilteredList = (products, filterCategory, filterPrice) => {
+export const getFilteredList = (products, filterCategory, filterPrice,onAdd,onRemove) => {
   return products.filter( (product) => {
     if (isEmpty(filterCategory)) {
       return true;
