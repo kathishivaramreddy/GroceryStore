@@ -1,15 +1,15 @@
 import React from 'react';
-import {PriceSorter} from './PriceSorter';
-import {Filter} from './Filter';
 import PropTypes from 'prop-types';
-import allProductsList from './AllProducts';
-import sortBy from 'lodash/sortBy';
+import allProductsList from '../Data/AllProducts';
 import {setFilterValue,addToFilter,removeFromFilter,setCategoryValue,
   addToFilterCategory,removeFromFilterCategory
-  ,applyCategoryFilter,applyPriceFilter} from './FilterUtil.js';
-import {productDisplay} from './productsDisplay';
+  ,applyCategoryFilter,applyPriceFilter} from '../Filter/FilterUtil.js';
+import {productDisplay} from '../Util/productsDisplay';
+import {PriceSorter} from '../PriceSorter/PriceSorter';
+import {Filter} from '../Filter/Filter';
 import './Fruits.css';
 import isEmpty from "lodash/isEmpty";
+import sortBy from 'lodash/sortBy';
 
 export class Fruits extends React.Component {
   constructor(props) {

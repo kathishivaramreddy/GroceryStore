@@ -1,16 +1,15 @@
 import React from 'react';
 import {Route} from 'react-router-dom';
-import {navigation} from './Navigation';
-import {ProductList} from './ProductList';
-import {Fruits} from './Fruits';
-import {Cart} from './Cart';
-import {Vegetables} from './Vegetables';
-import {Milk} from './Milk';
-import {Meat} from './Meat';
-import {Tea} from './Tea';
-import {Coffee} from './Coffee';
-import {Checkout} from './Checkout';
-import {concatCart,removefromCart} from './CartUtil.js'
+import {navigation} from '../Util/Navigation';
+import {ProductList} from '../AllProducts/ProductList';
+import {Fruits} from '../Fruits/Fruits';
+import {Vegetables} from '../Vegetables/Vegetables';
+import {Milk} from '../Milk/Milk';
+import {Meat} from '../Meat/Meat';
+import {Tea} from '../Tea/Tea';
+import {Coffee} from '../Coffee/Coffee';
+import {Cart} from '../Cart/Cart';
+import {concatCart,removefromCart} from '../Cart/CartUtil.js'
 import './App.css';
 
 class App extends React.Component {
@@ -92,7 +91,7 @@ class App extends React.Component {
           <Route path='/meat' component={() => <Meat onAdd={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input}/>}/>
           <Route path='/tea' component={() => <Tea onAdd={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input}/>}/>
           <Route path='/coffee' component={() => <Coffee onAdd={this.handleAddToCart.bind(this) } onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input} />}/>
-          <Route exact path='/checkout' component={() => <Checkout totalPrice={this.state.cart} />}/>
+          {/* <Route exact path='/checkout' component={}/> */}
           <Route exact path='/cart' component={Cart} />
 
 

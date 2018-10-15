@@ -1,11 +1,11 @@
 import React from 'react';
-import sortBy from 'lodash/sortBy';
-import {Filter} from './Filter';
-import {PriceSorter} from './PriceSorter';
-import {searchBar} from './Searchbar';
-import {productDisplay} from './productsDisplay';
+import {Filter} from '../Filter/Filter';
+import {PriceSorter} from '../PriceSorter/PriceSorter';
+import {searchBar} from '../Util/Searchbar';
+import {productDisplay} from '../Util/productsDisplay';
 import {setFilterValue,addToFilter,removeFromFilter,setCategoryValue,
-  addToFilterCategory,removeFromFilterCategory,getFilteredList} from './FilterUtil.js';
+  addToFilterCategory,removeFromFilterCategory,getFilteredList} from '../Filter/FilterUtil.js';
+  import sortBy from 'lodash/sortBy';
 import './ProductList.css';
 
 

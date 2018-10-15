@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import allProductsList from './AllProducts';
-import {PriceSorter} from './PriceSorter';
-import {Filter} from './Filter';
+import allProductsList from '../Data/AllProducts';
+import {PriceSorter} from '../PriceSorter/PriceSorter';
+import {Filter} from '../Filter/Filter';
+import {searchBar} from '../Util/Searchbar';
+import {productDisplay} from '../Util/productsDisplay';
 import sortBy from 'lodash/sortBy';
-import {searchBar} from './Searchbar';
-import {productDisplay} from './productsDisplay';
-import './Milk.css';
 
-
-export class Milk extends React.Component {
+export class Tea extends React.Component {
   constructor(props) {
     super(props);
 
@@ -18,11 +16,12 @@ export class Milk extends React.Component {
     };
     this.handleSelectChange=this.handleSelectChange.bind(this);
   }
-  componentDidMount() {
-    const productList = allProductsList().products.filter((product) => product.category === 'milk');
 
+  componentDidMount() {
+    const productList = allProductsList().products.filter((product) => product.category === 'tea');
     this.setState({products: productList});
   }
+
   handleSelectChange(e) {
     const value = e.target.value;
     const sortedState = sortBy(this.state.products, function(product) {
@@ -34,6 +33,7 @@ export class Milk extends React.Component {
   render() {
     const {products} = this.state;
     const {onAdd, onRemove, onSearch} = this.props;
+
     const listItems = productDisplay(products, onAdd, onRemove);
 
     const searchItems =searchBar(products, onAdd, onRemove,
@@ -45,15 +45,12 @@ export class Milk extends React.Component {
 
           <div className="productsheader">
             <PriceSorter sorter={this.handleSelectChange}/>
-            <h3 align="left" >Milk</h3>
+            <h3 align="left" >Tea</h3>
           </div>
-
           <div className="productsboxed">
-
             <div>
-              <Filter/>
+              <Filter />
             </div>
-
             {searchItems.length === 0 ? listItems : searchItems}
           </div>
 
@@ -62,7 +59,7 @@ export class Milk extends React.Component {
     );
   }
 }
-Milk.propTypes = {
+Tea.propTypes = {
     onAdd : PropTypes.func,
     onRemove : PropTypes.func,
     onSearch : PropTypes.string

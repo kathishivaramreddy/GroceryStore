@@ -1,27 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import allProductsList from './AllProducts';
-import {PriceSorter} from './PriceSorter';
-import {Filter} from './Filter';
+import allProductsList from '../Data/AllProducts';
+import {PriceSorter} from '../PriceSorter/PriceSorter';
+import {Filter} from '../Filter/Filter';
 import sortBy from 'lodash/sortBy';
-import {searchBar} from './Searchbar';
-import {productDisplay} from './productsDisplay';
+import {searchBar} from '../Util/Searchbar';
+import {productDisplay} from '../Util/productsDisplay';
 
-export class Tea extends React.Component {
+export class Coffee extends React.Component {
   constructor(props) {
     super(props);
 
     this.state= {
       products: [],
     };
-    this.handleSelectChange=this.handleSelectChange.bind(this);
+    this.handleSelectChange = this.handleSelectChange.bind(this);
   }
 
   componentDidMount() {
-    const productList = allProductsList().products.filter((product) => product.category === 'tea');
+    const productList = allProductsList().products.filter((product) => product.category === 'coffee');
     this.setState({products: productList});
   }
-
   handleSelectChange(e) {
     const value = e.target.value;
     const sortedState = sortBy(this.state.products, function(product) {
@@ -35,7 +34,6 @@ export class Tea extends React.Component {
     const {onAdd, onRemove, onSearch} = this.props;
 
     const listItems = productDisplay(products, onAdd, onRemove);
-
     const searchItems =searchBar(products, onAdd, onRemove,
         onSearch);
 
@@ -45,8 +43,9 @@ export class Tea extends React.Component {
 
           <div className="productsheader">
             <PriceSorter sorter={this.handleSelectChange}/>
-            <h3 align="left" >Tea</h3>
+            <h3>Coffee</h3>
           </div>
+
           <div className="productsboxed">
             <div>
               <Filter />
@@ -59,7 +58,7 @@ export class Tea extends React.Component {
     );
   }
 }
-Tea.propTypes = {
+Coffee.propTypes = {
     onAdd : PropTypes.func,
     onRemove : PropTypes.func,
     onSearch : PropTypes.string
