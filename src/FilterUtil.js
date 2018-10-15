@@ -37,6 +37,24 @@ export const setCategoryValue = (name) => {
   return checkboxData;
 };
 
+export function applyCategoryFilter(searchItems, filterCategory) {
+  return searchItems.filter(product => {
+    return some(filterCategory, (filterToCheck) => product.category === filterToCheck.category);
+  });
+}
+
+export function applyPriceFilter(itemsAfterCategoryFilter, filterPrice) {
+  return itemsAfterCategoryFilter.filter((product) =>
+    some(filterPrice, function (filter) {
+        if (product.price > filter.min && product.price < filter.max) {
+          return true;
+        }
+        return false;
+      }
+    )
+  )
+}
+
 export const getFilteredList = (products, filterCategory, filterPrice,onAdd,onRemove) => {
   return products.filter( (product) => {
     if (isEmpty(filterCategory)) {

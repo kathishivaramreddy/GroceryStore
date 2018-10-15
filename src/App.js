@@ -1,6 +1,7 @@
 import React from 'react';
-import {Route, Link} from 'react-router-dom';
-// import {Filter} from './Filter';
+import {Route} from 'react-router-dom';
+import PropTypes from 'prop-types'
+import {navigation} from './Navigation';
 import {ProductList} from './ProductList';
 import {Fruits} from './Fruits';
 import {Cart} from './Cart';
@@ -10,7 +11,6 @@ import {Meat} from './Meat';
 import {Tea} from './Tea';
 import {Coffee} from './Coffee';
 import {Checkout} from './Checkout';
-import {Login} from './Login';
 import {concatCart,removefromCart} from './CartUtil.js'
 import './App.css';
 
@@ -19,7 +19,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       cart: [],
-      input: '',
+      input:'',
     };
     this.handleAddToCart=this.handleAddToCart.bind(this);
     this.handleRemoveFromCart=this.handleRemoveFromCart.bind(this);
@@ -67,44 +67,15 @@ class App extends React.Component {
           </header>
 
 
-          <div className="Navigation">
-            <div className="navdown">
-              <button className="navbtn">Home</button>
-              <div className="navdown-content">
-                <Link to='/'>All Products</Link>
-              </div>
-            </div>
+          <div>
 
-            <div className="navdown">
-              <button className="navbtn">Vegetables</button>
-              <div className="navdown-content">
-                <Link to='/fruits'>Fruits</Link>
-                <Link to='organic'>Organic Vegetables</Link>
-              </div>
-            </div>
-
-            <div className="navdown">
-              <button className="navbtn">Dairy</button>
-              <div className="navdown-content">
-                <Link to='/milk'>Milk</Link>
-                <Link to='meat'>Meat</Link>
-
-              </div>
-            </div>
-
-            <div className="navdown">
-              <button className="navbtn">Beverages</button>
-              <div className="navdown-content">
-                <Link to='tea'>Tea</Link>
-                <Link to='coffee'>Coffee</Link>
-              </div>
-            </div>
+            {navigation()}
 
             <div className="searchbar">
               <input className="searchbox" type="search" placeholder="Search for products and more" name="search" onChange={this.updateInput} autoComplete="off"/>
             </div>
 
-            <div className="login">
+            <div className="cartComponent">
               {this.renderCart()}
             </div>
           </div>{/* Navigation */}
@@ -136,3 +107,6 @@ class App extends React.Component {
 
 export default App;
 // search and filter at same time.
+App.PropTypes = {
+    
+}

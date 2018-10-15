@@ -1,33 +1,15 @@
 import React from 'react';
 import {PriceSorter} from './PriceSorter';
 import {Filter} from './Filter';
+import PropTypes from 'prop-types';
 import allProductsList from './AllProducts';
 import sortBy from 'lodash/sortBy';
 import {setFilterValue,addToFilter,removeFromFilter,setCategoryValue,
-  addToFilterCategory,removeFromFilterCategory,getFilteredList} from './FilterUtil.js';
-import {searchBar} from './Searchbar';
+  addToFilterCategory,removeFromFilterCategory
+  ,applyCategoryFilter,applyPriceFilter} from './FilterUtil.js';
 import {productDisplay} from './productsDisplay';
 import './Fruits.css';
 import isEmpty from "lodash/isEmpty";
-import some from "lodash/some";
-
-function applyCategoryFilter(searchItems, filterCategory) {
-  return searchItems.filter(product => {
-    return some(filterCategory, (filterToCheck) => product.category === filterToCheck.category);
-  });
-}
-
-function applyPriceFilter(itemsAfterCategoryFilter, filterPrice) {
-  return itemsAfterCategoryFilter.filter((product) =>
-    some(filterPrice, function (filter) {
-        if (product.price > filter.min && product.price < filter.max) {
-          return true;
-        }
-        return false;
-      }
-    )
-  )
-}
 
 export class Fruits extends React.Component {
   constructor(props) {
@@ -40,8 +22,6 @@ export class Fruits extends React.Component {
     this.handleSelectChange=this.handleSelectChange.bind(this);
     this.handleCategoryFilter = this.handleCategoryFilter.bind(this);
     this.handlePriceFilter = this.handlePriceFilter.bind(this);
-    console.log('filterprice',this.state.filterPrice)
-    console.log('filterCategory',this.state.filterCategory)
 
   }
 
@@ -78,7 +58,6 @@ export class Fruits extends React.Component {
     if(e.target.checked){
     const newFilterCategory = addToFilterCategory(this.state.filterCategory,filterValueCategory);
     this.setState({filterCategory: newFilterCategory})
-
       }
     else{
       const reducedFilterCategory = removeFromFilterCategory(this.state.filterCategory,filterValueCategory);
@@ -127,4 +106,10 @@ export class Fruits extends React.Component {
       </div>
     );
   }
+}
+
+Fruits.propTypes = {
+    onAdd : PropTypes.func,
+    onRemove : PropTypes.func,
+    onSearch : PropTypes.func
 }

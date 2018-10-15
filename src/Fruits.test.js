@@ -12,7 +12,9 @@ describe('product list test', () => {
   const removeelement = jest.fn();
   const event = {target : {value :'low'}}
   const priceCheck = {target :{name:'price1', checked:true}}
+  const priceCheck2= {target :{name:'price2', checked:true}}
   const categoryCheck = {target :{name:'tea', checked:true}}
+  const categoryCheck1 = {target :{name:'fruits', checked:true}}
   beforeEach(() =>{
     wrapper = shallow(<Fruits onAdd={addelement} onRemove={removeelement} onSearch={''} />);
   });
@@ -39,6 +41,10 @@ describe('product list test', () => {
     expect(wrapper.exists('Filter')).toEqual(true);
 
   })
+  it('should return searched product if found',() => {
+    const wrapper1 = shallow(<Fruits onAdd={addelement} onRemove={removeelement} onSearch={'apple'} />);
+    expect(wrapper1.find('img').at(0).props().src).toEqual('apple.jpg')
+  })
 
   it('should sort based on price value selected',()=> {
 
@@ -51,12 +57,20 @@ describe('product list test', () => {
   it('should filter based on price seleted',() => {
       const pricehandler = wrapper.find('Filter').props().onPriceFilter
       pricehandler(priceCheck);
-      expect(wrapper.find('img').at(0).props().src).toEqual('kiwi.jpg');
+      pricehandler(priceCheck2);
+      expect(wrapper.find('img').at(0).props().src).toEqual('grapes.jpg');
   })
   it('should filter based on category seleted',() => {
       const categoryhandler = wrapper.find('Filter').props().onCategoryFilter
       categoryhandler(categoryCheck);
       expect(wrapper.find('img').length).toEqual(0);
+  })
+  it('should filter based on category and price seleted',() => {
+      const categoryhandler = wrapper.find('Filter').props().onCategoryFilter
+      const pricehandler = wrapper.find('Filter').props().onPriceFilter
+      categoryhandler(categoryCheck1);
+      pricehandler(priceCheck)
+      expect(wrapper.find('img').length).toEqual(2);
   })
 
 });
