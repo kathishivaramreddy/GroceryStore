@@ -1,6 +1,5 @@
 import React from 'react';
 import {Route} from 'react-router-dom';
-import PropTypes from 'prop-types'
 import {navigation} from './Navigation';
 import {ProductList} from './ProductList';
 import {Fruits} from './Fruits';
@@ -25,6 +24,7 @@ class App extends React.Component {
     this.handleRemoveFromCart=this.handleRemoveFromCart.bind(this);
     this.updateInput = this.updateInput.bind(this);
     this.handleClearCart = this.handleClearCart.bind(this);// shift to cart
+    console.log('app',this.props)
   }
 
   handleAddToCart(name, currency, price, image) {
@@ -42,7 +42,6 @@ class App extends React.Component {
 
   handleClearCart() {
     this.setState({cart: []});
-    console.log('handleclearcart', this.state.cart);
   }
 
   updateInput(e) {
@@ -107,6 +106,3 @@ class App extends React.Component {
 
 export default App;
 // search and filter at same time.
-App.PropTypes = {
-    
-}

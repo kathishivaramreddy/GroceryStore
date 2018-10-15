@@ -1,10 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './PriceSorter.css';
 
 export class PriceSorter extends React.Component{
 
   render(){
-    console.log('props in cart',this.props)
     return(
     <div>
       <select className="priceSorter" onClick={this.props.sorter}>
@@ -14,4 +14,7 @@ export class PriceSorter extends React.Component{
     </div>
     )
   }
+}
+PriceSorter.propTypes = {
+    sorter : PropTypes.func,
 }

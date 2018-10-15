@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import allProductsList from './AllProducts';
 import {PriceSorter} from './PriceSorter';
 import {Filter} from './Filter';
@@ -60,4 +61,9 @@ export class Milk extends React.Component {
       </div>
     );
   }
+}
+Milk.propTypes = {
+    onAdd : PropTypes.func,
+    onRemove : PropTypes.func,
+    onSearch : PropTypes.string
 }

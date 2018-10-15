@@ -111,5 +111,5 @@ export class Fruits extends React.Component {
 Fruits.propTypes = {
     onAdd : PropTypes.func,
     onRemove : PropTypes.func,
-    onSearch : PropTypes.func
+    onSearch : PropTypes.string
 }

@@ -1,8 +1,9 @@
 import React from 'react';
-import './Cart.css';
+import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
 import sum from 'lodash/sum';
 import isEmpty from 'lodash/isEmpty';
-import {Link} from 'react-router-dom';
+import './Cart.css';
 
 
 export class Cart extends React.Component {
@@ -15,15 +16,14 @@ export class Cart extends React.Component {
         </li>
       </div>);
 
-    const total = <div> <b> Total Charges:-</b>{sum(this.props.data.map((product) =>
-      product.price * product.quantity ))} INR </div>;
+    const totalAmountToBePaid = <div> <b> Total Charges:-</b>{sum(this.props.data.map((product) =>
+    product.price * product.quantity ))} INR </div>;
 
     const clearCart =<div> <h4>Cart</h4>
       <button className="clearCart" onClick={this.props.clearCart}>Clear Cart</button> </div>;
 
     return (
       <div >
-
         <div className="dropdown">
           <button className="dropbtn" ><img className="cartIcon" src={require('./images/cartimage.jpg') } alt="carticon"/>Cart </button>
           <div className="dropdown-content">
@@ -32,7 +32,7 @@ export class Cart extends React.Component {
               {isEmpty(this.props.data) ? emptyCart : listItems }
             </ul>
             <div className="totalprice">
-              {isEmpty(this.props.data) ? '' : total}
+              {isEmpty(this.props.data) ? '' : totalAmountToBePaid}
             </div>
             <br/>
 
@@ -45,4 +45,9 @@ export class Cart extends React.Component {
       </div>
     );
   }
+}
+
+Cart.propTypes = {
+  data:PropTypes.array,
+  clearCart:PropTypes.func,
 }

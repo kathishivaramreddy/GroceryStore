@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import allProductsList from './AllProducts';
 import {PriceSorter} from './PriceSorter';
 import {Filter} from './Filter';
@@ -61,4 +62,9 @@ export class Vegetables extends React.Component {
       </div>
     );
   }
+}
+Vegetables.propTypes = {
+    onAdd : PropTypes.func,
+    onRemove : PropTypes.func,
+    onSearch : PropTypes.string
 }

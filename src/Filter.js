@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Filter.css';
 
 export class Filter extends React.Component {
@@ -30,4 +31,9 @@ export class Filter extends React.Component {
 
       </div>);
   }
+}
+
+Filter.propTypes = {
+    onPriceFilter : PropTypes.func,
+    onCategoryFilter:PropTypes.func
 }
