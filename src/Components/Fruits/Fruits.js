@@ -4,7 +4,7 @@ import allProductsList from '../Data/AllProducts';
 import {setFilterValue,addToFilter,removeFromFilter,setCategoryValue,
   addToFilterCategory,removeFromFilterCategory
   ,applyCategoryFilter,applyPriceFilter} from '../Filter/FilterUtil.js';
-import {productDisplay} from '../Util/productsDisplay';
+import {productDisplay} from '../Util/ProductsDisplay';
 import {PriceSorter} from '../PriceSorter/PriceSorter';
 import {Filter} from '../Filter/Filter';
 import './Fruits.css';

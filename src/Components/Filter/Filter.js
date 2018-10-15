@@ -5,7 +5,6 @@ import './Filter.css';
 export class Filter extends React.Component {
   constructor(props) {
     super(props);
-    console.log(this.props);
   }
 
   render() {
@@ -27,6 +26,9 @@ export class Filter extends React.Component {
           <input type="checkbox" name="fruits" onChange={this.props.onCategoryFilter} /> Fruits <br/>
           <input type="checkbox" name="tea" onChange={this.props.onCategoryFilter} /> Tea<br/>
           <input type="checkbox" name="milk" onChange={this.props.onCategoryFilter} /> Milk<br/>
+          <input type="checkbox" name="vegetable" onChange={this.props.onCategoryFilter} /> Vegetable<br/>
+          <input type="checkbox" name="coffee" onChange={this.props.onCategoryFilter} /> Coffee<br/>
+          <input type="checkbox" name="meat" onChange={this.props.onCategoryFilter} /> Meat<br/>
         </div>
 
       </div>);

@@ -2,7 +2,7 @@ import React from 'react';
 import {Filter} from '../Filter/Filter';
 import {PriceSorter} from '../PriceSorter/PriceSorter';
 import {searchBar} from '../Util/Searchbar';
-import {productDisplay} from '../Util/productsDisplay';
+import {productDisplay} from '../Util/ProductsDisplay';
 import {setFilterValue,addToFilter,removeFromFilter,setCategoryValue,
   addToFilterCategory,removeFromFilterCategory,getFilteredList} from '../Filter/FilterUtil.js';
   import sortBy from 'lodash/sortBy';

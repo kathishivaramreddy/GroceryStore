@@ -5,7 +5,7 @@ import {PriceSorter} from '../PriceSorter/PriceSorter';
 import {Filter} from '../Filter/Filter';
 import sortBy from 'lodash/sortBy';
 import {searchBar} from '../Util/Searchbar';
-import {productDisplay} from '../Util/productsDisplay';
+import {productDisplay} from '../Util/ProductsDisplay';
 
 export class Coffee extends React.Component {
   constructor(props) {
