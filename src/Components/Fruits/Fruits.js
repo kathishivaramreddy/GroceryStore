@@ -80,7 +80,7 @@ export class Fruits extends React.Component {
     const listItems = productDisplay(itemsAfterPriceFilter,onAdd,onRemove);
 
     return (
-      <div>
+
 
         <div className="fruits">
 
@@ -91,7 +91,7 @@ export class Fruits extends React.Component {
           </div>
 
           <div className="productsboxed">
-
+            
             <div>
               <Filter onPriceFilter={this.handlePriceFilter} onCategoryFilter={this.handleCategoryFilter}/>
 
@@ -103,7 +103,7 @@ export class Fruits extends React.Component {
 
         </div>
 
-      </div>
+
     );
   }
 }

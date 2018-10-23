@@ -1,11 +1,13 @@
 import React from 'react';
-import {Filter} from '../Filter/Filter';
 import {PriceSorter} from '../PriceSorter/PriceSorter';
+import {Filter} from '../Filter/Filter';
 import {searchBar} from '../Util/Searchbar';
 import {productDisplay} from '../Util/ProductsDisplay';
 import {setFilterValue,addToFilter,removeFromFilter,setCategoryValue,
-  addToFilterCategory,removeFromFilterCategory,getFilteredList} from '../Filter/FilterUtil.js';
-  import sortBy from 'lodash/sortBy';
+  addToFilterCategory,removeFromFilterCategory
+  ,applyCategoryFilter,applyPriceFilter} from '../Filter/FilterUtil.js';
+import sortBy from 'lodash/sortBy';
+import isEmpty from "lodash/isEmpty";
 import './ProductList.css';
 
 
@@ -87,12 +89,13 @@ export class ProductList extends React.Component {
         </div>
       )
     }
-    const listItems = productDisplay(products,onAdd,onRemove)
+    const searchItems = onSearch === "" ? products : products.filter(product => product.name.toUpperCase() === onSearch.toUpperCase())
 
-    const searchItems =searchBar(products,onAdd,onRemove,
-      onSearch)
+    const itemsAfterCategoryFilter = isEmpty(filterCategory) ? searchItems : applyCategoryFilter(searchItems, filterCategory)
+    const itemsAfterPriceFilter = isEmpty(filterPrice) ? itemsAfterCategoryFilter : applyPriceFilter(itemsAfterCategoryFilter, filterPrice);
 
-      const filterItems = getFilteredList(products,filterCategory,filterPrice,onAdd,onRemove)
+    const listItems = productDisplay(itemsAfterPriceFilter,onAdd,onRemove);
+
       return (
       <div >
 
@@ -112,8 +115,7 @@ export class ProductList extends React.Component {
             </div>
 
 
-            {searchItems.length === 0 && filterItems.length === 0 ? listItems
-            : searchItems.length === 0 ? filterItems : searchItems}
+            {listItems}
 
           </div>
 

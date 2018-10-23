@@ -23,7 +23,6 @@ class App extends React.Component {
     this.handleRemoveFromCart=this.handleRemoveFromCart.bind(this);
     this.updateInput = this.updateInput.bind(this);
     this.handleClearCart = this.handleClearCart.bind(this);// shift to cart
-    console.log('app',this.props)
   }
 
   handleAddToCart(name, currency, price, image) {
@@ -61,7 +60,7 @@ class App extends React.Component {
         <div className="App">
 
           <header className="App-header">
-            <h1 className="App-title" > Grocery Store</h1>
+            <h1 className="App-title" > Grocery Store </h1>
           </header>
 
 
@@ -91,7 +90,6 @@ class App extends React.Component {
           <Route path='/meat' component={() => <Meat onAdd={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input}/>}/>
           <Route path='/tea' component={() => <Tea onAdd={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input}/>}/>
           <Route path='/coffee' component={() => <Coffee onAdd={this.handleAddToCart.bind(this) } onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input} />}/>
-          {/* <Route exact path='/checkout' component={}/> */}
           <Route exact path='/cart' component={Cart} />
 
 

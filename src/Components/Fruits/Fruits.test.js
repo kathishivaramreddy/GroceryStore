@@ -15,6 +15,7 @@ describe('product list test', () => {
   const priceCheck2= {target :{name:'price2', checked:true}}
   const categoryCheck = {target :{name:'tea', checked:true}}
   const categoryCheck1 = {target :{name:'fruits', checked:true}}
+
   beforeEach(() =>{
     wrapper = shallow(<Fruits onAdd={addelement} onRemove={removeelement} onSearch={''} />);
   });

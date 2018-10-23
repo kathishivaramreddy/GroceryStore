@@ -4,7 +4,6 @@ import Adapter from 'enzyme-adapter-react-16';
 configure({adapter: new Adapter()});
 import {shallow} from 'enzyme';
 import {Cart} from './Cart';
-// import {Link} from 'react-router-dom';
 
 describe('Cart tests', () => {
   const passedData=[{name: 'apple', price: '150', currency: 'INR'}];
@@ -37,4 +36,14 @@ describe('Cart tests', () => {
     wrapper.find('.clearCart').simulate('click');
     expect(callback).toHaveBeenCalled();
   });
+
+//how to access function inside button click
+  it('should clear cart on button click ', () => {
+    const wrapper = shallow(<Cart data={passedData} clearCart={callback}/>);
+    const clearCart =  wrapper.find('clearCart').onClick()
+    clearCart();
+    expect(wrapper.find('p').text())
+        .toEqual('Your Cart is empty.Start shopping now');
+    })
+
 });

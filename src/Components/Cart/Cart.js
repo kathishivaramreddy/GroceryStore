@@ -3,24 +3,21 @@ import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import sum from 'lodash/sum';
 import isEmpty from 'lodash/isEmpty';
+import {displayCartItems,totalAmountCalculator,buttonToClearCart}
+        from './CartUtil'
 import './Cart.css';
 
 
 export class Cart extends React.Component {
   render() {
-    const emptyCart = <p>Your Cart is empty.Start shopping now</p>;
-    const listItems = this.props.data.map( (value) =>
-      <div className="cartitems">
-        <li className ="cart" key={value.name}>
-          <img className ="cartImage" src={value.image} alt='product' /> <br/> {value.name} <br/> Cost:-{value.price} {value.currency} <br/>Quantity :- {value.quantity}
-        </li>
-      </div>);
 
-    const totalAmountToBePaid = <div> <b> Total Charges:-</b>{sum(this.props.data.map((product) =>
-    product.price * product.quantity ))} INR </div>;
+    const emptyCartMessage = <p>Your Cart is empty.Start shopping now</p>;
 
-    const clearCart =<div> <h4>Cart</h4>
-      <button className="clearCart" onClick={this.props.clearCart}>Clear Cart</button> </div>;
+    const listItems = displayCartItems(this.props.data)
+
+    const totalAmountToBePaid = totalAmountCalculator(this.props.data)
+
+    const clearCart = buttonToClearCart(this.props.clearCart)
 
     return (
       <div >
@@ -29,7 +26,7 @@ export class Cart extends React.Component {
           <div className="dropdown-content">
             {isEmpty(this.props.data) ? '' : clearCart }
             <ul className="cart">
-              {isEmpty(this.props.data) ? emptyCart : listItems }
+              {isEmpty(this.props.data) ? emptyCartMessage : listItems }
             </ul>
             <div className="totalprice">
               {isEmpty(this.props.data) ? '' : totalAmountToBePaid}

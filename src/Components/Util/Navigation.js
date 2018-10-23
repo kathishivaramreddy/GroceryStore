@@ -14,7 +14,7 @@ export const navigation = () => {
         <button className="navbtn">Vegetables</button>
         <div className="navdown-content">
           <Link to='/fruits'>Fruits</Link>
-          <Link to='organic'>Organic Vegetables</Link>
+          <Link to='/organic'>Organic Vegetables</Link>
         </div>
       </div>
 
@@ -22,7 +22,7 @@ export const navigation = () => {
         <button className="navbtn">Dairy</button>
         <div className="navdown-content">
           <Link to='/milk'>Milk</Link>
-          <Link to='meat'>Meat</Link>
+          <Link to='/meat'>Meat</Link>
 
         </div>
       </div>
@@ -30,8 +30,8 @@ export const navigation = () => {
       <div className="navdown">
         <button className="navbtn">Beverages</button>
         <div className="navdown-content">
-          <Link to='tea'>Tea</Link>
-          <Link to='coffee'>Coffee</Link>
+          <Link to='/tea'>Tea</Link>
+          <Link to='/coffee'>Coffee</Link>
         </div>
       </div>
       </div>

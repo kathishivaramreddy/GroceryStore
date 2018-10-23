@@ -1,6 +1,6 @@
 .fruits{
-  /* position: relative; */
-  overflow: auto;
+  position: fixed;
+  /* overflow: auto; */
 }
 .position{
   position: relative;
@@ -18,18 +18,20 @@
   padding: 1px;
   margin:3px;
   box-shadow: 0px 8px 16px darkslategrey;
-  overflow: auto
+  /* overflow: auto */
 
 }
 .productsboxed {
-  position:absolute;
+  position:fixed;
   width: 70%;
-  height:90%;
+  height:100%;
   margin: 15px;
   background-color: white;
   box-shadow: 0px 8px 16px darkslategrey;
   top:24%;
   left:15%;
+  overflow-y:auto;
+
 }
 
 .popup {
@@ -48,7 +50,7 @@
     border-radius: 6px;
     padding: 8px 0;
     /* position: absolute; */
-    z-index: 10;
+    /* z-index: 10; */
     /* bottom: 125%; */
     /* top:0%; */
     /* left: 40%; */
