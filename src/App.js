@@ -1,15 +1,16 @@
 import React from 'react';
 import {Route} from 'react-router-dom';
-import {navigation} from '../Util/Navigation';
-import {ProductList} from '../AllProducts/ProductList';
-import {Fruits} from '../Fruits/Fruits';
-import {Vegetables} from '../Vegetables/Vegetables';
-import {Milk} from '../Milk/Milk';
-import {Meat} from '../Meat/Meat';
-import {Tea} from '../Tea/Tea';
-import {Coffee} from '../Coffee/Coffee';
-import {Cart} from '../Cart/Cart';
-import {concatCart,removefromCart} from '../Cart/CartUtil.js'
+import {navigation} from './Components/Util/Navigation';
+// import {ProductList} from './Components/AllProducts/ProductList';
+import {ProductContainer} from './container/ProductContainer';
+import {Fruits} from './Components/Fruits/Fruits';
+import {Vegetables} from './Components/Vegetables/Vegetables';
+import {Milk} from './Components/Milk/Milk';
+import {Meat} from './Components/Meat/Meat';
+import {Tea} from './Components/Tea/Tea';
+import {Coffee} from './Components/Coffee/Coffee';
+import {Cart} from './Components/Cart/Cart';
+import {concatCart,removefromCart} from './Components/Cart/CartUtil.js'
 import './App.css';
 
 class App extends React.Component {
@@ -81,8 +82,8 @@ class App extends React.Component {
 
         <div className="route">
 
-          <Route exact path='/' component={ () => <ProductList onAdd={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input}/>} />
-          {/* onPriceFilter={this.state.filterPrice} categoryFilter={this.state.filterCategory} */}
+          <Route exact path='/' component={ProductContainer} />
+
           <Route path='/fruits' component={() => <Fruits onAdd={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input}/>}/>
 
           <Route path='/organic' component={() => <Vegetables onAdd={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch={this.state.input} />}/>
@@ -102,4 +103,3 @@ class App extends React.Component {
 }
 
 export default App;
-// search and filter at same time.
