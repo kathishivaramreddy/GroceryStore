@@ -1,28 +1,45 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {fetchProducts} from '../../actions/productAction'
+// import store from '../../store'
 import './ProductList.css';
 
-class ProductList extends React.Component {
+export class ProductList extends React.Component {
 
   constructor(props){
     super(props);
 
   }
+  componentWillMount(){
+    this.props.fetchProducts()
+  }
 
   render(){
-    // const {products} = this.props
-    // const ProductList = products.map( product =>
-    //   <div>
-    //     {product.name}
-    //   </div>
-    // )
+    // console.log('products props',this.props)
+    const productList =  this.props.products.map((product) =>
+      <div className="boxed" key={product.name}>
+        <img src={require(`../../images/${product.image}`)}/><br/>
+        {product.name}<br/>
+        {product.currency} {product.price}<br/>
+        <button className="addBasket" value="Add" >Add To Cart </button>
+        <button className="addBasket" value="Remove From Cart" >Remove From Cart </button>
+      </div>);
   return(
+
     <div className="productsboxed">
-      Products
+
+      {productList}
+
     </div>
     );
   }
 
 }
 
-export default ProductList;
+const mapStateToProps = (state) => ({
+
+  products : state.products.products
+
+})
+
+export default connect(mapStateToProps,{fetchProducts})(ProductList)

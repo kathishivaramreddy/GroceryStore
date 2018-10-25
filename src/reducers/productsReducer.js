@@ -1,7 +1,7 @@
 import {FETCH_PRODUCTS} from '../actions/types'
 
 const initialState = {
-  products : []
+  products: []
 }
 
 export default function(state=initialState,action) {

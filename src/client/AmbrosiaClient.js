@@ -1,8 +1,11 @@
-export const getProducts = () => {
-  return fetch('http://localhost:8080/products')
-  .then( (resp) => {
-    return resp.json();
-  }).then((json) => {
-    return json.products;
-  }).catch((error) => console.log('parsing failed',error))
-};
+export function fetchProducts(){
+	return function(dispatch){
+    	return fetch('http://localhost:8080/products ')
+      		.then((response) => response.json)
+    		.then((productList ) => dispatch(
+          {
+          type:'FETCH_PRODUCTS',
+          payload:productList.products }
+        	) )
+    }
+}
