@@ -1,8 +1,9 @@
 import {combineReducers } from 'redux';
-import productsReducer from './productsReducer'
+import productsReducer from './productsReducer';
+import sortReducer from './sortReducer';
 
 export default combineReducers({
 
-    products:productsReducer
-
+    products:productsReducer,
+    sortBy : sortReducer
   });

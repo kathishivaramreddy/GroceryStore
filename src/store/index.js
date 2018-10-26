@@ -14,7 +14,7 @@ const store = createStore(
 );
 
 store.subscribe( () => {
-  console.log("storeChanges ",store.getState())
+  console.log("storeState ",store.getState())
 })
 
 // store.dispatch({type:'INC',payload:1})

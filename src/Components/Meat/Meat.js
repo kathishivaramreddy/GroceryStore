@@ -44,7 +44,7 @@ export class Meat extends React.Component {
         <div>
 
           <div className="productsheader">
-            <PriceSorter sorter={this.handleSelectChange}/>
+            {/* <PriceSorter sorter={this.handleSelectChange}/> */}
             <h5 >Meat</h5>
           </div>
 

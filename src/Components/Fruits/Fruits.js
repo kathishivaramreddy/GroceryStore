@@ -86,12 +86,12 @@ export class Fruits extends React.Component {
 
           <div className="productsheader">
 
-            <PriceSorter sorter={this.handleSelectChange}/>
+            {/* <PriceSorter sorter={this.handleSelectChange}/> */}
             <h5>Fruits</h5>
           </div>
 
           <div className="productsboxed">
-            
+
             <div>
               <Filter onPriceFilter={this.handlePriceFilter} onCategoryFilter={this.handleCategoryFilter}/>
 

@@ -42,7 +42,7 @@ export class Coffee extends React.Component {
         <div>
 
           <div className="productsheader">
-            <PriceSorter sorter={this.handleSelectChange}/>
+            {/* <PriceSorter sorter={this.handleSelectChange}/> */}
             <h3>Coffee</h3>
           </div>
 

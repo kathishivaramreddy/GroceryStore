@@ -44,7 +44,7 @@ export class Milk extends React.Component {
         <div>
 
           <div className="productsheader">
-            <PriceSorter sorter={this.handleSelectChange}/>
+            {/* <PriceSorter sorter={this.handleSelectChange}/> */}
             <h3 align="left" >Milk</h3>
           </div>
 

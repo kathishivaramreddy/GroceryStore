@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {fetchProducts} from '../../actions/productAction'
-// import store from '../../store'
+import PriceSorter from '../PriceSorter/PriceSorter';
 import './ProductList.css';
 
 export class ProductList extends React.Component {
@@ -10,13 +10,24 @@ export class ProductList extends React.Component {
     super(props);
 
   }
+
   componentWillMount(){
-    this.props.fetchProducts()
+    const {sortBy} = this.props
+    this.props.fetchProducts(sortBy)
+  }
+
+  componentDidUpdate(prevProps) {
+    const {sortBy} = this.props
+    if(this.props.sortBy !== prevProps.sortBy){
+
+    this.props.fetchProducts(sortBy)}
+
   }
 
   render(){
     // console.log('products props',this.props)
-    const productList =  this.props.products.map((product) =>
+
+    const productList = this.props.products.map((product) =>
       <div className="boxed" key={product.name}>
         <img src={require(`../../images/${product.image}`)}/><br/>
         {product.name}<br/>
@@ -24,21 +35,32 @@ export class ProductList extends React.Component {
         <button className="addBasket" value="Add" >Add To Cart </button>
         <button className="addBasket" value="Remove From Cart" >Remove From Cart </button>
       </div>);
+
   return(
 
-    <div className="productsboxed">
+    <div>
+      <div className="productsheader">
 
-      {productList}
+        <PriceSorter />
+        <h5>Products</h5>
 
+      </div>
+
+      <div className="productsboxed">
+
+        {productList}
+
+      </div>
     </div>
-    );
-  }
+      );
+      }
 
 }
 
 const mapStateToProps = (state) => ({
 
-  products : state.products.products
+  products : state.products.products,
+  sortBy   : state.sortBy.sortBy
 
 })
 
