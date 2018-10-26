@@ -1,7 +1,6 @@
 import {FETCH_PRODUCTS} from './types'
 import store from '../store';
-import sortBy from 'lodash/sortBy';
-
+import {sorting,sortByPrice} from '../Components/PriceSorter/PriceUtil';
 
 export const fetchProducts = (sort) => dispatch => {
 
@@ -12,18 +11,7 @@ export const fetchProducts = (sort) => dispatch => {
       let {products} = data
 
       if(sort.length>0){
-        
-        if(sort === 'LOW'){
-          products = sortBy(products,function(product){
-             return product.price
-           })
-       }
-       else{
-         products = sortBy(products,function(product){
-            return product.price
-          })
-          products = products.reverse()
-        }
+        products= sortByPrice(sort,products)
       }
 
       return dispatch (

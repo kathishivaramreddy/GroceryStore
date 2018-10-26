@@ -1,17 +1,18 @@
-import {SORT_HIGH,SORT_LOW} from './types'
-import {sortAction} from './sortAction'
+import {SORT} from './types'
+import {sortProducts} from './sortAction';
+
 describe('actions', () => {
 
-const sortItems = [{name:'apple',price:25},{name:'banana',price:30}]
+const sortBy = "HIGH"
 
   it('should create actions which sorts items ',() => {
 
     const expectedAction = {
-        type:SORT_HIGH,
-        payload:sortItems
+        type:SORT,
+        payload:sortBy
     }
 
-    expect(sortAction(sortItems)).toEqual(expectedAction)
+    expect(sortProducts(sortBy)).toEqual(expectedAction)
   })
 
 })
