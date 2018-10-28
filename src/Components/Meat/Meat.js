@@ -50,7 +50,7 @@ export class Meat extends React.Component {
 
           <div className="productsboxed">
             <div>
-              <Filter/>
+              {/* <Filter/> */}
             </div>
             {searchItems.length === 0 ? listItems : searchItems}
           </div>

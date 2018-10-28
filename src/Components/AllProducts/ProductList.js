@@ -2,25 +2,25 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {fetchProducts} from '../../actions/productAction'
 import PriceSorter from '../PriceSorter/PriceSorter';
+import Filter from '../Filter/Filter';
+import SearchBar from '../Search/Search';
 import './ProductList.css';
 
-export class ProductList extends React.Component {
+class ProductList extends React.Component {
 
-  constructor(props){
-    super(props);
 
-  }
 
   componentWillMount(){
-    const {sortBy} = this.props
-    this.props.fetchProducts(sortBy)
+    const {sortBy,searchBy} = this.props
+    this.props.fetchProducts(sortBy,searchBy)
   }
 
-  componentDidUpdate(prevProps) {
-    const {sortBy} = this.props
-    if(this.props.sortBy !== prevProps.sortBy){
+  componentDidUpdate(prevProps,prevState) {
+    const {sortBy,searchBy} = this.props
+    if(this.props.sortBy !== prevProps.sortBy  || this.props.searchBy !== prevProps.searchBy){
 
-    this.props.fetchProducts(sortBy)}
+    this.props.fetchProducts(sortBy,searchBy)
+    }
 
   }
 
@@ -40,7 +40,7 @@ export class ProductList extends React.Component {
 
     <div>
       <div className="productsheader">
-
+        <SearchBar/>
         <PriceSorter />
         <h5>Products</h5>
 
@@ -48,19 +48,21 @@ export class ProductList extends React.Component {
 
       <div className="productsboxed">
 
+        <Filter/>
         {productList}
 
       </div>
     </div>
       );
       }
-
 }
 
 const mapStateToProps = (state) => ({
 
   products : state.products.products,
-  sortBy   : state.sortBy.sortBy
+  sortBy   : state.sortBy.sort,
+  filterBy : state.filterBy.filterByPrice,
+  searchBy : state.searchBy.search
 
 })
 

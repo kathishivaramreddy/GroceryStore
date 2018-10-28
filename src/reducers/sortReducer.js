@@ -1,7 +1,7 @@
 import {SORT} from '../actions/types'
 
 const initialState = {
-  sortBy : ''
+  sort : ''
 }
 
 export default function(state=initialState,action) {
@@ -11,7 +11,7 @@ export default function(state=initialState,action) {
     case SORT :
       return {
         ...state,
-        sortBy:action.payload
+        sort:action.payload
       }
 
     default:

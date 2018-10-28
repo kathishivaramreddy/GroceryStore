@@ -1,8 +1,9 @@
 import {FETCH_PRODUCTS} from './types'
 import store from '../store';
 import {sorting,sortByPrice} from '../Components/PriceSorter/PriceUtil';
+import {searchProduct} from '../Components/Search/SearchUtil';
 
-export const fetchProducts = (sort) => dispatch => {
+export const fetchProducts = (sort,search) => dispatch => {
 
     return fetch('http://localhost:8080/products')
     .then(res => res.json())
@@ -12,6 +13,10 @@ export const fetchProducts = (sort) => dispatch => {
 
       if(sort.length>0){
         products= sortByPrice(sort,products)
+      }
+
+      if(search.length>0){
+        products=searchProduct(search,products)
       }
 
       return dispatch (

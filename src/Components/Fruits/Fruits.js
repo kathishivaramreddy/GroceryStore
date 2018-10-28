@@ -93,7 +93,7 @@ export class Fruits extends React.Component {
           <div className="productsboxed">
 
             <div>
-              <Filter onPriceFilter={this.handlePriceFilter} onCategoryFilter={this.handleCategoryFilter}/>
+              {/* <Filter onPriceFilter={this.handlePriceFilter} onCategoryFilter={this.handleCategoryFilter}/> */}
 
             </div>
 

@@ -10,7 +10,6 @@ import {Tea} from './Components/Tea/Tea';
 import {Coffee} from './Components/Coffee/Coffee';
 import {Cart} from './Components/Cart/Cart';
 import {concatCart,removefromCart} from './Components/Cart/CartUtil.js'
-import {connect} from 'react-redux';
 import './App.css';
 
 class App extends React.Component {
@@ -31,22 +30,22 @@ class App extends React.Component {
     console.log('in add cart');
     const cartItem = {name, currency, price, image, quantity: 1};
     const updatedCart = concatCart([], cartItem);
-    this.setState({cart: updatedCart});
+    // this.setState({cart: updatedCart});
   }
 
   handleRemoveFromCart(name, currency, price) {
     const cartItem = {name, currency, price, quantity: 1};
     const updatedCart = removefromCart([], cartItem);
-    this.setState({cart: updatedCart});
+    // this.setState({cart: updatedCart});
   }
 
   handleClearCart() {
-    this.setState({cart: []});
+    // this.setState({cart: []});
   }
 
   updateInput(e) {
     const value = e.target.value;
-    this.setState({input: value});
+    // this.setState({input: value});
   }
 
   renderCart() {
@@ -69,10 +68,6 @@ class App extends React.Component {
           <div>
 
             {navigation()}
-
-            <div className="searchbar">
-              <input className="searchbox" type="search" placeholder="Search for products and more" name="search" onChange={this.updateInput} autoComplete="off"/>
-            </div>
 
             <div className="cartComponent">
               {this.renderCart()}

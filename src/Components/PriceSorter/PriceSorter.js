@@ -6,14 +6,9 @@ import {connect} from 'react-redux';
 
 class PriceSorter extends React.Component{
 
-  // constructor(props){
-  //   super(props);
-  //
-  //   this.handleSort =this.handleSort.bind(this)
-  // }
 
   handleSort(event){
-    console.log(this.props.sortProducts())
+    
     this.props.sortProducts(event.target.value)
 
   }

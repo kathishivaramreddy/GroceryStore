@@ -49,7 +49,7 @@ export class Tea extends React.Component {
           </div>
           <div className="productsboxed">
             <div>
-              <Filter />
+              {/* <Filter /> */}
             </div>
             {searchItems.length === 0 ? listItems : searchItems}
           </div>
