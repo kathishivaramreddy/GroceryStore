@@ -10,14 +10,14 @@ class ProductList extends React.Component {
 
   componentWillMount(){
     const {sortBy,searchBy,filterBy} = this.props
-    this.props.fetchProducts(sortBy,searchBy)
+    this.props.fetchProducts(sortBy,searchBy,filterBy.filterByPrice,filterBy.filterByCategory)
   }
 
   componentDidUpdate(prevProps,prevState) {
     const {sortBy,searchBy,filterBy} = this.props
     if(this.props.sortBy !== prevProps.sortBy  || this.props.searchBy !== prevProps.searchBy || this.props.filterBy !== prevProps.filterBy){
 
-    this.props.fetchProducts(sortBy,searchBy,filterBy)
+    this.props.fetchProducts(sortBy,searchBy,filterBy.filterByPrice,filterBy.filterByCategory)
 
     }
 
@@ -60,7 +60,7 @@ const mapStateToProps = (state) => ({
 
   products : state.products.products,
   sortBy   : state.sortBy.sortProducts,
-  filterBy : state.filterBy.filterByPrice,
+  filterBy : state.filterBy,
   searchBy : state.searchBy.search
 
 })

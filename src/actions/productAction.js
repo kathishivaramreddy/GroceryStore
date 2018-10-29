@@ -2,10 +2,10 @@ import {FETCH_PRODUCTS} from './types'
 import store from '../store';
 import {sorting,sortByPrice} from '../Components/PriceSorter/PriceUtil';
 import {searchProduct} from '../Components/Search/SearchUtil';
-import {filterByPrice} from '../Components/Filter/FilterUtil';
+import {filterByPrice,filterByCategory} from '../Components/Filter/FilterUtil';
 import isEmpty from 'lodash/isEmpty';
 
-export const fetchProducts = (sort,search,filter) => dispatch => {
+export const fetchProducts = (sort,search,filterPrice,filterCategory) => dispatch => {
 
     return fetch('http://localhost:8080/products')
     .then(res => res.json())
@@ -21,8 +21,12 @@ export const fetchProducts = (sort,search,filter) => dispatch => {
         products=searchProduct(search,products)
       }
 
-      if(!isEmpty(filter)){
-        products=filterByPrice(filter,products)
+      if(!isEmpty(filterPrice)){
+        products=filterByPrice(filterPrice,products)
+      }
+
+      if(!isEmpty(filterCategory)){
+        products=filterByCategory(filterCategory,products)
       }
       return dispatch (
         {
@@ -30,6 +34,7 @@ export const fetchProducts = (sort,search,filter) => dispatch => {
         payload:products
         }
       )
-    }
+
+      }
     )
 }

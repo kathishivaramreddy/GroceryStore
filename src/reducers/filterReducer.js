@@ -1,13 +1,15 @@
-import {FILTER_PRICE,FILTER_CATEGORY,FILTER_PRICE_REMOVER} from '../actions/types';
-import {removeFromFilter} from '../Components/Filter/FilterUtil'
+import {FILTER_PRICE,FILTER_CATEGORY,
+  FILTER_PRICE_REMOVER,FILTER_CATEGORY_REMOVER} from '../actions/types';
+import {removeFromFilterPrice,removeFromFilterCategory} from '../Components/Filter/FilterUtil'
 const initialState = {
 
-  filterByPrice:[]
-
+  filterByPrice:[],
+  filterByCategory:[]
 }
 
 export default function(state=initialState,action) {
     console.log(state.filterByPrice,'filterReducer')
+    console.log(state.filterByCategory,'filterReducer')
     switch(action.type){
       case FILTER_PRICE:
         return  {
@@ -17,12 +19,18 @@ export default function(state=initialState,action) {
       case FILTER_PRICE_REMOVER:
         return {
           ...state,
-          filterByPrice:removeFromFilter(state.filterByPrice,action.payload)}
-      // case FILTER_CATEGORY:
-      //   return {
-      //     ...state,
-      //     // filterByCategory: action.payload
-      //   }
+          filterByPrice:removeFromFilterPrice(state.filterByPrice,action.payload)
+        }
+      case FILTER_CATEGORY:
+      return  {
+        ...state,
+        filterByCategory:[...state.filterByCategory,action.payload]
+      }
+      case FILTER_CATEGORY_REMOVER:
+        return {
+          ...state,
+          filterByCategory:removeFromFilterCategory(state.filterByCategory,action.payload)
+        }
       default:
         return state;
       }
