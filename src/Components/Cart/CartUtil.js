@@ -3,6 +3,7 @@ import isNil from 'lodash/isNil';
 import merge from 'lodash/merge';
 import concat from 'lodash/concat';
 import sum from 'lodash/sum'
+
 export const mergeProduct = (item, newItem) => {
   return merge(item, {quantity: item.quantity + newItem.quantity});
 };
@@ -52,15 +53,16 @@ export const removefromCart = (items, newItem) => {
 };
 
 export const displayCartItems = (cartItems ) => {
-  return cartItems.map( items =>
+  return cartItems.map( item =>
     <div className="cartitems">
-      <li className ="cart" key={items.name}>
-        <img className ="cartImage" src={items.image} alt='product' /> <br/> {items.name} <br/> Cost:-{items.price} {items.currency} <br/>Quantity :- {items.quantity}
+      <li className ="cart" key={item.name}>
+        <img className="cartImage" src={require(`../../images/${item.image}`)}/> <br/> {item.name} <br/> Cost:-{item.price} {item.currency} <br/>Quantity :- {item.quantity}
       </li>
     </div>)
 }
 
 export const totalAmountCalculator = (cartItems ) => {
+  
   return  <div> <b> Total Charges:-</b>{sum(cartItems.map((product) =>
   product.price * product.quantity ))} INR </div>
 }

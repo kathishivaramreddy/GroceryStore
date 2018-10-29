@@ -6,36 +6,36 @@ import isEmpty from 'lodash/isEmpty';
 import {displayCartItems,totalAmountCalculator,buttonToClearCart}
         from './CartUtil'
 import './Cart.css';
+import {connect} from 'react-redux';
 
-
-export class Cart extends React.Component {
+class Cart extends React.Component {
   render() {
-
+    console.log('in cart',this.props.cart)
     const emptyCartMessage = <p>Your Cart is empty.Start shopping now</p>;
 
-    const listItems = displayCartItems(this.props.data)
+    const listItems = displayCartItems(this.props.cart)
 
-    const totalAmountToBePaid = totalAmountCalculator(this.props.data)
-
-    const clearCart = buttonToClearCart(this.props.clearCart)
+    const totalAmountToBePaid = totalAmountCalculator(this.props.cart)
+    // const clearCart = buttonToClearCart(this.props.clearCart)
 
     return (
       <div >
         <div className="dropdown">
           <button className="dropbtn" ><img className="cartIcon" src={require('../../images/cartimage.jpg') } alt="carticon"/>Cart </button>
           <div className="dropdown-content">
-            {isEmpty(this.props.data) ? '' : clearCart }
+            {/* {isEmpty(this.props.cart) ? '' : clearCart } */}
             <ul className="cart">
-              {isEmpty(this.props.data) ? emptyCartMessage : listItems }
+              {isEmpty(this.props.cart) ? emptyCartMessage : listItems }
+
             </ul>
             <div className="totalprice">
-              {isEmpty(this.props.data) ? '' : totalAmountToBePaid}
+              {isEmpty(this.props.cart) ? '' : totalAmountToBePaid}
             </div>
             <br/>
 
-            <div className="checkoutsection">
+            {/* <div className="checkoutsection">
               {isEmpty(this.props.data) ? '' :<Link className="checkout" to='checkout'>View Cart & Checkout</Link>}
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -44,7 +44,10 @@ export class Cart extends React.Component {
   }
 }
 
-Cart.propTypes = {
-  data:PropTypes.array,
-  clearCart:PropTypes.func,
-}
+const mapStateToProps = (state) => ({
+  cart : state.cart.cartItems
+
+})
+
+
+export default connect(mapStateToProps,)(Cart)

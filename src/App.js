@@ -8,7 +8,7 @@ import {Milk} from './Components/Milk/Milk';
 import {Meat} from './Components/Meat/Meat';
 import {Tea} from './Components/Tea/Tea';
 import {Coffee} from './Components/Coffee/Coffee';
-import {Cart} from './Components/Cart/Cart';
+import Cart from './Components/Cart/Cart';
 import {concatCart,removefromCart} from './Components/Cart/CartUtil.js'
 import './App.css';
 
