@@ -1,27 +1,28 @@
-import {FILTER_PRICE,FILTER_CATEGORY} from '../actions/types';
-
+import {FILTER_PRICE,FILTER_CATEGORY,FILTER_PRICE_REMOVER} from '../actions/types';
+import {removeFromFilter} from '../Components/Filter/FilterUtil'
 const initialState = {
-  filterByPrice:[],
-  filterByCategory:[]
+
+  filterByPrice:[]
+
 }
 
-export default function(state=[],action) {
-
+export default function(state=initialState,action) {
+    console.log(state.filterByPrice,'filterReducer')
     switch(action.type){
       case FILTER_PRICE:
-        return  Object.assign({}, state, {
-        filterByPrice: [
-          ...state.filterByPrice,
-          {
-            text: action.payload,
-          }
-        ]
-      })
-      case FILTER_CATEGORY:
+        return  {
+          ...state,
+          filterByPrice:[...state.filterByPrice,action.payload]
+        }
+      case FILTER_PRICE_REMOVER:
         return {
           ...state,
-          filterByCategory: action.payload
-        }
+          filterByPrice:removeFromFilter(state.filterByPrice,action.payload)}
+      // case FILTER_CATEGORY:
+      //   return {
+      //     ...state,
+      //     // filterByCategory: action.payload
+      //   }
       default:
         return state;
       }

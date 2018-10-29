@@ -54,7 +54,17 @@ export function applyPriceFilter(itemsAfterCategoryFilter, filterPrice) {
     )
   )
 }
-
+export function filterByPrice(filterPrice,products){
+  return products.filter((product) =>
+    some(filterPrice, function (filter) {
+        if (product.price > filter.min && product.price < filter.max) {
+          return true;
+        }
+        return false;
+      }
+    )
+  )
+}
 export const getFilteredList = (products, filterCategory, filterPrice,onAdd,onRemove) => {
   return products.filter( (product) => {
     if (isEmpty(filterCategory)) {

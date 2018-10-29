@@ -4,7 +4,7 @@ import {setFilterValue,addToFilter,removeFromFilter,setCategoryValue,
   addToFilterCategory,removeFromFilterCategory
   ,applyCategoryFilter,applyPriceFilter} from './FilterUtil.js';
 import {connect} from 'react-redux';
-import {filterPriceAction} from '../../actions/filterAction'
+import {filterPriceAction,filterPriceRemover} from '../../actions/filterAction'
 import './Filter.css';
 
 class Filter extends React.Component {
@@ -17,8 +17,8 @@ class Filter extends React.Component {
     this.props.filterPriceAction(filterValue)
     }
     else{
-      const reducedFilterSearch = removeFromFilter(this.props.filterBy.filterPrice,filterValue);
-      this.props.filterPriceAction(reducedFilterSearch)
+      // const reducedFilterSearch = removeFromFilter(this.props.filterBy.filterPrice,filterValue);
+      this.props.filterPriceRemover(filterValue)
       }
   }
 
@@ -58,14 +58,10 @@ class Filter extends React.Component {
   }
 }
 
-Filter.propTypes = {
-
-}
-
 const mapStateToProps = (state) => ({
-
-  filterBy:state.filterBy
+  // console.log(ownProps)
+  filterBy:state.filterBy.filterByPrice
 
 })
 
-export default connect(mapStateToProps,{filterPriceAction})(Filter)
+export default connect(mapStateToProps,{filterPriceAction,filterPriceRemover})(Filter)

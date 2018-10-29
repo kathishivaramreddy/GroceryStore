@@ -8,18 +8,17 @@ import './ProductList.css';
 
 class ProductList extends React.Component {
 
-
-
   componentWillMount(){
-    const {sortBy,searchBy} = this.props
+    const {sortBy,searchBy,filterBy} = this.props
     this.props.fetchProducts(sortBy,searchBy)
   }
 
   componentDidUpdate(prevProps,prevState) {
-    const {sortBy,searchBy} = this.props
-    if(this.props.sortBy !== prevProps.sortBy  || this.props.searchBy !== prevProps.searchBy){
+    const {sortBy,searchBy,filterBy} = this.props
+    if(this.props.sortBy !== prevProps.sortBy  || this.props.searchBy !== prevProps.searchBy || this.props.filterBy !== prevProps.filterBy){
 
-    this.props.fetchProducts(sortBy,searchBy)
+    this.props.fetchProducts(sortBy,searchBy,filterBy)
+
     }
 
   }
@@ -60,7 +59,7 @@ class ProductList extends React.Component {
 const mapStateToProps = (state) => ({
 
   products : state.products.products,
-  sortBy   : state.sortBy.sort,
+  sortBy   : state.sortBy.sortProducts,
   filterBy : state.filterBy.filterByPrice,
   searchBy : state.searchBy.search
 

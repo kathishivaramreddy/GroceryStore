@@ -8,7 +8,7 @@ class PriceSorter extends React.Component{
 
 
   handleSort(event){
-    
+
     this.props.sortProducts(event.target.value)
 
   }
@@ -27,7 +27,7 @@ class PriceSorter extends React.Component{
 
 const mapStateToProps = (state) => ({
 
-    sortBy : state.sortBy.sortBy
+    sortBy : state.sortBy.sortProducts
 })
 
 export default connect(mapStateToProps,{sortProducts})(PriceSorter)
