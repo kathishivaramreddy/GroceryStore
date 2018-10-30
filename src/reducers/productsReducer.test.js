@@ -33,9 +33,7 @@ describe('product reducer',() => {
 
       {
         products : [{name:'apple'}]
-      }
-
-    )
+      } )
 
   })
 

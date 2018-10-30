@@ -1,15 +1,14 @@
 import {FILTER_PRICE,FILTER_CATEGORY,
   FILTER_PRICE_REMOVER,FILTER_CATEGORY_REMOVER} from '../actions/types';
 import {removeFromFilterPrice,removeFromFilterCategory} from '../Components/Filter/FilterUtil'
-const initialState = {
 
+const initialState = {
   filterByPrice:[],
   filterByCategory:[]
 }
 
 export default function(state=initialState,action) {
-    console.log(state.filterByPrice,'filterReducer')
-    console.log(state.filterByCategory,'filterReducer')
+    
     switch(action.type){
       case FILTER_PRICE:
         return  {

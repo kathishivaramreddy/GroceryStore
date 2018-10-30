@@ -1,7 +1,7 @@
 import {SORT} from '../actions/types'
 
 const initialState = {
-  sortProducts : ''
+  sortProducts : ""
 }
 
 export default function(state=initialState,action) {
