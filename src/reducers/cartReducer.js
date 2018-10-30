@@ -1,5 +1,5 @@
 import {CART_ADD,CART_REMOVE} from '../actions/types';
-import {addToCart,removeFromCart,concatCart} from '../Components/Cart/CartUtil';
+import {removeFromCart,concatCart} from '../Components/Cart/CartUtil';
 
 const initialState = {
   cartItems : []
@@ -21,7 +21,8 @@ export default function(state=initialState,action){
     case CART_REMOVE:
       return {
           ...state,
-          // cartItems:removeFromCart(state.cartItems,action.payload)
+          cartItems:removeFromCart(state.cartItems,Object.assign({}, action.payload, {
+          quantity: 1}))
       }
 
     default:

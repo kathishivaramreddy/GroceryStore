@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {fetchProducts} from '../../actions/productAction';
-import {addCartAction} from '../../actions/cartAction';
+import {addCartAction,removeCartAction} from '../../actions/cartAction';
 import PriceSorter from '../PriceSorter/PriceSorter';
 import Filter from '../Filter/Filter';
 import SearchBar from '../Search/Search';
@@ -11,7 +11,8 @@ class ProductList extends React.Component {
 
   constructor(props){
     super(props);
-    this.handleAddToCart = this.handleAddToCart.bind(this)
+    this.handleAddToCart = this.handleAddToCart.bind(this);
+    this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this);
   }
 
   componentWillMount(){
@@ -48,7 +49,7 @@ class ProductList extends React.Component {
         {product.name}<br/>
         {product.currency} {product.price}<br/>
       <button className="addBasket" value="Add" onClick={() => this.handleAddToCart(product)}>Add To Cart </button>
-        <button className="addBasket" value="Remove From Cart" onClick={() => this.handleAddToCart(product)}>Remove From Cart </button>
+        <button className="addBasket" value="Remove From Cart" onClick={() => this.handleRemoveFromCart(product)}>Remove From Cart </button>
       </div>);
 
   return(
@@ -82,4 +83,4 @@ const mapStateToProps = (state) => ({
 
 })
 
-export default connect(mapStateToProps,{fetchProducts,addCartAction})(ProductList)
+export default connect(mapStateToProps,{fetchProducts,addCartAction,removeCartAction})(ProductList)

@@ -35,7 +35,8 @@ export const removeItemFromCart = (items, itemToBeDeleted) => {
   return items.filter( (item) => item.name !== itemToBeDeleted.name);
 };
 
-export const removefromCart = (items, newItem) => {
+//items:state.cart , {product}
+export const removeFromCart = (items, newItem) => {
   const itemQuantityToBeUpdated = items.find( (item) => {
     return item.name === newItem.name && item.quantity > 1;
   });
@@ -62,7 +63,7 @@ export const displayCartItems = (cartItems ) => {
 }
 
 export const totalAmountCalculator = (cartItems ) => {
-  
+
   return  <div> <b> Total Charges:-</b>{sum(cartItems.map((product) =>
   product.price * product.quantity ))} INR </div>
 }

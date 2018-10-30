@@ -9,7 +9,7 @@ import {Meat} from './Components/Meat/Meat';
 import {Tea} from './Components/Tea/Tea';
 import {Coffee} from './Components/Coffee/Coffee';
 import Cart from './Components/Cart/Cart';
-import {concatCart,removefromCart} from './Components/Cart/CartUtil.js'
+import {concatCart,removeFromCart} from './Components/Cart/CartUtil.js'
 import './App.css';
 
 class App extends React.Component {
@@ -35,7 +35,7 @@ class App extends React.Component {
 
   handleRemoveFromCart(name, currency, price) {
     const cartItem = {name, currency, price, quantity: 1};
-    const updatedCart = removefromCart([], cartItem);
+    const updatedCart = removeFromCart([], cartItem);
     // this.setState({cart: updatedCart});
   }
 
