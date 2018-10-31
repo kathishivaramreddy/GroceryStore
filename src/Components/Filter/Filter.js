@@ -12,11 +12,9 @@ class Filter extends React.Component {
 
     const filterValue = setFilterValue(event.target.name)
     if(event.target.checked){
-    // const newFilterSearch = addToFilter(this.props.filterBy.filterPrice,filterValue);
     this.props.filterPriceAction(filterValue)
-    }
+      }
     else{
-      // const reducedFilterSearch = removeFromFilter(this.props.filterBy.filterPrice,filterValue);
       this.props.filterPriceRemover(filterValue)
       }
   }
@@ -26,13 +24,11 @@ class Filter extends React.Component {
     const filterValue = setCategoryValue(event.target.name)
     if(event.target.checked){
     this.props.filterCategoryAction(filterValue)
-    }
+  }
     else{
       this.props.filterCategoryRemover(filterValue)
     }
-
   }
-
   render() {
     return (
       <div className="filterboxed">

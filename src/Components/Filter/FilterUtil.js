@@ -25,8 +25,11 @@ export const removeFromFilterCategory = (items, value) =>{
 };
 
 export const setFilterValue = (name) => {
-  const checkboxData = {price1: {min: 1, max: 100},
-    price2: {min: 101, max: 200}, price3: {min: 201, max: 1000}};
+  const checkboxData = {
+    price1: {min: 1, max: 100},
+    price2: {min: 101, max: 200},
+    price3: {min: 201, max: 1000}
+  };
 
   if (name === 'price1') {
     return checkboxData.price1;

@@ -1,9 +1,10 @@
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
 import {SORT} from './types';
 import {sortProducts} from './sortAction';
+
+const middlewares = [thunk];
+const mockStore = configureMockStore(middlewares);
 
 describe('actions', () => {
 

@@ -1,4 +1,4 @@
-import {FETCH_PRODUCTS} from './types'
+import {FETCH_PRODUCTS,FETCH_PRODUCTS_FAILURE} from './types'
 import store from '../store';
 import {sorting,sortByPrice} from '../Components/PriceSorter/PriceUtil';
 import {searchProduct} from '../Components/Search/SearchUtil';
@@ -37,4 +37,12 @@ export const fetchProducts = (sort,search,filterPrice,filterCategory) => dispatc
 
       }
     )
+    // .catch(err => dispatch(fetchProductsFailure(err)))
 }
+
+// function fetchProductsFailure(err) {
+//   return {
+//     type: FETCH_PRODUCTS_FAILURE,
+//     err
+//   }
+// }
