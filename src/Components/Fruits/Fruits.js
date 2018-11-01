@@ -1,115 +1,90 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import allProductsList from '../Data/AllProducts';
-import {setFilterValue,addToFilter,removeFromFilter,setCategoryValue,
-  addToFilterCategory,removeFromFilterCategory
-  ,applyCategoryFilter,applyPriceFilter} from '../Filter/FilterUtil.js';
-import {productDisplay} from '../Util/ProductsDisplay';
-import {PriceSorter} from '../PriceSorter/PriceSorter';
-import {Filter} from '../Filter/Filter';
+import {connect} from 'react-redux';
+import {fetchProducts} from '../../actions/productAction';
+import {addCartAction,removeCartAction} from '../../actions/cartAction';
+import PriceSorter from '../PriceSorter/PriceSorter';
+import Filter from '../Filter/Filter';
+import SearchBar from '../Search/Search';
 import './Fruits.css';
-import isEmpty from "lodash/isEmpty";
-import sortBy from 'lodash/sortBy';
 
-export class Fruits extends React.Component {
-  constructor(props) {
+class Fruits extends React.Component {
+
+  constructor(props){
     super(props);
-    this.state= {
-      products: [],
-      filterPrice : [],
-      filterCategory: []
-    };
-    this.handleSelectChange=this.handleSelectChange.bind(this);
-    this.handleCategoryFilter = this.handleCategoryFilter.bind(this);
-    this.handlePriceFilter = this.handlePriceFilter.bind(this);
-
+    this.handleAddToCart = this.handleAddToCart.bind(this);
+    this.handleRemoveFromCart = this.handleRemoveFromCart.bind(this);
   }
 
-  componentDidMount(){
-
-    const productList = allProductsList().products.filter(product =>  product.category === 'fruits')
-    this.setState({products : productList})
-
+  componentWillMount(){
+    const {sortBy,searchBy,filterBy} = this.props
+    this.props.fetchProducts(sortBy,searchBy,filterBy.filterByPrice,filterBy.filterByCategory)
   }
 
-  handleSelectChange(e){
-    const value = e.target.value
-    const sortedState = sortBy(this.state.products,function(product){
-       return product.price
-     })
-    value ==='low' ? this.setState({products : sortedState}) : this.setState({products : sortedState.reverse()})
-  }
+  componentDidUpdate(prevProps,prevState) {
 
-  handlePriceFilter(e){
-    const filterValue = setFilterValue(e.target.name)
-    if(e.target.checked){
-    const newFilterSearch = addToFilter(this.state.filterPrice,filterValue);
-    this.setState({filterPrice: newFilterSearch})
+    const {sortBy,searchBy,filterBy} = this.props
+    if(this.props.sortBy !== prevProps.sortBy  || this.props.searchBy !== prevProps.searchBy || this.props.filterBy !== prevProps.filterBy){
+
+    this.props.fetchProducts(sortBy,searchBy,filterBy.filterByPrice,filterBy.filterByCategory)
+
     }
-    else{
-      const reducedFilterSearch = removeFromFilter(this.state.filterPrice,filterValue);
-      this.setState({filterPrice: reducedFilterSearch})
-      }
 
   }
 
-  handleCategoryFilter(e){
-    const filterValueCategory = setCategoryValue(e.target.name)
-    if(e.target.checked){
-    const newFilterCategory = addToFilterCategory(this.state.filterCategory,filterValueCategory);
-    this.setState({filterCategory: newFilterCategory})
-      }
-    else{
-      const reducedFilterCategory = removeFromFilterCategory(this.state.filterCategory,filterValueCategory);
-      this.setState({filterCategory: reducedFilterCategory})
-      }
+  handleAddToCart(product) {
+
+    this.props.addCartAction(product)
+
+  }
+  handleRemoveFromCart(product){
+
+    this.props.removeCartAction(product)
   }
 
+  render(){
 
+    const fruits = this.props.products.filter(product => product.category ==='fruits')
 
-  render() {
+    const productList = fruits.map((product) =>
+      <div className="boxed" key={product.name}>
+        <img src={require(`../../images/${product.image}`)}/><br/>
+        {product.name}<br/>
+        {product.currency} {product.price}<br/>
+      <button className="addBasket" value="Add" onClick={() => this.handleAddToCart(product)}>Add To Cart </button>
+        <button className="addBasket" value="Remove From Cart" onClick={() => this.handleRemoveFromCart(product)}>Remove From Cart </button>
+      </div>);
 
-    const {products,filterCategory,filterPrice} = this.state;
-    const {onAdd,onRemove,onSearch} = this.props;
+  return(
 
-    const searchItems = onSearch === "" ? products : products.filter(product => product.name.toUpperCase() === onSearch.toUpperCase())
+    <div className="products">
+      <div className="productsheader">
+        <SearchBar/>
+        <PriceSorter />
+        <h5>Products</h5>
 
-    const itemsAfterCategoryFilter = isEmpty(filterCategory) ? searchItems : applyCategoryFilter(searchItems, filterCategory)
-    const itemsAfterPriceFilter = isEmpty(filterPrice) ? itemsAfterCategoryFilter : applyPriceFilter(itemsAfterCategoryFilter, filterPrice);
+      </div>
 
-    const listItems = productDisplay(itemsAfterPriceFilter,onAdd,onRemove);
+      <div className="filter">
+        <Filter/>
+      </div>
+      <div className="productsboxed">
 
-    return (
+          {productList}
 
-
-        <div className="fruits">
-
-          <div className="productsheader">
-
-            {/* <PriceSorter sorter={this.handleSelectChange}/> */}
-            <h5>Fruits</h5>
-          </div>
-
-          <div className="productsboxed">
-
-            <div>
-              {/* <Filter onPriceFilter={this.handlePriceFilter} onCategoryFilter={this.handleCategoryFilter}/> */}
-
-            </div>
-
-            {listItems}
-
-          </div>
-
-        </div>
-
-
-    );
-  }
+      </div>
+    </div>
+      );
+      }
 }
 
-Fruits.propTypes = {
-    onAdd : PropTypes.func,
-    onRemove : PropTypes.func,
-    onSearch : PropTypes.string
-}
+const mapStateToProps = (state) => ({
+
+  products : state.products.products,
+  sortBy   : state.sortBy.sortProducts,
+  filterBy : state.filterBy,
+  searchBy : state.searchBy.search,
+
+
+})
+
+export default connect(mapStateToProps,{fetchProducts,addCartAction,removeCartAction})(Fruits)

@@ -2,7 +2,7 @@ import React from 'react';
 import {Route} from 'react-router-dom';
 import {navigation} from './Components/Util/Navigation';
 import ProductList from './Components/AllProducts/ProductList';
-import {Fruits} from './Components/Fruits/Fruits';
+import Fruits from './Components/Fruits/Fruits';
 import {Vegetables} from './Components/Vegetables/Vegetables';
 import {Milk} from './Components/Milk/Milk';
 import {Meat} from './Components/Meat/Meat';

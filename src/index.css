@@ -2,4 +2,12 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  /* overflow-y: scroll;
+  max-height: 60%;
+  box-sizing: border-box; */
+
 }
+/* html {
+ overflow: hidden;
+ height: 100%;
+} */

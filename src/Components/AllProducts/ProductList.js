@@ -43,7 +43,9 @@ class ProductList extends React.Component {
 
   render(){
 
-    const productList = this.props.products.map((product) =>
+    const {products} = this.props
+
+    const productList = products.map((product) =>
       <div className="boxed" key={product.name}>
         <img src={require(`../../images/${product.image}`)}/><br/>
         {product.name}<br/>
@@ -54,7 +56,7 @@ class ProductList extends React.Component {
 
   return(
 
-    <div>
+    <div className="products">
       <div className="productsheader">
         <SearchBar/>
         <PriceSorter />
@@ -62,10 +64,12 @@ class ProductList extends React.Component {
 
       </div>
 
+      <div className="filter">
+        <Filter/>
+      </div>
       <div className="productsboxed">
 
-        <Filter/>
-        {productList}
+          {productList}
 
       </div>
     </div>
