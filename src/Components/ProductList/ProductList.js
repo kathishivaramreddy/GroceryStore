@@ -25,13 +25,13 @@ export class ProductList extends React.Component {
     <div className="products">
 
       <div className="productsheader">
-        <SearchBarContainer />
-        <PriceSorterContainer />
+        <SearchBarContainer className="searchBar"/>
+        <PriceSorterContainer className="priceSorter"/>
         <h5>Products</h5>
       </div>
 
       <div className="filter">
-        <FilterContainer/>
+        <FilterContainer className="filter"/>
       </div>
 
       <div className="productsboxed">

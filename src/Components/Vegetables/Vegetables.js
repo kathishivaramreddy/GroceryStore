@@ -8,34 +8,15 @@ import {productDisplay} from '../Util/ProductsDisplay';
 import sortBy from 'lodash/sortBy';
 
 export class Vegetables extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state= {
-      products: [],
-    };
-    this.handleSelectChange=this.handleSelectChange.bind(this);
-  }
-  componentDidMount() {
-    const productList = allProductsList().products.filter( (product) => product.category === 'vegetables');
-
-    this.setState({products: productList});
-  }
-  handleSelectChange(e) {
-    const value = e.target.value;
-    const sortedState = sortBy(this.state.products, function(product) {
-      return product.price;
-    });
-    value ==='low' ? this.setState({products: sortedState}) : this.setState({products: sortedState.reverse()});
-  }
+  c
   render() {
-    const {products} = this.state;
-    const {onAdd, onRemove, onSearch} = this.props;
-
-    const listItems = productDisplay(products, onAdd, onRemove);
-
-    const searchItems =searchBar(products, onAdd, onRemove,
-        onSearch);
+    // const {products} = this.state;
+    // const {onAdd, onRemove, onSearch} = this.props;
+    //
+    // const listItems = productDisplay(products, onAdd, onRemove);
+    //
+    // const searchItems =searchBar(products, onAdd, onRemove,
+    //     onSearch);
 
     return (
       <div>
@@ -53,7 +34,7 @@ export class Vegetables extends React.Component {
               {/* <Filter/> */}
             </div>
 
-            {searchItems.length === 0 ? listItems : searchItems}
+            {/* {searchItems.length === 0 ? listItems : searchItems} */}
 
           </div>
 

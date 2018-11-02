@@ -15,22 +15,26 @@ describe('product list test', () => {
  const products = [{name:'apple',category:'fruit',price:250,currency:'INR',image:'apple.jpg'}]
 
   beforeEach(() =>{
-    
+
     wrapper = shallow(<ProductList  products={products}
       addCartAction={addElement} removeCartAction={removeElement}/>)
 
   });
 
   it('should render PriceSorter',() => {
-    expect(wrapper.exists('PriceSorter')).toEqual(true);
+    expect(wrapper.exists('.priceSorter')).toEqual(true);
   })
 
   it('should render Filter Box',() => {
-    expect(wrapper.exists('Filter')).toEqual(true);
+    expect(wrapper.exists('.filter')).toEqual(true);
   })
 
   it('should render search box',() => {
-    expect(wrapper.exists('SearchBar')).toEqual(true);
+    expect(wrapper.exists('.searchBar')).toEqual(true);
+  })
+
+  it('should render products',() => {
+    expect(wrapper.find('img').at(0).props().src).toEqual('apple.jpg');
   })
 
   it('should call a function on add to cart button click', () => {
@@ -42,5 +46,7 @@ describe('product list test', () => {
     wrapper.find('button').at(1).simulate('click');
     expect(removeElement).toHaveBeenCalled();
   });
+
+
 
 });

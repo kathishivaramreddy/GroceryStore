@@ -6,9 +6,8 @@ import isEmpty from 'lodash/isEmpty';
 import {displayCartItems,totalAmountCalculator,buttonToClearCart}
         from './CartUtil'
 import './Cart.css';
-import {connect} from 'react-redux';
 
-class Cart extends React.Component {
+export class Cart extends React.Component {
 
   render() {
 
@@ -17,27 +16,24 @@ class Cart extends React.Component {
     const listItems = displayCartItems(this.props.cart)
 
     const totalAmountToBePaid = totalAmountCalculator(this.props.cart)
-    // const clearCart = buttonToClearCart(this.props.clearCart)
+
 
     return (
       <div >
         <div className="dropdown">
 
           <button className="dropbtn" ><img className="cartIcon" src={require('../../images/cartimage.jpg') } alt="carticon"/>Cart </button>
+
           <div className="dropdown-content">
-            {/* {isEmpty(this.props.cart) ? '' : clearCart } */}
+            <h4>Cart</h4>
             <ul className="cart">
               {isEmpty(this.props.cart) ? emptyCartMessage : listItems }
-
             </ul>
             <div className="totalprice">
               {isEmpty(this.props.cart) ? '' : totalAmountToBePaid}
             </div>
             <br/>
 
-            {/* <div className="checkoutsection">
-              {isEmpty(this.props.data) ? '' :<Link className="checkout" to='checkout'>View Cart & Checkout</Link>}
-            </div> */}
           </div>
         </div>
 
@@ -45,11 +41,3 @@ class Cart extends React.Component {
     );
   }
 }
-
-const mapStateToProps = (state) => ({
-  cart : state.cart.cartItems
-
-})
-
-
-export default connect(mapStateToProps,)(Cart)
