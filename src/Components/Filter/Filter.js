@@ -6,7 +6,7 @@ import {filterPriceAction,filterPriceRemover,
   filterCategoryAction,filterCategoryRemover} from '../../actions/filterAction'
 import './Filter.css';
 
-class Filter extends React.Component {
+export class Filter extends React.Component {
 
   handlePriceFilter(event) {
 

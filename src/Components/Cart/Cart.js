@@ -21,6 +21,7 @@ class Cart extends React.Component {
     return (
       <div >
         <div className="dropdown">
+
           <button className="dropbtn" ><img className="cartIcon" src={require('../../images/cartimage.jpg') } alt="carticon"/>Cart </button>
           <div className="dropdown-content">
             {/* {isEmpty(this.props.cart) ? '' : clearCart } */}

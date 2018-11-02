@@ -6,8 +6,8 @@ import Adapter from 'enzyme-adapter-react-16';
 configure({adapter: new Adapter()});
 import {shallow} from 'enzyme';
 import {Link} from 'react-router-dom';
-import {navigation} from '../Util/Navigation';
-jest.mock('../Util/Navigation');
+import {navigation} from './Components/Util/Navigation';
+jest.mock('./Components/Util/Navigation');
 
 let wrapper;
 beforeEach( () => {

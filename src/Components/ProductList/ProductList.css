@@ -4,7 +4,7 @@
   height:260px;
   float: left;
   padding: 5px;
-  box-shadow: 0px 8px 16px grey;
+  /* box-shadow: 0px 8px 16px grey; */
   margin:15px;
   /* position:fixed; */
 
@@ -91,7 +91,12 @@ select{
   top: 45%;
 
 }
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+* {
+    box-sizing: border-box;
 }

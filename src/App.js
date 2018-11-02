@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route} from 'react-router-dom';
 import {navigation} from './Components/Util/Navigation';
-import ProductList from './Components/AllProducts/ProductList';
+import ProductListContainer from './container/ProductListContainer';
 import Fruits from './Components/Fruits/Fruits';
 import {Vegetables} from './Components/Vegetables/Vegetables';
 import {Milk} from './Components/Milk/Milk';
@@ -50,7 +50,8 @@ class App extends React.Component {
 
   renderCart() {
       return (<div className="cartboxed">
-        <Cart data={[]} clearCart={this.handleClearCart}/>
+        {/* <Cart data={[]} clearCart={this.handleClearCart}/> */}
+        <Cart />
       </div>);
 
   }
@@ -78,7 +79,7 @@ class App extends React.Component {
 
         <div className="route">
 
-          <Route exact path='/' component={ProductList} />
+          <Route exact path='/' component={ProductListContainer} />
 
           <Route path='/fruits' component={() => <Fruits onAdd={this.handleAddToCart.bind(this)} onRemove={this.handleRemoveFromCart.bind(this)} onSearch=""/>}/>
 

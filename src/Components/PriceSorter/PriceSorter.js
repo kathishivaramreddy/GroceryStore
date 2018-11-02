@@ -4,13 +4,11 @@ import './PriceSorter.css';
 import {sortProducts} from '../../actions/sortAction';
 import {connect} from 'react-redux';
 
-class PriceSorter extends React.Component{
+export class PriceSorter extends React.Component{
 
 
   handleSort(event){
-
     this.props.sortProducts(event.target.value)
-
   }
 
   render(){
@@ -24,10 +22,3 @@ class PriceSorter extends React.Component{
     )
   }
 }
-
-const mapStateToProps = (state) => ({
-
-    sortBy : state.sortBy.sortProducts
-})
-
-export default connect(mapStateToProps,{sortProducts})(PriceSorter)

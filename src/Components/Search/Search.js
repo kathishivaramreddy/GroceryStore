@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {searchAction} from '../../actions/searchAction';
 
-class SearchBar extends React.Component {
+export class SearchBar extends React.Component {
 
 constructor(props){
   super(props);

@@ -72,7 +72,7 @@
      min-height: auto;
      max-height: 280px;
      overflow: auto;
-     box-shadow: 0 3px 5px rgba(0,0,0,.175);
+     /* box-shadow: 0 3px 5px rgba(0,0,0,.175); */
      /* z-index: 5; */
      padding-right: 20px;
  }

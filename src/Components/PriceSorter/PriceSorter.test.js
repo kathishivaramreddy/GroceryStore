@@ -3,12 +3,15 @@ import {shallow} from 'enzyme';
 import {configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 configure({adapter: new Adapter()});
-
 import {PriceSorter} from './PriceSorter'
 
 describe('PriceSorter ', () => {
 
-let callback = jest.fn();
+let sortProducts = jest.fn();
+let wrapper;
+  beforeEach(() =>{
+    wrapper = shallow(<PriceSorter sortProducts={sortProducts}/>)
+  })
 
   it('should have select and option elements',() => {
 
@@ -19,9 +22,8 @@ let callback = jest.fn();
 
   it('should have call function on change ',() => {
 
-    const wrapper = shallow(<PriceSorter sorter={callback}/>)
-    wrapper.find('select').simulate('click',{target: { value : 'low'}});
-    expect(callback).toHaveBeenCalled();
+    wrapper.find('select').simulate('click',{target: { value : 'LOW'}});
+    expect(sortProducts).toHaveBeenCalled();
   })
 
 })

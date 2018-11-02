@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {fetchProducts} from '../../actions/productAction';
 import {addCartAction,removeCartAction} from '../../actions/cartAction';
-import PriceSorter from '../PriceSorter/PriceSorter';
+// import PriceSorter from '../PriceSorter/PriceSorter';
 import Filter from '../Filter/Filter';
 import SearchBar from '../Search/Search';
 import './Fruits.css';
@@ -59,7 +59,7 @@ class Fruits extends React.Component {
     <div className="products">
       <div className="productsheader">
         <SearchBar/>
-        <PriceSorter />
+        {/* <PriceSorter /> */}
         <h5>Products</h5>
 
       </div>
