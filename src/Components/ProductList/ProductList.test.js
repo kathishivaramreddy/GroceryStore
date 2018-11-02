@@ -15,8 +15,10 @@ describe('product list test', () => {
  const products = [{name:'apple',category:'fruit',price:250,currency:'INR',image:'apple.jpg'}]
 
   beforeEach(() =>{
+    
     wrapper = shallow(<ProductList  products={products}
       addCartAction={addElement} removeCartAction={removeElement}/>)
+
   });
 
   it('should render PriceSorter',() => {

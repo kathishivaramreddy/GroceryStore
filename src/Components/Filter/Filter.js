@@ -1,9 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {setFilterValue,setCategoryValue} from './FilterUtil.js';
-import {connect} from 'react-redux';
-import {filterPriceAction,filterPriceRemover,
-  filterCategoryAction,filterCategoryRemover} from '../../actions/filterAction'
 import './Filter.css';
 
 export class Filter extends React.Component {
@@ -38,7 +34,7 @@ export class Filter extends React.Component {
 
           <h4>Price Filter</h4>
 
-          <input type="checkbox" name="price1" onChange={this.handlePriceFilter.bind(this)} /> Less Than 100 <br/>
+          <input className="priceFilter" type="checkbox" name="price1" onChange={this.handlePriceFilter.bind(this)} /> Less Than 100 <br/>
           <input type="checkbox" name="price2" onChange={this.handlePriceFilter.bind(this)} /> 101-200<br/>
           <input type="checkbox" name="price3" onChange={this.handlePriceFilter.bind(this)} /> 201-1000<br/>
 
@@ -58,11 +54,3 @@ export class Filter extends React.Component {
       </div>);
   }
 }
-
-const mapStateToProps = (state) => ({
-  // console.log(ownProps)
-  filterBy:state.filterBy
-
-})
-
-export default connect(mapStateToProps,{filterPriceAction,filterPriceRemover,filterCategoryAction,filterCategoryRemover})(Filter)

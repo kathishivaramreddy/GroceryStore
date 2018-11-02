@@ -9,8 +9,9 @@ import './Cart.css';
 import {connect} from 'react-redux';
 
 class Cart extends React.Component {
+
   render() {
-    console.log('in cart',this.props.cart)
+
     const emptyCartMessage = <p>Your Cart is empty.Start shopping now</p>;
 
     const listItems = displayCartItems(this.props.cart)

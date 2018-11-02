@@ -3,12 +3,12 @@ import {sortProducts} from '../actions/sortAction';
 import {connect} from 'react-redux';
 import {PriceSorter} from '../Components/PriceSorter/PriceSorter'
 
-export class PriceSorteRContainer extends React.Component{
+export class PriceSorterContainer extends React.Component{
 
   render(){
     return(
     <div>
-      <PriceSorter sortProducts={this.props.sortAction}/>
+      <PriceSorter sortProducts={this.props.sortProducts}/>
     </div>
     )
   }
@@ -19,4 +19,4 @@ const mapStateToProps = (state) => ({
     sortBy : state.sortBy.sortProducts
 })
 
-export default connect(mapStateToProps,{sortProducts})(PriceSorter)
+export default connect(mapStateToProps,{sortProducts})(PriceSorterContainer)

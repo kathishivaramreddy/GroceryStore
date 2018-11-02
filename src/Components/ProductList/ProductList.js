@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import PriceSorterContainer from '../../container/PriceSorterContainer';
-import {Filter} from '../Filter/Filter';
-import {SearchBar} from '../Search/Search';
+import FilterContainer from '../../container/FilterContainer';
+import SearchBarContainer from '../../container/SearchBarContainer';
 import './ProductList.css';
 
 export class ProductList extends React.Component {
@@ -25,13 +25,13 @@ export class ProductList extends React.Component {
     <div className="products">
 
       <div className="productsheader">
-        <SearchBar />
+        <SearchBarContainer />
         <PriceSorterContainer />
         <h5>Products</h5>
       </div>
 
       <div className="filter">
-        <Filter/>
+        <FilterContainer/>
       </div>
 
       <div className="productsboxed">

@@ -4,10 +4,6 @@ import {searchAction} from '../../actions/searchAction';
 
 export class SearchBar extends React.Component {
 
-constructor(props){
-  super(props);
-}
-
 handleSearch(event){
 
     this.props.searchAction(event.target.value)
@@ -23,9 +19,3 @@ render() {
       )
     }
 }
-
-const mapStateToProps = (state) => ({
-    searchBy: state.searchBy
-})
-
-export default connect(mapStateToProps,{searchAction})(SearchBar)
