@@ -10,7 +10,7 @@ export class FilterContainer extends React.Component {
   render() {
     return (
       <div>
-        <Filter filterPriceAction={this.props.filterPriceAction} filterPriceRemover={filterPriceRemover}
+        <Filter filterPriceAction={this.props.filterPriceAction} filterPriceRemover={this.props.filterPriceRemover}
           filterCategoryAction={this.props.filterCategoryAction} filterCategoryRemover={this.props.filterCategoryRemover}
         />
       </div>

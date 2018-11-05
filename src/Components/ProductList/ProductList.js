@@ -3,22 +3,16 @@ import {connect} from 'react-redux';
 import PriceSorterContainer from '../../container/PriceSorterContainer';
 import FilterContainer from '../../container/FilterContainer';
 import SearchBarContainer from '../../container/SearchBarContainer';
+import {productDisplay} from '../Util/ProductsDisplay';
 import './ProductList.css';
 
 export class ProductList extends React.Component {
-
+  
   render(){
 
-    const {products} = this.props
+    const {products,addCartAction,removeCartAction} = this.props
 
-    const productList = products.map((product) =>
-      <div className="boxed" key={product.name}>
-        <img src={require(`../../images/${product.image}`)}/><br/>
-        {product.name}<br/>
-        {product.currency} {product.price}<br/>
-        <button className="addBasket" value="Add" onClick={() => this.props.addCartAction(product)}>Add To Cart </button>
-        <button className="RemoveBasket" value="Remove From Cart" onClick={() => this.props.removeCartAction(product)}>Remove From Cart </button>
-      </div>);
+    const productList = productDisplay(products,addCartAction,removeCartAction)
 
   return(
 

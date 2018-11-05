@@ -30,11 +30,11 @@ export class Filter extends React.Component {
       <div className="filterboxed">
         <h3>Filter here</h3>
 
-        <div className="boxed">
+        <div className="boxed"> 
 
           <h4>Price Filter</h4>
 
-          <input className="priceFilter" type="checkbox" name="price1" onChange={this.handlePriceFilter.bind(this)} /> Less Than 100 <br/>
+          <input type="checkbox" name="price1" onChange={this.handlePriceFilter.bind(this)} /> Less Than 100 <br/>
           <input type="checkbox" name="price2" onChange={this.handlePriceFilter.bind(this)} /> 101-200<br/>
           <input type="checkbox" name="price3" onChange={this.handlePriceFilter.bind(this)} /> 201-1000<br/>
 
