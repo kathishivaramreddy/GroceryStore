@@ -24,8 +24,7 @@ let wrapper;
   })
 
   // it('should call function on click ',() => {
-  //
-  //   wrapper.find('.priceFilter').simulate('change',{target: { name : 'price1'}});
+  //   wrapper.find('input').at(0).simulate('change',{target: { name : 'price1'}});
   //   expect(filterPriceAction).toHaveBeenCalled();
   // })
 

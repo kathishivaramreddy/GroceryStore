@@ -12,8 +12,8 @@ export default function(state=initialState,action){
     case CART_ADD:
       return {
         ...state,
-        cartItems:concatCart(state.cartItems,Object.assign({}, action.payload, {
-        quantity: 1})
+        cartItems:concatCart(state.cartItems,
+          Object.assign({}, action.payload, {quantity: 1})
       )
 
       }

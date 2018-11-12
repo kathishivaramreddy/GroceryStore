@@ -1,12 +1,12 @@
 import React from 'react';
 import {Route} from 'react-router-dom';
 import ProductListContainer from '../../container/ProductListContainer';
-import Fruits from '../Fruits/Fruits';
-import {Vegetables} from '../Vegetables/Vegetables';
-import {Milk} from '../Milk/Milk';
-import {Meat} from '../Meat/Meat';
-import {Tea} from '../Tea/Tea';
-import {Coffee} from '../Coffee/Coffee';
+import FruitsContainer from '../../container/FruitsContainer';
+import VegetablesContainer from '../../container/VegetablesContainer';
+import MilkContainer from '../../container/MilkContainer';
+import MeatContainer from '../../container/MeatContainer';
+import TeaContainer from '../../container/TeaContainer';
+import CoffeeContainer from '../../container/CoffeeContainer';
 
 const Routes = () => {
 
@@ -14,12 +14,12 @@ const Routes = () => {
     <div className="route">
 
       <Route exact path='/' component={ProductListContainer} />
-      <Route path='/fruits' component={Fruits }/>
-      <Route path='/organic' component={Vegetables}/>
-      <Route path='/milk' component={Milk}/>
-      <Route path='/meat' component={Meat}/>
-      <Route path='/tea' component={Tea}/>
-      <Route path='/coffee' component={Coffee }/>
+      <Route path='/fruits' component={FruitsContainer }/>
+      <Route path='/organic' component={VegetablesContainer}/>
+      <Route path='/milk' component={MilkContainer}/>
+      <Route path='/meat' component={MeatContainer}/>
+      <Route path='/tea' component={TeaContainer}/>
+      <Route path='/coffee' component={CoffeeContainer}/>
 
     </div>
   )

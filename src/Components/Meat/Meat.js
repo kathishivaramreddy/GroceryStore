@@ -1,55 +1,32 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import allProductsList from '../Data/AllProducts';
-import {PriceSorter} from '../PriceSorter/PriceSorter';
-import {Filter} from '../Filter/Filter';
-import {searchBar} from '../Util/Searchbar';
-import {productDisplay} from '../Util/ProductsDisplay';
-import sortBy from 'lodash/sortBy';
-import './Meat.css';
+import {connect} from 'react-redux';
+import {Products} from '../Util/Products';
+import PriceSorterContainer from '../../container/PriceSorterContainer';
+import FilterContainer from '../../container/FilterContainer';
+import SearchBarContainer from '../../container/SearchBarContainer';
 
 export class Meat extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //
-  //   this.state= {
-  //     products: [],
-  //   };
-  //   this.handleSelectChange=this.handleSelectChange.bind(this);
-  // }
-  // componentDidMount() {
-  //   const productList = allProductsList().products.filter((product) => product.category === 'meat');
-  //
-  //   this.setState({products: productList});
-  // }
-  // handleSelectChange(e) {
-  //   const value = e.target.value;
-  //   const sortedState = sortBy(this.state.products, function(product) {
-  //     return product.price;
-  //   });
-  //   value ==='low' ? this.setState({products: sortedState}) : this.setState({products: sortedState.reverse()});
-  // }
-  render() {
-    // const {products} = this.state;
-    // const {onAdd, onRemove, onSearch} = this.props;
-    //
-    // const listItems = productDisplay(products, onAdd, onRemove);
-    //
-    // const searchItems =searchBar(products, onAdd, onRemove,
-    //     onSearch);
 
+  render(){
 
-    return (
-      <div>
-        
+  return(
+
+    <div className="products">
+
+      <div className="productsheader">
+        <SearchBarContainer className="searchBar"/>
+        <PriceSorterContainer className="priceSorter"/>
+        <h5>Products</h5>
       </div>
 
-    );
-  }
-}
+      <div className="filter">
+        <FilterContainer className="filter"/>
+      </div>
 
-Meat.propTypes = {
-    onAdd : PropTypes.func,
-    onRemove : PropTypes.func,
-    onSearch : PropTypes.string
+      <div className="productsboxed">
+        <Products products={this.props.products} addCartAction={this.props.addCartAction}
+          removeCartAction={this.props.removeCartAction} />
+        </div>
+
+    </div>);}
 }

@@ -22,4 +22,11 @@ const mapStateToProps = (state) => ({
   filterBy:state.filterBy
 })
 
-export default connect(mapStateToProps,{filterPriceAction,filterPriceRemover,filterCategoryAction,filterCategoryRemover})(FilterContainer)
+const mapDispatchToProps = {
+  filterPriceAction,
+  filterPriceRemover,
+  filterCategoryAction,
+  filterCategoryRemover
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FilterContainer)

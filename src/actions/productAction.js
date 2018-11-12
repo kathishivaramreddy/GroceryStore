@@ -5,9 +5,10 @@ import {searchProduct} from '../Components/Search/SearchUtil';
 import {filterByPrice,filterByCategory} from '../Components/Filter/FilterUtil';
 import isEmpty from 'lodash/isEmpty';
 
-export const fetchProducts = (sort,search,filterPrice,filterCategory) => dispatch => {
+export const fetchProducts = (sort,search,filterPrice,filterCategory,url) => dispatch => {
 
-    return fetch('http://localhost:8080/products')
+
+    return fetch(url)
     .then(res => res.json())
     .then(data => {
 

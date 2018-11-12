@@ -2,20 +2,20 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {fetchProducts} from '../actions/productAction';
 import {addCartAction,removeCartAction} from '../actions/cartAction';
-import {ProductList} from  '../Components/ProductList/ProductList';
+import {Fruits} from  '../Components/Fruits/Fruits';
 
-export class ProductListContainer extends React.Component {
+export class FruitsContainer extends React.Component {
 
 
 
   componentWillMount(){
-    const url = 'http://localhost:8080/products'
+    const url = 'http://localhost:8080/fruits'
     const {sortBy,searchBy,filterBy} = this.props
     this.props.fetchProducts(sortBy,searchBy,filterBy.filterByPrice,filterBy.filterByCategory,url)
   }
 
   componentDidUpdate(prevProps,prevState) {
-    const url = 'http://localhost:8080/products'
+    const url = 'http://localhost:8080/fruits'
     const {sortBy,searchBy,filterBy} = this.props
     if(this.props.sortBy !== prevProps.sortBy
        || this.props.searchBy !== prevProps.searchBy
@@ -32,7 +32,7 @@ export class ProductListContainer extends React.Component {
   return(
 
     <div>
-      <ProductList products={this.props.products} addCartAction={this.props.addCartAction}
+      <Fruits products={this.props.products} addCartAction={this.props.addCartAction}
         removeCartAction={this.props.removeCartAction}/>
     </div>
         );}
@@ -45,4 +45,4 @@ const mapStateToProps = (state) => ({
   searchBy : state.searchBy.search,
 })
 
-export default connect(mapStateToProps,{fetchProducts,addCartAction,removeCartAction})(ProductListContainer)
+export default connect(mapStateToProps,{fetchProducts,addCartAction,removeCartAction})(FruitsContainer)
