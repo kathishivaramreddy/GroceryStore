@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {fetchProducts} from '../actions/productAction';
 import {addCartAction,removeCartAction} from '../actions/cartAction';
-import {Coffee} from  '../Components/Coffee/Coffee';
+import {ProductList} from  '../Components/ProductList/ProductList';
 
 export class CoffeeContainer extends React.Component {
 
@@ -32,7 +32,7 @@ export class CoffeeContainer extends React.Component {
   return(
 
     <div>
-      <Coffee products={this.props.products} addCartAction={this.props.addCartAction}
+      <ProductList products={this.props.products} addCartAction={this.props.addCartAction}
         removeCartAction={this.props.removeCartAction}/>
     </div>
         );}

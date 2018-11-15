@@ -2,11 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {fetchProducts} from '../actions/productAction';
 import {addCartAction,removeCartAction} from '../actions/cartAction';
-import {Vegetables} from  '../Components/Vegetables/Vegetables';
+import {ProductList} from  '../Components/ProductList/ProductList';
 
 export class VegetablesContainer extends React.Component {
-
-
 
   componentWillMount(){
     const url = 'http://localhost:8080/vegetables'
@@ -32,7 +30,7 @@ export class VegetablesContainer extends React.Component {
   return(
 
     <div>
-      <Vegetables products={this.props.products} addCartAction={this.props.addCartAction}
+      <ProductList products={this.props.products} addCartAction={this.props.addCartAction}
         removeCartAction={this.props.removeCartAction}/>
     </div>
         );}
