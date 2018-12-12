@@ -13,11 +13,12 @@ describe('product actions' , () => {
   })
 
   const middlewares = [thunk]
-
+  const url='http://localhost:8080/products'
 
   it('should dispatch fetch products',() => {
 
     const store = mockStore({products:[]})
+
     fetchMock.getOnce('http://localhost:8080/products',{
       body:{products : [{name:'apple'},{name:'orange'}] },
       headers : { 'content-type': 'application/json' }
@@ -28,7 +29,7 @@ describe('product actions' , () => {
       payload : [{name:'apple'},{name:'orange'}]
     }]
 
-    store.dispatch(fetchProducts("","",[],{})).then(() => {
+    store.dispatch(fetchProducts("","",[],{},url)).then(() => {
       expect(store.getActions()).toEqual(expectedAction)
 
     })
@@ -48,7 +49,7 @@ describe('product actions' , () => {
       payload : [{name:'apple'}]
     }]
 
-    store.dispatch(fetchProducts("","apple",[],{})).then(() => {
+    store.dispatch(fetchProducts("","apple",[],{},url)).then(() => {
       expect(store.getActions()).toEqual(expectedAction)
     })
 
@@ -68,7 +69,7 @@ describe('product actions' , () => {
       payload : [{name:'apple',price:120}]
     }]
 
-    store.dispatch(fetchProducts("","",[{min:101,max:200}],{})).then(() => {
+    store.dispatch(fetchProducts("","",[{min:101,max:200}],{},url)).then(() => {
       expect(store.getActions()).toEqual(expectedAction)
     })
   })
@@ -87,30 +88,9 @@ describe('product actions' , () => {
       payload : [{name:'apple',category:'fruits'}]
     }]
 
-    store.dispatch(fetchProducts("","",[],[{category:'fruits'}])).then(() => {
+    store.dispatch(fetchProducts("","",[],[{category:'fruits'}],url)).then(() => {
       expect(store.getActions()).toEqual(expectedAction)
     })
   })
-
-  // it('should dispatch action when error occurs while fetching' , () => {
-  //
-  //   const store = mockStore({products:[]})
-  //
-  //   fetchMock.getOnce('http://localhost:8080/products',{
-  //     body:{products : [{name:'apple',category:'fruits'},{name:'tomato',category:'vegetable'}] },
-  //     headers : { 'content-type': 'application/json' },
-  //     'status-code':404
-  //   })
-  //
-  //   const expectedAction = [{
-  //     type:FETCH_PRODUCTS,
-  //     payload : [{name:'apple',category:'fruits'}]
-  //   }]
-  //
-  //   store.dispatch(fetchProducts("","",[],[])).then(() => {
-  //     expect(store.getActions()).toEqual(expectedAction)
-  //   })
-  //
-  // })
 
 })

@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import {Products} from '../Util/Products';
 import PriceSorterContainer from '../../container/PriceSorterContainer';
 import FilterContainer from '../../container/FilterContainer';
@@ -27,7 +26,7 @@ export class ProductList extends React.Component {
       <div className="productsboxed">
         <Products products={this.props.products} addCartAction={this.props.addCartAction}
           removeCartAction={this.props.removeCartAction} />
-        </div>
+      </div>
 
     </div>);}
 }

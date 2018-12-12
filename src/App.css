@@ -34,8 +34,6 @@
   /* overflow: hidden; */
   text-align : center;
   box-shadow: 0px 8px 16px darkslategrey;
-
-  /* position: fixed */
 }
 
 .navbtn :after{
